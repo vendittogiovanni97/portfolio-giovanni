@@ -26,8 +26,6 @@ self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
   if (event.request.url.includes("/api/")) return;
 
-  const url = new URL(event.request.url);
-
   if (event.request.destination === "image" || event.request.destination === "font" || event.request.destination === "style" || event.request.destination === "script") {
     event.respondWith(
       caches.match(event.request).then((cached) => {

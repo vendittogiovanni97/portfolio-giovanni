@@ -1,93 +1,85 @@
 # Giovanni Venditto — Portfolio
 
-Personal portfolio and creative-engineering playground of **Giovanni Venditto**, Fullstack & Creative Engineer.
+Portfolio bilingue (italiano e inglese) di Giovanni Venditto, con progetti, profilo professionale e demo interattive.
 
-Bilingual (IT/EN), built on Next.js with a committed **"Deep Green Terminal"** visual identity: a green-black canvas lit by a single acid-lime accent, WebGL motion, and an interactive tech radar.
-
-🔗 **Live:** https://giovannivenditto.dev
-
----
+**Live:** [portfolio-giovanni-ebon.vercel.app](https://portfolio-giovanni-ebon.vercel.app)
 
 ## Stack
 
-- **Framework:** Next.js (App Router, React Server Components)
-- **Language:** TypeScript (strict)
-- **Styling:** Tailwind CSS v4 (`@theme` design tokens) — see [`DESIGN.md`](./DESIGN.md)
-- **Motion & 3D:** Framer Motion, Three.js / WebGL shaders
-- **Content:** MDX (`next-mdx-remote`, `gray-matter`, `remark`/`rehype`) for projects and writing
-- **Forms:** React Hook Form + Zod, email delivery via [Resend](https://resend.com)
-- **Playground:** CodeMirror 6
-- **i18n:** custom lightweight provider, cookie-synced between server and client (IT default, EN toggle)
+- Next.js App Router, React 19 e TypeScript
+- Tailwind CSS 4 per lo stile
+- Framer Motion, GSAP e Lenis per le animazioni e lo scroll
+- `yaml`, `unified`, `remark` e `rehype` per i contenuti dei progetti
+- React Hook Form e Zod per il modulo di contatto; Resend per l'invio email
+- Dizionari IT/EN e metadati localizzati
 
-## Features
+## Cosa contiene
 
-- **Hero** with a live WebGL background and a single, focused call to action
-- **Impact metrics** and an **interactive Tech Radar** with real code snippets per skill
-- **Selected work** driven by MDX case studies, with quick-view modal and a generative cover fallback
-- **Experience timeline**, **credentials**, and a **GitHub open-source wall** (cached server route)
-- **Writing / blog** (MDX) with RSS, plus **Studio/About**, **Contact**, and a printable **CV**
-- **SEO & PWA:** per-route metadata, `sitemap.ts`, `robots.ts`, dynamic OpenGraph image, web manifest + service worker
-- **Accessible motion:** every animation honors `prefers-reduced-motion`
+- Homepage con profilo, metriche, competenze, esperienza, credenziali e progetti selezionati
+- Pagine Studio e Lab, modulo di contatto e CV scaricabile
+- Lab con simulazione OCR dichiarata come demo con dati mock, tabella HTML con filtro client-side e UI Inspector
+- Case study di progetto con contenuti e immagini
+- Metadati, immagini Open Graph, sitemap e robots per la SEO; manifest e service worker per la PWA
+- Animazioni che rispettano `prefers-reduced-motion`
 
-## Getting started
+## Avvio locale
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open http://localhost:3000.
+Apri <http://localhost:3000>.
 
-### Scripts
+| Script | Descrizione |
+| --- | --- |
+| `npm run dev` | Avvia il server di sviluppo |
+| `npm run build` | Crea la build di produzione e verifica i tipi TypeScript |
+| `npm run start` | Avvia la build di produzione |
+| `npm run lint` | Esegue ESLint |
+| `npm run analyze` | Crea la build con il bundle analyzer |
 
-| Script | Description |
-|--------|-------------|
-| `npm run dev` | Start the dev server |
-| `npm run build` | Production build |
-| `npm run start` | Serve the production build |
-| `npm run lint` | Run ESLint |
-| `npm run analyze` | Build with the bundle analyzer (`ANALYZE=true`) |
+## Configurazione
 
-## Environment variables
-
-All are optional — the app falls back to sensible defaults (see [`src/lib/config.ts`](./src/lib/config.ts)). Create a `.env.local` to override:
+Il sito usa valori predefiniti per i dati pubblici in `src/lib/config.ts`. Per personalizzarli, crea `.env.local`:
 
 ```bash
-# Identity / links (public)
-NEXT_PUBLIC_SITE_URL=https://giovannivenditto.dev
+# URL canonico: sostituiscilo se colleghi un dominio personalizzato
+NEXT_PUBLIC_SITE_URL=https://portfolio-giovanni-ebon.vercel.app
 NEXT_PUBLIC_AUTHOR_NAME="Giovanni Venditto"
 NEXT_PUBLIC_EMAIL=you@example.com
-NEXT_PUBLIC_GITHUB_USERNAME=giovannivenditto
-NEXT_PUBLIC_LINKEDIN_USERNAME=giovannivenditto
+NEXT_PUBLIC_GITHUB_USERNAME=vendittogiovanni97
+NEXT_PUBLIC_LINKEDIN_USERNAME=giovanni-venditto-89b607325
 NEXT_PUBLIC_TWITTER_USERNAME=giovannivenditto
+NEXT_PUBLIC_CALENDAR_URL=https://calendly.com/vendittogiovanni97/30min
 
-# Contact form (Resend)
+# Necessari per inviare il modulo contatti in produzione
 RESEND_API_KEY=re_...
 CONTACT_EMAIL=you@example.com
-
-# GitHub open-source wall (optional; raises the API rate limit)
-GITHUB_TOKEN=ghp_...
 ```
 
-## Project structure
+Senza `RESEND_API_KEY`, l'endpoint del modulo restituisce un errore di servizio e non dichiara il messaggio inviato.
 
-```
+## Struttura
+
+```text
 src/
-├─ app/                 # App Router routes, API routes, SEO (sitemap/robots/rss/og)
-├─ components/          # Feature + UI components (hero, tech-stack, work, writing, ui, …)
-├─ content/             # MDX projects & writing (it/ + en/ variants)
-├─ i18n/                # Dictionaries (it.json / en.json) + provider + server locale
-└─ lib/                 # config, content loaders, hooks, utils
+├─ app/          # Pagine, API, sitemap, robots e immagini Open Graph
+├─ components/   # Sezioni del sito e componenti UI
+├─ content/      # Contenuti dei progetti
+├─ i18n/         # Dizionari e gestione locale
+└─ lib/          # Configurazione, contenuti e utilità
+public/          # Immagini, CV, manifest e service worker
 ```
 
 ## Design system
 
-The visual identity is the **single source of truth** in [`src/app/globals.css`](./src/app/globals.css) (`:root` + `@theme`) and documented in [`DESIGN.md`](./DESIGN.md): one green-black base, one acid-lime accent, a green-tinted neutral ramp, and a tokenized micro type scale. Legacy Tailwind color families are remapped to the accent so the whole site reskins from one place.
+Le variabili di stile e i token si trovano in `src/app/globals.css`; il razionale visivo è documentato in [`DESIGN.md`](./DESIGN.md).
 
 ## Deploy
 
-Optimized for [Vercel](https://vercel.com) (`vercel.json` included). Any Node host that runs `next build` / `next start` works too.
+Il progetto è configurato per Vercel (`vercel.json`) e può essere eseguito su un host Node.js compatibile con `next build` e `next start`.
 
-## License
+## Licenza
 
-© Giovanni Venditto. All rights reserved.
+© Giovanni Venditto. Tutti i diritti riservati.

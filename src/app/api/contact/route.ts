@@ -9,6 +9,7 @@ const contactSchema = z.object({
   honeypot: z.string().max(0),
 });
 
+// Best-effort per-instance throttling; serverless instances do not share this state.
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
 
 function getRateLimit(ip: string): boolean {
@@ -20,10 +21,7 @@ function getRateLimit(ip: string): boolean {
     return true;
   }
 
-  if (entry.count >= 5) {
-    return false;
-  }
-
+  if (entry.count >= 5) return false;
   entry.count++;
   return true;
 }
@@ -31,7 +29,6 @@ function getRateLimit(ip: string): boolean {
 export async function POST(request: NextRequest) {
   try {
     const ip = request.headers.get("x-forwarded-for") || request.headers.get("x-real-ip") || "unknown";
-
     if (!getRateLimit(ip)) {
       return NextResponse.json({ error: "Too many requests" }, { status: 429 });
     }
@@ -46,14 +43,13 @@ export async function POST(request: NextRequest) {
     const { name, email, subject, message } = result.data;
 
     if (!process.env.RESEND_API_KEY) {
-      console.log("Contact form submission (no RESEND_API_KEY):", { name, email, subject, message });
-      return NextResponse.json({ success: true, message: "Form received (dev mode)" });
+      return NextResponse.json({ error: "Contact service is not configured" }, { status: 503 });
     }
 
     const { Resend } = await import("resend");
     const resend = new Resend(process.env.RESEND_API_KEY);
 
-    await resend.emails.send({
+    const { error } = await resend.emails.send({
       from: "Portfolio <onboarding@resend.dev>",
       to: process.env.CONTACT_EMAIL || "vendittogiovanni97@hotmail.it",
       replyTo: email,
@@ -61,9 +57,14 @@ export async function POST(request: NextRequest) {
       text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}`,
     });
 
+    if (error) {
+      console.error("Contact email delivery failed");
+      return NextResponse.json({ error: "Unable to send message" }, { status: 502 });
+    }
+
     return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error("Contact form error:", error);
+  } catch {
+    console.error("Contact form request failed");
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

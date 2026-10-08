@@ -102,10 +102,10 @@ export function LabContent() {
   const [isScanning, setIsScanning] = useState(false);
   const [scanComplete, setScanComplete] = useState(false);
 
-  // AG Grid Benchmark State
+  // Client-side table demo state
   const [recordsCount, setRecordsCount] = useState<number>(0);
   const [records, setRecords] = useState<GridRecord[]>([]);
-  const [renderTime, setRenderTime] = useState<number | null>(null);
+  const [generationTime, setGenerationTime] = useState<number | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
 
@@ -123,15 +123,15 @@ export function LabContent() {
     }, 1500);
   };
 
-  const handleGenerateBenchmark = (count: number) => {
+  const handleGenerateRecords = (count: number) => {
     setIsGenerating(true);
-    const start = performance.now();
     setTimeout(() => {
+      const start = performance.now();
       const data = generateRecords(count);
       const end = performance.now();
       setRecords(data);
       setRecordsCount(count);
-      setRenderTime(parseFloat((end - start).toFixed(2)));
+      setGenerationTime(parseFloat((end - start).toFixed(2)));
       setIsGenerating(false);
     }, 100);
   };
@@ -352,7 +352,7 @@ export function LabContent() {
           </motion.div>
         )}
 
-        {/* DEMO 2: AG GRID 10K RECORDS BENCHMARK */}
+        {/* DEMO 2: CLIENT-SIDE HTML TABLE */}
         {activeTab === "grid" && (
           <motion.div
             initial={{ opacity: 0, y: 15 }}
@@ -371,14 +371,14 @@ export function LabContent() {
 
                 <div className="flex items-center gap-3">
                   <button
-                    onClick={() => handleGenerateBenchmark(1000)}
+                    onClick={() => handleGenerateRecords(1000)}
                     disabled={isGenerating}
                     className="px-3.5 py-2 rounded-xl bg-slate-800 border border-slate-700 text-slate-200 font-mono text-xs hover:border-slate-500 transition-all cursor-pointer"
                   >
                     {t.lab.gridGenerate1k}
                   </button>
                   <button
-                    onClick={() => handleGenerateBenchmark(10000)}
+                    onClick={() => handleGenerateRecords(10000)}
                     disabled={isGenerating}
                     className="px-4 py-2 rounded-xl bg-accent text-slate-950 font-mono text-xs font-bold hover:bg-accent-bright transition-all shadow-[0_0_15px_rgba(202,164,86,0.3)] cursor-pointer flex items-center gap-1.5"
                   >
@@ -390,18 +390,14 @@ export function LabContent() {
 
               {/* Live Metric Stats Bar */}
               {recordsCount > 0 && (
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
                   <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
                     <div className="font-mono text-2xs text-slate-400">{t.lab.gridRecordsInMemory}</div>
                     <div className="font-mono text-lg font-bold text-accent">{recordsCount.toLocaleString(locale)}</div>
                   </div>
                   <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
                     <div className="font-mono text-2xs text-slate-400">{t.lab.gridRenderTime}</div>
-                    <div className="font-mono text-lg font-bold text-slate-100">{renderTime} ms</div>
-                  </div>
-                  <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
-                    <div className="font-mono text-2xs text-slate-400">{t.lab.gridFramerate}</div>
-                    <div className="font-mono text-lg font-bold text-emerald-400">60 FPS</div>
+                    <div className="font-mono text-lg font-bold text-slate-100">{generationTime} ms</div>
                   </div>
                   <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
                     <div className="font-mono text-2xs text-slate-400">{t.lab.gridReactiveFilter}</div>
@@ -422,7 +418,7 @@ export function LabContent() {
                 />
               </div>
 
-              {/* High-Performance Virtual Table Container */}
+              {/* HTML table; only the first 50 filtered rows are rendered. */}
               <div className="border border-slate-800 rounded-xl overflow-hidden bg-slate-950 max-h-[360px] overflow-y-auto">
                 {recordsCount === 0 ? (
                   <div className="py-16 text-center text-slate-500 font-mono text-xs">

@@ -11,18 +11,18 @@ const COPY: Record<Locale, { title: string; description: string; ogTitle: string
   it: {
     title: "Lab Interattivo & Demo AI",
     description:
-      "Testa dal vivo il simulatore di estrazione OCR + LLM per documenti PDF, il benchmark di 10.000 record su AG Grid a 60fps e il Design System Inspector.",
+      "Prova demo interattive: simulazione OCR con dati mock, generazione e filtro di una tabella HTML fino a 10.000 record e Design System Inspector.",
     ogTitle: "Interactive Lab & AI Demos | Giovanni Venditto",
     ogDescription:
-      "Benchmark ad alte prestazioni ed estrazione dati OCR + AI testabili in tempo reale nel browser.",
+      "Demo browser con simulazione OCR, dati di prova e una tabella HTML filtrabile.",
   },
   en: {
     title: "Interactive Lab & AI Demos",
     description:
-      "Try live the OCR + LLM extraction simulator for PDF documents, the 10,000-row AG Grid benchmark at 60fps, and the Design System Inspector.",
+      "Try interactive demos: simulated OCR with mock data, generation and filtering of an HTML table with up to 10,000 records, and a Design System Inspector.",
     ogTitle: "Interactive Lab & AI Demos | Giovanni Venditto",
     ogDescription:
-      "High-performance benchmarks and OCR + AI data extraction you can test live in the browser.",
+      "Browser demos featuring simulated OCR, sample data, and a filterable HTML table.",
   },
 };
 

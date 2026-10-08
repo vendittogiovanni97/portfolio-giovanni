@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
-import matter from "gray-matter";
 import { cache } from "react";
+import { parse } from "yaml";
 
 export interface ProjectMetadata {
   slug: string;
@@ -82,7 +82,15 @@ export const getProject = cache(function getProject(slug: string, locale?: strin
   if (!filePath) return null;
 
   const fileContents = fs.readFileSync(filePath, "utf8");
-  const { data, content } = matter(fileContents);
+  const frontmatterMatch = fileContents.match(/^---\s*\r?\n([\s\S]*?)\r?\n---\s*(?:\r?\n|$)/);
+  if (!frontmatterMatch) {
+    throw new Error(`Missing or invalid project frontmatter: ${filePath}`);
+  }
+  const data: unknown = parse(frontmatterMatch[1]);
+  if (!data || typeof data !== "object" || Array.isArray(data)) {
+    throw new Error(`Project frontmatter must be a YAML object: ${filePath}`);
+  }
+  const content = fileContents.slice(frontmatterMatch[0].length);
 
   return {
     metadata: {

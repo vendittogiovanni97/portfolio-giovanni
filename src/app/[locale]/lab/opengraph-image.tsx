@@ -11,12 +11,12 @@ const COPY: Record<Locale, { badge: string; title: string; subtitle: string }> =
   it: {
     badge: "Playground Interattivo",
     title: "Interactive Lab",
-    subtitle: "Demo dal vivo: estrazione OCR + LLM, benchmark AG Grid a 10.000 record e Design System Inspector.",
+    subtitle: "Demo browser: simulazione OCR con dati mock, tabella HTML filtrabile e Design System Inspector.",
   },
   en: {
     badge: "Interactive Playground",
     title: "Interactive Lab",
-    subtitle: "Live demos: OCR + LLM extraction, 10,000-row AG Grid benchmark, and a Design System Inspector.",
+    subtitle: "Browser demos: simulated OCR with mock data, a filterable HTML table, and a Design System Inspector.",
   },
 };
 
@@ -30,7 +30,7 @@ export default async function Image({ params }: ImageProps) {
   const c = COPY[locale];
 
   return new ImageResponse(
-    <OgImageContent badge={c.badge} title={c.title} subtitle={c.subtitle} tags={["OCR + LLM", "AG Grid 32", "60fps"]} />,
+    <OgImageContent badge={c.badge} title={c.title} subtitle={c.subtitle} tags={["OCR mock", "HTML table", "UI inspector"]} />,
     { ...ogImageSize }
   );
 }
