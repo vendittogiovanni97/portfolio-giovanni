@@ -3,10 +3,10 @@
 import { useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { gsap } from "gsap";
-import Image from "next/image";
 import { useI18n } from "@/i18n";
 import { ArrowDown, ArrowRight, Sparkles } from "lucide-react";
 import Link from "next/link";
+import { HeroScene } from "./HeroScene";
 
 function SplitHeadline({ text }: { text: string }) {
   const wrapRef = useRef<HTMLSpanElement>(null);
@@ -76,7 +76,7 @@ export function Hero() {
       />
 
       <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 sm:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+        <div className="hero-layout grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
           {/* Left: the poster */}
           <div className="lg:col-span-7">
             <motion.div {...reveal(0)} className="flex flex-wrap items-center gap-2.5 mb-5">
@@ -151,33 +151,8 @@ export function Hero() {
           </div>
 
           {/* Right: real product proof, framed as a browser specimen */}
-          <motion.div
-            {...reveal(0.4)}
-            className="lg:col-span-5 hidden lg:block"
-          >
-            <div
-              className="relative rotate-2 rounded-lg overflow-hidden shadow-[16px_20px_0_var(--color-ink)] border-2"
-              style={{ borderColor: "var(--color-ink)", background: "var(--color-ink)" }}
-            >
-              <div className="flex items-center gap-1.5 px-3 py-2">
-                <span className="w-2.5 h-2.5 rounded-full" style={{ background: "var(--color-paper)", opacity: 0.5 }} />
-                <span className="w-2.5 h-2.5 rounded-full" style={{ background: "var(--color-paper)", opacity: 0.5 }} />
-                <span className="w-2.5 h-2.5 rounded-full" style={{ background: "var(--color-paper)", opacity: 0.5 }} />
-                <span className="font-mono text-[10px] ml-2 opacity-60" style={{ color: "var(--color-paper)" }}>
-                  {t.hero.currentFocus}
-                </span>
-              </div>
-              <div className="relative w-full aspect-[16/9] bg-slate-950">
-                <Image
-                  src="/projects/assicurativo-studio/elaborazione-polizze.png"
-                  alt="Portale Assicurativo — pipeline AI di elaborazione polizze"
-                  fill
-                  sizes="(min-width: 1024px) 40vw, 0px"
-                  className="object-contain"
-                  priority
-                />
-              </div>
-            </div>
+          <motion.div {...reveal(0.4)} className="lg:col-span-5 min-w-0">
+            <HeroScene />
           </motion.div>
         </div>
       </div>

@@ -22,6 +22,8 @@ colors:
   neutral-900: '#1c1712'
   neutral-950: '#14100b'
   border: 'rgba(202, 164, 86, 0.14)'
+  shadow-panel: 'rgba(0, 0, 0, 0.28)'
+  shadow-panel-hover: 'rgba(0, 0, 0, 0.32)'
   error: '#ffb4ab'
 typography:
   display:
@@ -43,6 +45,12 @@ typography:
     fontSize: 13px
     fontWeight: '400'
     lineHeight: '1.6'
+  micro-label:
+    fontFamily: Geist Mono
+    fontSize: 10px
+    fontWeight: '500'
+    lineHeight: '1.2'
+    letterSpacing: 0.12em
 rounded:
   sm: 0.125rem
   DEFAULT: 0.25rem
@@ -143,6 +151,17 @@ own surface.
 - **Proof over decoration:** where a card or hero has a real screenshot to show, the
   screenshot IS the artwork at full opacity/color — no grayscale-until-hover treatment,
   no gradient vignette standing in for content.
+- **Hero diorama:** the desktop Hero may use a restrained Three.js scene to mount real
+  project screenshots on paper-and-brass frames. Keep the headline, copy, and actions
+  in semantic HTML. Load the scene only while it is visible, pause when it leaves view,
+  and keep a CSS screenshot collage for touch screens, reduced-motion preferences, and
+  browsers without WebGL.
+- **Project depth:** screenshot tilt is limited to fine pointers, stays subtle, and is
+  disabled for reduced-motion preferences. Project titles and descriptions remain flat
+  and easy to read.
+- **Depth panels:** service, process, and experience cards share a thin brass edge,
+  raised icon tiles, and a restrained perspective response on desktop. Keep their
+  surfaces solid, avoid glow gradients, and disable hover motion for reduced-motion users.
 
 ## Shapes
 

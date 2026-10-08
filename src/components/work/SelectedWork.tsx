@@ -27,6 +27,7 @@ function ProjectCard({ project, delay = 0, className, onQuickView }: ProjectCard
   const articleRef = useRef<HTMLElement>(null);
   const frameRef = useRef<HTMLDivElement>(null);
   const imageWrapRef = useRef<HTMLDivElement>(null);
+  const canTiltRef = useRef(false);
   const categoryLabels = {
     product: t.work.category.product,
     client: t.work.category.client,
@@ -34,6 +35,19 @@ function ProjectCard({ project, delay = 0, className, onQuickView }: ProjectCard
   };
 
   // Cinematic reveal: the screenshot wipes into view instead of just fading.
+  useEffect(() => {
+    const finePointer = window.matchMedia("(pointer: fine)");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updateTilt = () => { canTiltRef.current = finePointer.matches && !reducedMotion.matches; };
+    updateTilt();
+    finePointer.addEventListener("change", updateTilt);
+    reducedMotion.addEventListener("change", updateTilt);
+    return () => {
+      finePointer.removeEventListener("change", updateTilt);
+      reducedMotion.removeEventListener("change", updateTilt);
+    };
+  }, []);
+
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const frame = frameRef.current;
@@ -55,14 +69,15 @@ function ProjectCard({ project, delay = 0, className, onQuickView }: ProjectCard
 
   // Mouse-follow tilt on the screenshot only (content below stays flat/legible).
   const handleMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!canTiltRef.current) return;
     const el = imageWrapRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
     const px = (e.clientX - rect.left) / rect.width - 0.5;
     const py = (e.clientY - rect.top) / rect.height - 0.5;
     gsap.to(el, {
-      rotateX: py * -6,
-      rotateY: px * 8,
+      rotateX: py * -4,
+      rotateY: px * 5,
       duration: 0.4,
       ease: "power2.out",
       transformPerspective: 800,
@@ -83,14 +98,15 @@ function ProjectCard({ project, delay = 0, className, onQuickView }: ProjectCard
       whileHover={{ y: -6, rotate: -0.6 }}
       transition={{ duration: 0.4, delay, ease: [0.16, 1, 0.3, 1] }}
       className={`group relative rounded-2xl overflow-hidden glass-panel flex flex-col ${className ?? ""}`}
+      style={{ transformStyle: "preserve-3d" }}
     >
       {/* Real hero screenshot — the proof, not a decoration */}
       <div ref={frameRef} className="relative">
         <Link
           href={href(`/work/${project.slug}`)}
           prefetch={true}
-          className="relative block aspect-[16/9] overflow-hidden border-b border-slate-800 bg-slate-950"
-          style={{ perspective: 800 }}
+          className="project-card__image relative block aspect-[16/9] overflow-hidden border-b border-slate-800 bg-slate-950"
+          style={{ perspective: 1000 }}
           onMouseMove={handleMove}
           onMouseLeave={handleLeave}
         >

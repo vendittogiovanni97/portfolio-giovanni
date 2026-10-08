@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Calendar, Sparkles, Building2 } from "lucide-react";
@@ -17,6 +17,7 @@ const MILESTONES = [
 
 export function ExperienceTimeline() {
   const { t } = useI18n();
+  const reduce = useReducedMotion();
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -61,13 +62,15 @@ export function ExperienceTimeline() {
             return (
               <motion.div
                 key={item.id}
-                initial={{ opacity: 0, y: 24, scale: 0.98 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                initial={reduce ? false : { opacity: 0, y: 24, scale: 0.98 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0, scale: 1 }}
+                whileHover={reduce ? undefined : { y: -5, rotateX: 1.1, rotateY: -0.8 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                className="glass-panel rounded-3xl overflow-hidden"
+                className="depth-panel depth-panel--center glass-panel rounded-3xl overflow-hidden"
+                style={{ transformStyle: "preserve-3d" }}
               >
-                <div className="p-6 sm:p-8">
+                <div className="depth-panel__face relative z-10 p-6 sm:p-8">
                   <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
                     <div className="flex items-center gap-4">
                       <div className="relative w-12 h-12 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-center text-accent shrink-0">

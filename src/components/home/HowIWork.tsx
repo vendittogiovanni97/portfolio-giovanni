@@ -144,14 +144,17 @@ export function HowIWork() {
                   </div>
 
                   {/* Content card */}
-                  <div className="md:w-1/2 glass-panel p-6 rounded-2xl">
+                  <div
+                    className={`depth-panel depth-panel--${fromLeft ? "left" : "right"} md:w-1/2 glass-panel p-6 rounded-2xl`}
+                    style={{ transformStyle: "preserve-3d" }}
+                  >
                     <div className="flex items-center gap-3 mb-4 md:hidden">
                       <span className="font-mono text-xs text-accent/80 font-bold px-2.5 py-0.5 rounded-full bg-accent/10 border border-accent/20">
                         {item.step}
                       </span>
                     </div>
                     <div className="flex items-center gap-3 mb-3">
-                      <div className="p-2.5 rounded-xl bg-slate-950 border border-slate-800">
+                      <div className="depth-panel__icon p-2.5 rounded-xl bg-slate-950 border border-slate-800">
                         {item.icon}
                       </div>
                       <h3 className="[font-family:var(--font-display)] uppercase text-xl text-slate-100">

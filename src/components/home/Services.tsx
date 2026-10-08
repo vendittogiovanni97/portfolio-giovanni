@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { LayoutGrid, Sparkles, ShieldCheck, CheckCircle2, ArrowRight, Calendar } from "lucide-react";
 import Link from "next/link";
 import { useI18n } from "@/i18n";
@@ -14,26 +14,24 @@ const SERVICE_ICONS = {
 
 export function Services() {
   const { t, href } = useI18n();
+  const reduce = useReducedMotion();
 
   const services = [
     {
       key: "platforms" as const,
       data: t.services.items.platforms,
       icon: SERVICE_ICONS.platforms,
-      gradient: "from-amber-500/10 via-transparent to-transparent",
     },
     {
       key: "ai" as const,
       data: t.services.items.ai,
       icon: SERVICE_ICONS.ai,
-      gradient: "from-accent/15 via-amber-500/5 to-transparent",
       featured: true,
     },
     {
       key: "performance" as const,
       data: t.services.items.performance,
       icon: SERVICE_ICONS.performance,
-      gradient: "from-emerald-500/10 via-transparent to-transparent",
     },
   ];
 
@@ -73,26 +71,23 @@ export function Services() {
             return (
               <motion.div
                 key={srv.key}
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={reduce ? false : { opacity: 0, y: 25 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                whileHover={reduce ? undefined : { y: -5, rotateX: 1.1, rotateY: idx % 2 === 0 ? -1.2 : 1.2 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.12 }}
-                className={`relative rounded-2xl border p-8 flex flex-col justify-between transition-all duration-300 group ${
+                style={{ transformStyle: "preserve-3d" }}
+                className={`depth-panel depth-panel--${idx % 2 === 0 ? "left" : "right"} relative rounded-2xl border p-8 flex flex-col justify-between transition-all duration-300 group glass-panel ${
                   srv.featured
-                    ? "border-accent/50 bg-slate-900/90 shadow-[0_0_40px_rgba(202,164,86,0.12)] hover:border-accent"
-                    : "border-slate-800 bg-slate-900/50 hover:border-slate-700"
+                    ? "border-accent/50"
+                    : "border-slate-800"
                 }`}
               >
-                {/* Subtle top gradient glow */}
-                <div
-                  className={`absolute inset-0 rounded-2xl bg-gradient-to-b ${srv.gradient} pointer-events-none opacity-60`}
-                />
-
-                <div className="relative z-10">
+                <div className="depth-panel__face relative z-10">
                   {/* Category Pill + Icon */}
                   <div className="flex items-center justify-between mb-6">
                     <div
-                      className={`p-3 rounded-xl border ${
+                      className={`depth-panel__icon p-3 rounded-xl border ${
                         srv.featured
                           ? "bg-accent text-slate-950 border-accent"
                           : "bg-slate-950 border-slate-800 text-accent"
@@ -127,7 +122,7 @@ export function Services() {
                 </div>
 
                 {/* Card Action Link */}
-                <div className="relative z-10 mt-8 pt-6 border-t border-slate-800/60">
+                <div className="depth-panel__face relative z-10 mt-8 pt-6 border-t border-slate-800/60">
                   <Link
                     href={href("/contact")}
                     className="inline-flex items-center gap-2 font-headline text-xs font-semibold text-accent hover:text-accent-bright transition-colors uppercase tracking-wider group-hover:translate-x-1 duration-200"
