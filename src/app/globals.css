@@ -446,15 +446,52 @@ body {
   .hero-scene-mobile {
     position: relative;
     display: block;
-    height: clamp(260px, 68vw, 410px);
+    height: clamp(320px, 76vw, 460px);
     margin-top: -0.5rem;
   }
 
 }
 
 @media (max-width: 640px) {
-  .hero-diorama__panel--1 { left: 12%; width: 74%; }
-  .hero-diorama__panel--2 { left: 38%; width: 55%; }
-  .hero-diorama__panel--3 { left: 0%; width: 49%; }
-  .hero-diorama__plinth { left: 7%; right: 5%; }
+  .hero-scene-mobile .hero-diorama__panel {
+    padding: 3px;
+    box-shadow: 7px 10px 0 rgba(20, 16, 11, 0.2);
+  }
+
+  .hero-scene-mobile .hero-diorama__panel--1 {
+    z-index: 3;
+    top: 15%;
+    left: 5%;
+    width: 90%;
+    filter: none;
+    transform: rotateY(-3deg) rotateX(1deg) rotateZ(-1deg) translateZ(28px);
+  }
+
+  .hero-scene-mobile .hero-diorama__panel--2 {
+    top: 23%;
+    left: 48%;
+    width: 46%;
+    filter: brightness(0.58);
+    transform: rotateY(-10deg) rotateX(3deg) rotateZ(4deg) translateZ(-24px);
+  }
+
+  .hero-scene-mobile .hero-diorama__panel--3 {
+    top: 29%;
+    left: 0%;
+    width: 38%;
+    filter: brightness(0.52);
+    transform: rotateY(-8deg) rotateX(3deg) rotateZ(-5deg) translateZ(-52px);
+  }
+
+  .hero-scene-mobile .hero-diorama__plinth {
+    left: 3%;
+    right: 3%;
+    bottom: 11%;
+  }
+
+  .hero-scene-mobile .hero-diorama__index {
+    right: 4%;
+    bottom: 4%;
+    font-size: 0.55rem;
+  }
 }
