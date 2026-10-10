@@ -16,9 +16,10 @@ Portfolio bilingue (italiano e inglese) di Giovanni Venditto, con progetti, prof
 ## Cosa contiene
 
 - Homepage con profilo, metriche, competenze, esperienza, credenziali e progetti selezionati
-- Pagine Studio e Lab, modulo di contatto e CV scaricabile
+- Pagine Studio, Lab e articoli tecnici bilingui con feed RSS
+- Modulo di contatto e CV scaricabile anche da `/cv`
 - Lab con simulazione OCR dichiarata come demo con dati mock, tabella HTML con filtro client-side e UI Inspector
-- Case study di progetto con contenuti e immagini
+- Case study e articoli MDX in italiano e inglese
 - Metadati, immagini Open Graph, sitemap e robots per la SEO; manifest e service worker per la PWA
 - Animazioni che rispettano `prefers-reduced-motion`
 
@@ -64,12 +65,12 @@ Senza `RESEND_API_KEY`, l'endpoint del modulo restituisce un errore di servizio 
 
 ```text
 src/
-├─ app/          # Pagine, API, sitemap, robots e immagini Open Graph
+├─ app/          # Pagine, API, RSS, sitemap, robots e immagini Open Graph
 ├─ components/   # Sezioni del sito e componenti UI
-├─ content/      # Contenuti dei progetti
+├─ content/      # Contenuti dei progetti e articoli
 ├─ i18n/         # Dizionari e gestione locale
 └─ lib/          # Configurazione, contenuti e utilità
-public/          # Immagini, CV, manifest e service worker
+public/          # Immagini, PDF del CV, manifest e service worker
 ```
 
 ## Design system

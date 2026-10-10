@@ -66,7 +66,7 @@
 - [x] Internationalization (EN/IT) con context API + LanguageToggle
 
 ## P3 - NICE TO HAVE
-- [x] PDF CV generator (print-optimized, /cv page)
+- [x] Downloadable CV PDF (`/cv` redirects to the current PDF file)
 - [x] Easter eggs (Konami code ↑↑↓↓←→←→BA, cursor trail particles)
 - [x] RSS feed (/rss.xml via Route Handler)
 - [x] PWA/Offline support (service worker + manifest)

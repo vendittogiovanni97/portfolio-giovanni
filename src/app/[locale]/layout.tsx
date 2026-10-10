@@ -79,7 +79,10 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
     publisher: config.authorName,
     // Root-level fallback for a route that forgets its own generateMetadata;
     // every real page below sets this itself with its actual sub-path.
-    alternates: localeAlternates(locale, ""),
+    alternates: {
+      ...localeAlternates(locale, ""),
+      types: { "application/rss+xml": "/rss.xml" },
+    },
     robots: {
       index: true,
       follow: true,

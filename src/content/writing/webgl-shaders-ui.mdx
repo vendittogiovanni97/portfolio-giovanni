@@ -1,0 +1,55 @@
+---
+title: "WebGL Shaders for UI: When Noise Meets Glassmorphism"
+slug: "webgl-shaders-ui"
+date: "2024-09-22"
+category: "Creative"
+tags: ["WebGL", "GLSL", "Shaders", "UI Design", "Creative Coding"]
+description: "How I used simplex noise shaders to create a reactive background for my portfolio. The intersection of creative coding and frontend engineering."
+readingTime: "6 min"
+---
+
+## The Problem with Static Backgrounds
+
+Flat colors feel dead. Gradients are better but still static. I wanted something that responds to the user — alive, but not distracting.
+
+## Simplex Noise in GLSL
+
+The shader uses 2D simplex noise with two octaves. One layer moves slowly forward, the other retreats. Together they create a flowing, organic texture:
+
+```glsl
+float n = snoise(uv * 2.0 + u_time * 0.05);
+float n2 = snoise(uv * 1.0 - u_time * 0.02);
+float flow = smoothstep(0.4, 0.6, n + n2 * 0.5);
+```
+
+## Mouse Reactivity
+
+The mouse position feeds into the shader as a uniform. A radial glow follows the cursor:
+
+```glsl
+float dist = length(uv - mouse);
+float mouseGlow = smoothstep(0.8, 0.0, dist) * 0.15;
+```
+
+The effect is subtle — you feel it before you see it.
+
+## Performance Considerations
+
+- Canvas is `fixed` position, renders once
+- IntersectionObserver pauses rendering when hero scrolls out of view
+- `will-change: auto` when paused
+- Fragment shader runs at full resolution but with early exit for off-screen fragments
+
+## When to Use WebGL in UI
+
+Use it when:
+- The background needs to feel alive
+- You want mouse reactivity
+- Performance budget allows ~2ms per frame
+
+Don't use it for:
+- Content areas
+- Mobile-first experiences
+- Accessibility-critical sections
+
+The sweet spot: hero sections, loading states, ambient backgrounds.

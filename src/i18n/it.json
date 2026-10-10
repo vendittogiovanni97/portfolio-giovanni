@@ -1,6 +1,7 @@
 {
   "nav": {
     "work": "Progetti",
+    "writing": "Articoli",
     "contact": "Contatto",
     "available": "Disponibile"
   },
@@ -56,6 +57,13 @@
     },
     "quickView": "Anteprima Rapida",
     "openDetail": "Apri Dettaglio"
+  },
+  "writing": {
+    "title": "Articoli",
+    "subtitle": "Articoli e riflessioni sullo sviluppo software e tecnologia.",
+    "articles": "{{count}} articoli",
+    "readMore": "Leggi",
+    "backToWriting": "Torna agli articoli"
   },
   "studio": {
     "title": "Chi sono",

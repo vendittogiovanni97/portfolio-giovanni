@@ -1,0 +1,45 @@
+---
+title: "Costruire un Design System con Next.js e Tailwind CSS"
+slug: "design-system-nextjs-tailwind"
+date: "2024-11-15"
+category: "Ingegneria"
+tags: ["Design Systems", "Next.js", "Tailwind CSS", "React"]
+description: "Un approfondimento sulla costruzione di un design system scalabile basato su token usando Next.js App Router e Tailwind CSS v4. Come strutturiamo temi, componenti e documentazione da Agilae."
+readingTime: "8 min"
+---
+
+## Perché Costruirne uno Proprio?
+
+La maggior parte dei team inizia con una libreria UI come MUI o Chakra. Funzionano bene fino a quando non hai bisogno di una personalizzazione profonda. Da Agilae, avevamo bisogno di un controllo pixel-perfect sull'UI della nostra piattaforma assicurativa mantenendo la coerenza su 40+ schermate.
+
+## Architettura Basata su Token
+
+La fondazione è un sistema di token. Non solo colori — spaziatura, raggio, ombre, transizioni. Tutto mappa a proprietà CSS personalizzate:
+
+```css
+@theme inline {
+  --color-secondary-container: #00eefc;
+  --spacing-gutter: 24px;
+  --radius-2xl: 1rem;
+}
+```
+
+I token vivono in `theme/index.ts` come unica fonte di verità. I componenti li consumano tramite classi Tailwind o riferimenti diretti alle variabili CSS.
+
+## Composizione dei Componenti
+
+Seguiamo il pattern Radix UI: primitive senza stile con slot componibili. Il nostro componente `Button` accetta props `variant`, `size` e `asChild`. Il `GlassPanel` gestisce backdrop blur, bagliore del bordo e stati hover.
+
+L'intuizione chiave: separare il trattamento visivo dal comportamento. Una card è solo un contenitore con glass morphism. Il contenuto all'interno decide cosa fa.
+
+## Modalità Dark/Light
+
+Il cambio tema non è un toggle — è un sistema. Le variabili CSS si scambiano a livello `[data-theme]`. Framer Motion gestisce le transizioni. Lo script anti-flash in `<head>` previde il flicker bianco al caricamento.
+
+## Cosa Farei Diversamente
+
+1. Iniziare prima con CSS layers
+2. Usare `@property` per proprietà personalizzate animate
+3. Documentare i token in Storybook dal primo giorno
+
+Il sistema ora alimenta 3 app in produzione con zero conflitti di stile.

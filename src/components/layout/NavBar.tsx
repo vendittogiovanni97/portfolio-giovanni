@@ -22,6 +22,7 @@ export function NavBar() {
   const navLinks = [
     { href: `${homeHref}#work`, label: t.nav.work, targetId: "work" },
     { href: href("/lab"), label: "Lab Demo" },
+    { href: href("/writing"), label: t.nav.writing },
     { href: "/documents/CV_Giovanni_Venditto.pdf", label: "Curriculum", isDownload: true },
     { href: `${homeHref}#faq`, label: "FAQ", targetId: "faq" },
   ];

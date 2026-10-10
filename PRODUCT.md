@@ -34,9 +34,11 @@ studies.
 
 Content lives as MDX under `src/content/projects` and `src/content/writing` (IT/EN,
 locale subfolders). Real product screenshots live under `public/projects/<slug>/`.
-Certificate images live under `public/certificates/`. The CV is a generated/printable
-PDF at `/CV_Giovanni_Venditto.pdf`. Site is bilingual (IT/EN) via a custom i18n context,
-not a routing-based i18n framework.
+Certificate images live under `public/certificates/`. The current CV PDF is served from
+`/documents/CV_Giovanni_Venditto.pdf`; `/cv` redirects to that file. The writing archive
+is available under `/writing`, with localized article routes and an English RSS feed at
+`/rss.xml`. Site is bilingual (IT/EN) via a custom i18n context and locale-prefixed
+routes, not a routing-based i18n framework.
 
 ## Capabilities and Constraints
 
@@ -45,11 +47,11 @@ not a routing-based i18n framework.
 - Redesign explicitly adds GSAP + Lenis for scroll-driven and text-distortion effects
   (confirmed by the user); Framer Motion stays for the animation it already covers well
   rather than being ripped out wholesale.
-- Existing feature surface to preserve through the redesign: dashboard-style case study
-  pages with real screenshots/galleries, a credentials/certifications grid, a live code
-  playground (`/lab`), an open-source contribution wall, a blog (`/writing`), a studio/
-  about page with timeline, a contact page/form, PDF CV generation, i18n toggle, and a
-  light/dark theme toggle.
+- Existing feature surface: dashboard-style case study pages with real
+  screenshots/galleries, a credentials/certifications grid, a live code playground
+  (`/lab`), a blog (`/writing`), a studio/about page with timeline, a contact page/form,
+  a downloadable PDF CV, and bilingual navigation. The earlier contribution wall,
+  printable CV generator, and theme toggle are not present in the current build.
 - Must keep passing `tsc --noEmit` with no new errors; this is checked after each
   change.
 
