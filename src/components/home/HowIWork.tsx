@@ -98,11 +98,11 @@ export function HowIWork() {
   return (
     <section id="how-i-work" ref={sectionRef} className="w-full py-20 relative">
       <div className="max-w-[1400px] mx-auto px-6 sm:px-8">
-        <div className="mb-16 border-b border-slate-800 pb-6">
-          <h2 className="[font-family:var(--font-display)] uppercase text-4xl sm:text-5xl text-slate-100 tracking-tight">
+        <div className="mb-12 border-b border-black/[0.08] pb-6">
+          <h2 className="text-[32px] sm:text-[44px] font-semibold tracking-[-0.035em] text-[#111111]">
             {t.howIWork.title}
           </h2>
-          <p className="mt-2 text-slate-400 text-base max-w-xl">
+          <p className="mt-2 text-neutral-600 text-[15px] sm:text-[16px] max-w-xl">
             {t.howIWork.subtitle}
           </p>
         </div>
@@ -110,12 +110,12 @@ export function HowIWork() {
         {/* Vertical process spine */}
         <div className="relative">
           <div
-            className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-slate-800 hidden md:block"
+            className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-black/[0.08] hidden md:block"
             aria-hidden="true"
           >
             <div
               ref={lineRef}
-              className="absolute inset-0 bg-accent origin-top"
+              className="absolute inset-0 bg-[#111111] origin-top"
               style={{ transform: "scaleY(0)" }}
             />
           </div>
@@ -132,43 +132,42 @@ export function HowIWork() {
                   {/* Center dot on the spine */}
                   <span
                     data-dot
-                    className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-accent ring-4 ring-background z-10 items-center justify-center"
+                    className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-[#111111] ring-4 ring-[#f5f4f2] z-10 items-center justify-center"
                     aria-hidden="true"
                   />
 
                   {/* Ghost number */}
                   <div className={`hidden md:block md:w-1/2 ${fromLeft ? "text-right pr-16" : "text-left pl-16"}`}>
-                    <span className="[font-family:var(--font-display)] text-[10rem] leading-none text-slate-900 select-none">
+                    <span className="text-[7rem] font-bold leading-none text-neutral-200 select-none tracking-tighter">
                       {item.step}
                     </span>
                   </div>
 
                   {/* Content card */}
                   <div
-                    className={`depth-panel depth-panel--${fromLeft ? "left" : "right"} md:w-1/2 glass-panel p-6 rounded-2xl`}
-                    style={{ transformStyle: "preserve-3d" }}
+                    className="md:w-1/2 rounded-2xl card-elevation-high p-7 hover:-translate-y-1 transition-all duration-300"
                   >
                     <div className="flex items-center gap-3 mb-4 md:hidden">
-                      <span className="font-mono text-xs text-accent/80 font-bold px-2.5 py-0.5 rounded-full bg-accent/10 border border-accent/20">
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-[#f5f4f2] text-neutral-800">
                         {item.step}
                       </span>
                     </div>
                     <div className="flex items-center gap-3 mb-3">
-                      <div className="depth-panel__icon p-2.5 rounded-xl bg-slate-950 border border-slate-800">
+                      <div className="p-2.5 rounded-xl bg-[#111111] text-white">
                         {item.icon}
                       </div>
-                      <h3 className="[font-family:var(--font-display)] uppercase text-xl text-slate-100">
+                      <h3 className="text-[20px] font-semibold tracking-[-0.02em] text-[#111111]">
                         {item.title}
                       </h3>
                     </div>
-                    <p className="text-sm text-slate-400 leading-relaxed mb-5">
+                    <p className="text-[14px] text-neutral-600 leading-relaxed mb-5">
                       {item.desc}
                     </p>
-                    <div className="flex flex-wrap gap-1.5 pt-4 border-t border-slate-800/60">
+                    <div className="flex flex-wrap gap-1.5 pt-4 border-t border-black/[0.06]">
                       {item.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-2 py-0.5 rounded-md font-mono text-3xs bg-slate-950 border border-slate-800 text-slate-300"
+                          className="px-2.5 py-0.5 rounded-md text-[11px] font-medium bg-[#f5f4f2] text-neutral-700"
                         >
                           {tag}
                         </span>

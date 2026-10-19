@@ -17,28 +17,26 @@
 }
 
 /*
-  Palette: "Editorial Poster" (replaces the former "Deep Green Terminal").
-  Warm ink-black ground by default, one committed brass/gold accent. Specific
-  surfaces (the Hero, and any other section that wants the flip) invert to
-  the paper tone as a deliberate light/dark section device, not a user theme
-  toggle. --color-mark is a rare, hero-only flourish color, not a reusable
-  utility accent — the discipline stays one base + one accent.
+/*
+  Palette: "TasteSkill Stone & Ink" (Official TasteSkill Framework)
+  Caldo fondo pietra naturale #f5f4f2, testo nero inchiostro profondo #111111,
+  superfici bianche pure con bordi 1px border-black/[0.08] e ombre morbide multilivello.
 */
 :root {
-  --background: #14100b;
-  --foreground: #f3ece0;
-  --color-surface: #1c1712;
-  --color-border: rgba(202,164,86, 0.14);
-  --color-accent: #caa456;
-  --color-accent-bright: #e0bd70;
-  --color-accent-deep: #9c7d3c;
+  --background: #f5f4f2;
+  --foreground: #111111;
+  --color-surface: #ffffff;
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-accent: #111111;
+  --color-accent-bright: #333333;
+  --color-accent-deep: #000000;
   --spacing-gutter: 24px;
 
-  --color-paper: #f2ece0;
-  --color-ink: #14100b;
-  --color-mark: #ff5a36;
-  --color-shadow-panel: rgba(0, 0, 0, 0.28);
-  --color-shadow-panel-hover: rgba(0, 0, 0, 0.32);
+  --color-paper: #f5f4f2;
+  --color-ink: #111111;
+  --color-mark: #111111;
+  --color-shadow-panel: rgba(10, 10, 10, 0.04);
+  --color-shadow-panel-hover: rgba(10, 10, 10, 0.08);
 }
 
 @theme {
@@ -113,11 +111,82 @@ html {
 
 body {
   background-color: var(--background);
+  background-image: radial-gradient(circle at 50% -10%, rgba(0, 0, 0, 0.03) 0%, transparent 70%);
+  background-attachment: fixed;
   color: var(--foreground);
   font-family: var(--font-body), "Geist", system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+}
+
+/* Tactile Depth & Elevation System (TasteSkill 3D Depth) */
+.card-elevation-high {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.95),
+    0 1px 2px 0 rgba(17, 17, 17, 0.03),
+    0 12px 24px -6px rgba(17, 17, 17, 0.06),
+    0 28px 56px -16px rgba(17, 17, 17, 0.08);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
+}
+
+.card-elevation-high:hover {
+  border-color: rgba(0, 0, 0, 0.16);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 1),
+    0 2px 4px 0 rgba(17, 17, 17, 0.04),
+    0 20px 40px -8px rgba(17, 17, 17, 0.1),
+    0 36px 72px -16px rgba(17, 17, 17, 0.12);
+}
+
+.card-elevation-subtle {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.9),
+    0 1px 2px 0 rgba(17, 17, 17, 0.03),
+    0 8px 16px -4px rgba(17, 17, 17, 0.04);
+}
+
+/* Shimmer highlight for CTA buttons */
+@keyframes shimmer-sweep {
+  0% {
+    transform: translateX(-150%) skewX(-15deg);
+  }
+  100% {
+    transform: translateX(150%) skewX(-15deg);
+  }
+}
+
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 100%
+  );
+  transform: translateX(-150%) skewX(-15deg);
+  pointer-events: none;
+}
+
+.btn-shimmer:hover::after {
+  animation: shimmer-sweep 1.2s ease-in-out infinite;
 }
 
 /*

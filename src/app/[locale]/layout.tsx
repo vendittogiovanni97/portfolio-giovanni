@@ -129,8 +129,8 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
   const locale = rawLocale;
 
   return (
-    <html lang={locale} className={`h-full antialiased ${displayFont.variable} ${bodyFont.variable}`} data-theme="dark" suppressHydrationWarning>
-      <body className="min-h-full flex flex-col bg-background text-foreground">
+    <html lang={locale} className={`h-full antialiased ${displayFont.variable} ${bodyFont.variable}`} data-theme="light" suppressHydrationWarning>
+      <body className="min-h-full flex flex-col bg-[#f5f4f2] text-[#111111]">
         <Script id="register-sw" strategy="afterInteractive">
           {`if ('serviceWorker' in navigator) {
             window.addEventListener('load', function () {

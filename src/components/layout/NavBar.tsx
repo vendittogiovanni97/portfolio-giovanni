@@ -125,16 +125,20 @@ export function NavBar() {
         role="navigation"
         aria-label="Main navigation"
       >
-        <div className="max-w-[1400px] mx-auto flex justify-between items-center glass-panel rounded-full px-5 sm:px-6 py-2">
+        <div className="max-w-[1400px] mx-auto flex justify-between items-center rounded-full bg-white/85 border border-black/[0.08] shadow-[0_1px_3px_rgba(0,0,0,0.05),0_12px_24px_-8px_rgba(0,0,0,0.06)] backdrop-blur-md px-4 sm:px-6 py-2">
 
-          {/* Logo */}
+          {/* Logo TasteSkill Style */}
           <Link
             href={homeHref}
             prefetch={true}
-            className="group [font-family:var(--font-display)] uppercase text-lg text-slate-100 hover:text-accent transition-colors"
+            className="group flex items-center gap-2 outline-none transition-transform active:scale-95"
           >
-            <span className="inline-block transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110">GV</span>
-            <span className="text-accent">.</span>
+            <span className="flex h-7 w-7 items-center justify-center rounded-[8px] bg-[#151515] text-[13px] font-bold text-white tracking-tight">
+              GV
+            </span>
+            <span className="text-[14.5px] font-semibold tracking-[-0.02em] text-[#111111] hidden sm:inline">
+              Giovanni Venditto
+            </span>
           </Link>
 
           {/* Desktop Nav Links */}
@@ -152,7 +156,7 @@ export function NavBar() {
                   animate={{ opacity: 1, left: hoverRect.left, width: hoverRect.width }}
                   exit={{ opacity: 0 }}
                   transition={{ type: "spring", stiffness: 420, damping: 34 }}
-                  className="absolute top-0 h-full rounded-md bg-accent/10 border border-accent/20 pointer-events-none"
+                  className="absolute top-0 h-full rounded-full bg-black/[0.05] pointer-events-none"
                 />
               )}
             </AnimatePresence>
@@ -166,9 +170,9 @@ export function NavBar() {
                   rel="noopener noreferrer"
                   download="CV_Giovanni_Venditto.pdf"
                   onMouseEnter={handleLinkHover}
-                  className="relative z-10 text-slate-100 font-mono text-xs hover:text-accent px-3 py-1.5 rounded-md transition-colors duration-200 flex items-center gap-1.5"
+                  className="relative z-10 text-neutral-600 font-medium text-[13.5px] hover:text-[#111111] px-3.5 py-1.5 rounded-full transition-colors flex items-center gap-1.5"
                 >
-                  <Download className="w-3.5 h-3.5 text-accent" />
+                  <Download className="w-3.5 h-3.5 text-neutral-500" />
                   <span>{link.label}</span>
                 </a>
               ) : (
@@ -182,7 +186,7 @@ export function NavBar() {
                     }
                   }}
                   onMouseEnter={handleLinkHover}
-                  className="relative z-10 text-slate-100 font-mono text-xs hover:text-accent px-3 py-1.5 rounded-md transition-colors duration-200"
+                  className="relative z-10 text-neutral-600 font-medium text-[13.5px] hover:text-[#111111] px-3.5 py-1.5 rounded-full transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -193,14 +197,14 @@ export function NavBar() {
           {/* Controls & Social Links */}
           <div className="hidden md:flex items-center gap-3">
             {/* Social Icons Floating inside Nav Pill */}
-            <div className="flex items-center gap-2.5 pr-3.5 border-r border-slate-800/80">
+            <div className="flex items-center gap-1.5 pr-3 border-r border-black/[0.08]">
               {socialLinks.map((s) => (
                 <a
                   key={s.label}
                   href={s.href}
                   target={s.href.startsWith("mailto") ? undefined : "_blank"}
                   rel={s.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-                  className="p-1.5 rounded-full text-slate-100 hover:text-accent hover:bg-slate-900 transition-all hover:scale-110"
+                  className="p-1.5 rounded-full text-neutral-500 hover:text-[#111111] hover:bg-black/[0.04] transition-all"
                   aria-label={s.label}
                   title={s.label}
                 >
@@ -212,7 +216,7 @@ export function NavBar() {
             <LanguageToggle />
             <Link
               href={href("/contact")}
-              className="px-4 py-1.5 rounded-full bg-accent text-slate-950 font-mono text-xs font-semibold hover:bg-accent-bright transition-all shadow-[0_0_15px_rgba(202,164,86,0.3)] hover:scale-105"
+              className="px-4 py-2 rounded-full bg-[#111111] text-white text-[13px] font-medium hover:bg-neutral-800 transition-all shadow-xs active:scale-95"
             >
               {t.nav.contact}
             </Link>
@@ -220,12 +224,12 @@ export function NavBar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-slate-100 p-1"
+            className="md:hidden text-neutral-800 p-1"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-expanded={mobileMenuOpen}
             aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X className="w-5 h-5 text-accent" /> : <Menu className="w-5 h-5" />}
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
 
