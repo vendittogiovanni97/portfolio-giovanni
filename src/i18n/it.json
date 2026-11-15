@@ -269,18 +269,24 @@
   },
   "credentials": {
     "title": "Percorso Studi & Formazione",
-    "subtitle": "I miei studi, corsi di formazione e certificazioni ufficiali.",
+    "subtitle": "Certificazioni ufficiali Anthropic AI e percorsi universitari di specializzazione fullstack.",
+    "all": "Tutto (6)",
+    "anthropicTab": "Anthropic AI (4)",
+    "academicTab": "Accademico (2)",
+    "academicSectionTitle": "Percorso Accademico & Specializzazioni",
     "enlarge": "Ingrandisci",
     "officialCertificate": "Certificato Ufficiale Anthropic",
     "prevAria": "Credenziale precedente",
     "nextAria": "Credenziale successiva",
     "goToAria": "Vai alla credenziale {n}",
     "anthropicBadge": "Formazione Ufficiale Anthropic Claude",
-    "anthropicSpotlight": "4 corsi ufficiali completati: Claude 101, Claude Code 101, Claude Platform 101, Claude Cowork",
+    "anthropicSpotlight": "4 certificazioni ufficiali: Claude 101, Claude Code 101, Claude Platform 101, Claude Cowork",
+    "verifiedStamp": "Certificazione Verificata · 2026",
+    "skillsTitle": "Competenze Chiave",
     "badges": {
       "official": "Certificazione Ufficiale",
-      "academic": "Attestato Accademico",
-      "specialization": "Corso di Specializzazione"
+      "academic": "Percorso Universitario",
+      "specialization": "Specializzazione Frontend"
     }
   },
   "lab": {

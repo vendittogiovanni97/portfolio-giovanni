@@ -269,18 +269,24 @@
   },
   "credentials": {
     "title": "Education & Studies",
-    "subtitle": "My studies, professional training, and official certifications.",
+    "subtitle": "Official Anthropic AI certifications and specialized university full-stack engineering programs.",
+    "all": "All (6)",
+    "anthropicTab": "Anthropic AI (4)",
+    "academicTab": "Academic (2)",
+    "academicSectionTitle": "Academic Background & Specializations",
     "enlarge": "Enlarge",
     "officialCertificate": "Official Anthropic Certificate",
     "prevAria": "Previous credential",
     "nextAria": "Next credential",
     "goToAria": "Go to credential {n}",
     "anthropicBadge": "Official Anthropic Claude Training",
-    "anthropicSpotlight": "4 official courses completed: Claude 101, Claude Code 101, Claude Platform 101, Claude Cowork",
+    "anthropicSpotlight": "4 official certifications: Claude 101, Claude Code 101, Claude Platform 101, Claude Cowork",
+    "verifiedStamp": "Verified Certification · 2026",
+    "skillsTitle": "Key Competencies",
     "badges": {
       "official": "Official Certification",
-      "academic": "Academic Diploma",
-      "specialization": "Specialization Course"
+      "academic": "University Degree",
+      "specialization": "Frontend Specialization"
     }
   },
   "lab": {
