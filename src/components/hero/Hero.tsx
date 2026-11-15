@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import { config } from "@/lib/config";
 
 interface HeroCardProps {
   title: string;
@@ -79,10 +80,10 @@ export function Hero() {
           NAPOLI, ITALY · REMOTE / WORLDWIDE
         </span>
         <a
-          href="mailto:giovannivenditto99@gmail.com"
+          href={`mailto:${config.email}`}
           className="font-mono text-[11px] sm:text-xs font-semibold text-[var(--foreground)] opacity-55 hover:opacity-100 hover:text-[var(--color-accent)] transition-all"
         >
-          giovannivenditto99@gmail.com
+          {config.email}
         </a>
       </motion.div>
 
