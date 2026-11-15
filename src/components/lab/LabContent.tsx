@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { GlassPanel, Chip } from "@/components/ui";
 import { useI18n } from "@/i18n";
 import {
   Scan,
@@ -58,61 +57,35 @@ const sampleDocs = [
     extracted: {
       document_type: "Modulo Privacy & Consenso",
       cliente_studio: "Giuseppe Bianchi",
-      codice_fiscale: "BNCGPP95A15F839Z",
-      servizio_scelto: "Tatuaggio Microrealismo 15cm",
-      consenso_privacy: "ACCETTATO",
-      data_trattamento: "2026-08-12",
+      codice_fiscale: "BNCGPP85M01F839A",
+      trattamento: "Laser Medical Therapy",
+      consenso_firmato: "SI (Dati sensibili)",
+      operatore: "Dr.ssa Elena Valenti",
+      data_inserimento: "2026-02-14",
       confidence: "99.9%",
     },
   },
 ];
 
-interface GridRecord {
+interface GeneratedRecord {
   id: string;
   name: string;
   role: string;
-  status: string;
-  score: string;
+  status: "ACTIVE" | "PENDING" | "VERIFIED";
+  score: number;
   timestamp: string;
-}
-
-// Mock Generator for 10k Records
-function generateRecords(count: number): GridRecord[] {
-  const names = ["Marco", "Giuseppe", "Elena", "Francesca", "Luca", "Sara", "Davide", "Chiara", "Alessandro", "Martina"];
-  const surnames = ["Rossi", "Ferrari", "Russo", "Esposito", "Bianchi", "Romano", "Colombo", "Ricci", "Marino", "Greco"];
-  const roles = ["Fullstack Engineer", "Frontend Lead", "Backend Dev", "UI Designer", "Project Manager"];
-  const statuses = ["Attivo", "Completato", "In Revisione", "Priorità Alta"];
-
-  return Array.from({ length: count }, (_, i) => ({
-    id: `REC-${10000 + i}`,
-    name: `${names[i % names.length]} ${surnames[(i * 3) % surnames.length]}`,
-    role: roles[i % roles.length],
-    status: statuses[i % statuses.length],
-    score: (85 + (i % 15) + (i % 3) * 0.1).toFixed(1) + "%",
-    timestamp: `${(i % 24).toString().padStart(2, "0")}:${((i * 7) % 60).toString().padStart(2, "0")}:00`,
-  }));
 }
 
 export function LabContent() {
   const { t, locale } = useI18n();
+
+  // State Tabs
   const [activeTab, setActiveTab] = useState<"ocr" | "grid" | "theme">("ocr");
 
-  // OCR Demo State
+  // State OCR Demo
   const [selectedDoc, setSelectedDoc] = useState(sampleDocs[0]);
   const [isScanning, setIsScanning] = useState(false);
   const [scanComplete, setScanComplete] = useState(false);
-
-  // Client-side table demo state
-  const [recordsCount, setRecordsCount] = useState<number>(0);
-  const [records, setRecords] = useState<GridRecord[]>([]);
-  const [generationTime, setGenerationTime] = useState<number | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [isGenerating, setIsGenerating] = useState(false);
-
-  // Theme Inspector State
-  const [accentColor, setAccentColor] = useState("#caa456");
-  const [blurIntensity, setBlurIntensity] = useState(16);
-  const [glowPower, setGlowPower] = useState(25);
 
   const startScan = () => {
     setIsScanning(true);
@@ -120,21 +93,43 @@ export function LabContent() {
     setTimeout(() => {
       setIsScanning(false);
       setScanComplete(true);
-    }, 1500);
+    }, 1800);
   };
+
+  // State Virtual Grid Demo
+  const [recordsCount, setRecordsCount] = useState<number>(0);
+  const [records, setRecords] = useState<GeneratedRecord[]>([]);
+  const [generationTime, setGenerationTime] = useState<number>(0);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isGenerating, setIsGenerating] = useState(false);
 
   const handleGenerateRecords = (count: number) => {
     setIsGenerating(true);
-    setTimeout(() => {
-      const start = performance.now();
-      const data = generateRecords(count);
-      const end = performance.now();
-      setRecords(data);
-      setRecordsCount(count);
-      setGenerationTime(parseFloat((end - start).toFixed(2)));
-      setIsGenerating(false);
-    }, 100);
+    const start = performance.now();
+
+    const roles = ["Fullstack Dev", "AI Specialist", "Lead Architect", "Frontend Eng", "Security Auditor"];
+    const statuses: GeneratedRecord["status"][] = ["ACTIVE", "PENDING", "VERIFIED"];
+
+    const newRecords: GeneratedRecord[] = Array.from({ length: count }, (_, i) => ({
+      id: `USR-${(i + 1).toString().padStart(5, "0")}`,
+      name: `Engineer ${i + 1}`,
+      role: roles[i % roles.length],
+      status: statuses[i % statuses.length],
+      score: Math.floor(Math.random() * 50) + 50,
+      timestamp: new Date(Date.now() - i * 60000).toISOString().split("T")[0],
+    }));
+
+    const duration = performance.now() - start;
+    setRecords(newRecords);
+    setRecordsCount(count);
+    setGenerationTime(Math.round(duration));
+    setIsGenerating(false);
   };
+
+  // State Theme & Glass Demo
+  const [blurIntensity, setBlurIntensity] = useState(16);
+  const [glowPower, setGlowPower] = useState(25);
+  const [accentColor, setAccentColor] = useState("#181818");
 
   const filteredRecords = records.filter(
     (r) =>
@@ -144,32 +139,31 @@ export function LabContent() {
   );
 
   return (
-    <div className="min-h-screen bg-background pt-36 pb-24">
-      <div className="max-w-[1400px] mx-auto px-6 sm:px-8">
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] pt-32 pb-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header */}
-        <div className="mb-12 border-b border-slate-800 pb-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        {/* Editorial Header */}
+        <div className="mb-12 border-b border-[var(--color-border)] pb-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent font-mono text-xs mb-3 font-semibold">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>{t.lab.eyebrow}</span>
-            </div>
-            <h1 className="[font-family:var(--font-display)] uppercase text-4xl md:text-5xl text-slate-100 font-extrabold tracking-tight">
+            <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-[0.25em] text-[var(--foreground)] opacity-70 mb-2 block">
+              {t.lab.eyebrow}
+            </span>
+            <h1 className="[font-family:var(--font-display)] uppercase text-5xl sm:text-7xl lg:text-8xl text-[var(--foreground)] tracking-tight leading-[0.88]">
               {t.lab.title}
             </h1>
-            <p className="mt-2 text-slate-400 text-base max-w-xl font-headline font-light">
+            <p className="mt-4 text-[var(--foreground)] opacity-75 text-[16px] sm:text-[18px] max-w-xl font-medium leading-relaxed">
               {t.lab.subtitle}
             </p>
           </div>
 
-          {/* Tab Selector */}
-          <div className="flex bg-slate-900/90 p-1.5 rounded-full border border-slate-800 self-start md:self-auto">
+          {/* Spencer Gabor Tab Switcher Pills */}
+          <div className="inline-flex items-center p-1.5 rounded-full bg-[var(--color-surface)] border-2 border-[var(--color-border)] shadow-sm self-start md:self-auto shrink-0">
             <button
               onClick={() => setActiveTab("ocr")}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs transition-all cursor-pointer ${
+              className={`btn-elastic flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
                 activeTab === "ocr"
-                  ? "bg-accent text-slate-950 font-bold shadow-[0_0_15px_rgba(202,164,86,0.3)]"
-                  : "text-slate-400 hover:text-slate-200"
+                  ? "bg-[var(--color-pill-bg)] text-[var(--color-pill-text)] shadow-sm"
+                  : "text-[var(--foreground)] opacity-70 hover:opacity-100"
               }`}
             >
               <Scan className="w-3.5 h-3.5" />
@@ -177,10 +171,10 @@ export function LabContent() {
             </button>
             <button
               onClick={() => setActiveTab("grid")}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs transition-all cursor-pointer ${
+              className={`btn-elastic flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
                 activeTab === "grid"
-                  ? "bg-accent text-slate-950 font-bold shadow-[0_0_15px_rgba(202,164,86,0.3)]"
-                  : "text-slate-400 hover:text-slate-200"
+                  ? "bg-[var(--color-pill-bg)] text-[var(--color-pill-text)] shadow-sm"
+                  : "text-[var(--foreground)] opacity-70 hover:opacity-100"
               }`}
             >
               <Zap className="w-3.5 h-3.5" />
@@ -188,10 +182,10 @@ export function LabContent() {
             </button>
             <button
               onClick={() => setActiveTab("theme")}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs transition-all cursor-pointer ${
+              className={`btn-elastic flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
                 activeTab === "theme"
-                  ? "bg-accent text-slate-950 font-bold shadow-[0_0_15px_rgba(202,164,86,0.3)]"
-                  : "text-slate-400 hover:text-slate-200"
+                  ? "bg-[var(--color-pill-bg)] text-[var(--color-pill-text)] shadow-sm"
+                  : "text-[var(--foreground)] opacity-70 hover:opacity-100"
               }`}
             >
               <Sliders className="w-3.5 h-3.5" />
@@ -212,12 +206,14 @@ export function LabContent() {
               
               {/* Document Selection Column */}
               <div className="lg:col-span-4 space-y-4">
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-800/80 border border-slate-700 text-slate-400 font-mono text-3xs uppercase tracking-widest">
-                  <span>{t.lab.ocrMockDisclaimer}</span>
-                </div>
-                <h3 className="font-mono text-xs text-accent uppercase tracking-widest font-semibold mb-2">
+                <span className="font-mono text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--foreground)] opacity-80 inline-block mb-1">
+                  {t.lab.ocrMockDisclaimer}
+                </span>
+
+                <h3 className="font-mono text-xs text-[var(--foreground)] opacity-75 uppercase tracking-wider font-bold mb-2">
                   {t.lab.ocrSelectPrompt}
                 </h3>
+
                 {sampleDocs.map((doc) => (
                   <button
                     key={doc.id}
@@ -226,126 +222,135 @@ export function LabContent() {
                       setScanComplete(false);
                       setIsScanning(false);
                     }}
-                    className={`w-full p-4 rounded-2xl border text-left transition-all cursor-pointer flex items-center justify-between ${
+                    className={`btn-elastic w-full p-4 rounded-3xl border-2 text-left transition-all cursor-pointer flex items-center justify-between ${
                       selectedDoc.id === doc.id
-                        ? "bg-slate-900/90 border-accent/60 shadow-[0_0_20px_rgba(202,164,86,0.15)]"
-                        : "bg-slate-950/60 border-slate-800 hover:border-slate-700"
+                        ? "bg-[var(--color-surface)] border-[var(--color-pill-bg)] shadow-md"
+                        : "bg-[var(--color-surface)] border-[var(--color-border)] opacity-80 hover:opacity-100"
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-accent">
+                      <div className="p-2.5 rounded-2xl bg-[var(--color-pill-bg)] text-[var(--color-pill-text)]">
                         <FileText className="w-5 h-5" />
                       </div>
                       <div>
-                        <div className="font-headline text-sm font-bold text-slate-100">{doc.title}</div>
-                        <div className="font-mono text-2xs text-slate-400">{doc.type} • {doc.size}</div>
+                        <div className="font-bold text-sm text-[var(--foreground)]">{doc.title}</div>
+                        <div className="font-mono text-xs text-[var(--foreground)] opacity-60">{doc.type} • {doc.size}</div>
                       </div>
                     </div>
-                    {selectedDoc.id === doc.id && <Check className="w-4 h-4 text-accent" />}
+                    {selectedDoc.id === doc.id && <Check className="w-4 h-4 text-[var(--foreground)]" />}
                   </button>
                 ))}
 
                 <button
                   onClick={startScan}
                   disabled={isScanning}
-                  className="w-full py-3.5 rounded-xl bg-accent text-slate-950 font-mono text-xs font-bold hover:bg-accent-bright transition-all shadow-[0_0_20px_rgba(202,164,86,0.25)] flex items-center justify-center gap-2 cursor-pointer mt-4"
+                  className="btn-elastic w-full py-4 rounded-full bg-[var(--color-pill-bg)] text-[var(--color-pill-text)] font-mono text-xs font-bold uppercase tracking-wider shadow-lg flex items-center justify-center gap-2 cursor-pointer mt-4 hover:scale-102 active:scale-98 transition-transform disabled:opacity-50"
                 >
-                  <Play className="w-4 h-4 fill-slate-950" />
+                  <Play className="w-4 h-4 fill-current" />
                   <span>{isScanning ? t.lab.ocrScanning : t.lab.ocrRunScan}</span>
                 </button>
               </div>
 
               {/* PDF Preview & Laser Scanner */}
               <div className="lg:col-span-4">
-                <GlassPanel padding="lg" className="rounded-2xl h-full border border-slate-800 bg-slate-950/80 relative overflow-hidden flex flex-col justify-between min-h-[380px]">
-                  
+                <div
+                  className="rounded-3xl bg-[var(--color-surface)] border-2 border-[var(--color-border)] p-6 relative overflow-hidden flex flex-col justify-between min-h-[400px]"
+                  style={{
+                    boxShadow: "var(--shadow-sticker, 0 6px 0 rgba(0,0,0,0.22))",
+                  }}
+                >
                   {/* Glowing Laser Scan Line */}
                   {isScanning && (
                     <motion.div
                       initial={{ y: 0 }}
                       animate={{ y: [0, 320, 0] }}
                       transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
-                      className="absolute top-0 left-0 right-0 h-1 bg-accent shadow-[0_0_20px_#caa456,0_0_40px_#caa456] z-30 pointer-events-none"
+                      className="absolute top-0 left-0 right-0 h-1 bg-[var(--foreground)] shadow-[0_0_20px_currentColor] z-30 pointer-events-none"
                     />
                   )}
 
                   <div>
-                    <div className="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
-                      <span className="font-mono text-xs text-slate-400">{t.lab.ocrPdfPreview}</span>
-                      <Chip variant="status" size="sm">PDF 300 DPI</Chip>
+                    <div className="flex items-center justify-between border-b border-[var(--color-border)] pb-3 mb-4">
+                      <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--foreground)] opacity-70">
+                        {t.lab.ocrPdfPreview}
+                      </span>
+                      <span className="font-mono text-[10.5px] px-2.5 py-0.5 rounded-full bg-[var(--background)] border border-[var(--color-border)] text-[var(--foreground)]">
+                        PDF 300 DPI
+                      </span>
                     </div>
 
-                    <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800/80 space-y-3 font-mono text-2xs text-slate-400 select-none">
-                      <div className="w-2/3 h-3 bg-slate-800 rounded animate-pulse" />
-                      <div className="w-full h-2 bg-slate-800/60 rounded" />
-                      <div className="w-5/6 h-2 bg-slate-800/60 rounded" />
-                      <div className="w-4/6 h-2 bg-slate-800/60 rounded" />
-                      <div className="w-full h-12 bg-slate-950/60 border border-slate-800 rounded p-2 text-slate-300">
+                    <div className="p-5 rounded-2xl bg-[var(--background)] border border-[var(--color-border)] space-y-3 font-mono text-xs select-none">
+                      <div className="w-2/3 h-3 bg-[var(--color-border)] rounded animate-pulse" />
+                      <div className="w-full h-2 bg-[var(--color-border)] rounded opacity-60" />
+                      <div className="w-5/6 h-2 bg-[var(--color-border)] rounded opacity-60" />
+                      <div className="w-4/6 h-2 bg-[var(--color-border)] rounded opacity-60" />
+                      <div className="w-full h-12 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-2.5 text-[var(--foreground)] font-semibold">
                         [{t.lab.ocrExtractedTable}: {selectedDoc.title.toUpperCase()}]
                       </div>
-                      <div className="w-3/4 h-2 bg-slate-800/60 rounded" />
+                      <div className="w-3/4 h-2 bg-[var(--color-border)] rounded opacity-60" />
                     </div>
                   </div>
 
-                  <div className="mt-4 pt-3 border-t border-slate-800/80 flex justify-between items-center text-xs font-mono">
-                    <span className="text-slate-400">{t.lab.ocrStatusLabel}</span>
-                    <span className={isScanning ? "text-amber-400 animate-pulse font-bold" : "text-accent font-bold"}>
+                  <div className="mt-4 pt-3 border-t border-[var(--color-border)] flex justify-between items-center text-xs font-mono">
+                    <span className="text-[var(--foreground)] opacity-60">{t.lab.ocrStatusLabel}</span>
+                    <span className={isScanning ? "animate-pulse font-bold text-[var(--foreground)]" : "font-bold text-[var(--foreground)]"}>
                       {isScanning ? t.lab.ocrStatusProcessing : t.lab.ocrStatusReady}
                     </span>
                   </div>
-                </GlassPanel>
+                </div>
               </div>
 
               {/* Live JSON Result Column */}
               <div className="lg:col-span-4">
-                <GlassPanel padding="lg" className="rounded-2xl h-full border border-slate-800 bg-slate-900/90 font-mono text-xs">
-                  <div className="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
-                    <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                      <span className="text-slate-200 font-bold">{t.lab.ocrJsonResult}</span>
+                <div
+                  className="rounded-3xl bg-[var(--color-surface)] border-2 border-[var(--color-border)] p-6 font-mono text-xs flex flex-col justify-between min-h-[400px]"
+                  style={{
+                    boxShadow: "var(--shadow-sticker, 0 6px 0 rgba(0,0,0,0.22))",
+                  }}
+                >
+                  <div>
+                    <div className="flex items-center justify-between border-b border-[var(--color-border)] pb-3 mb-4">
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                        <span className="font-bold text-[var(--foreground)]">{t.lab.ocrJsonResult}</span>
+                      </div>
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[var(--background)] border border-[var(--color-border)] text-[var(--foreground)]">
+                        {t.lab.ocrAccuracy}: {scanComplete ? selectedDoc.extracted.confidence : isScanning ? t.lab.ocrAnalyzingShort : "0.0%"}
+                      </span>
                     </div>
-                    <span className={`text-2xs px-2 py-0.5 rounded transition-all ${
-                      scanComplete
-                        ? "text-accent bg-accent/10 border border-accent/30 font-bold shadow-[0_0_10px_rgba(202,164,86,0.2)]"
-                        : isScanning
-                        ? "text-amber-400 bg-amber-500/10 border border-amber-400/30 animate-pulse font-bold"
-                        : "text-slate-500 bg-slate-950 border border-slate-800 font-mono"
-                    }`}>
-                      {t.lab.ocrAccuracy}: {scanComplete ? selectedDoc.extracted.confidence : isScanning ? t.lab.ocrAnalyzingShort : "0.0%"}
-                    </span>
+
+                    {isScanning ? (
+                      <div className="h-[240px] flex flex-col items-center justify-center text-center p-6 bg-[var(--background)] rounded-2xl border border-[var(--color-border)] text-[var(--foreground)]">
+                        <div className="w-8 h-8 rounded-full border-2 border-[var(--color-pill-bg)] border-t-transparent animate-spin mb-3" />
+                        <p className="font-mono text-xs font-bold animate-pulse">{t.lab.ocrAnalyzingFull}</p>
+                      </div>
+                    ) : scanComplete ? (
+                      <motion.pre
+                        initial={{ opacity: 0, scale: 0.98 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.3 }}
+                        className="text-[var(--foreground)] bg-[var(--background)] p-4 rounded-2xl border border-[var(--color-border)] overflow-x-auto text-[11px] leading-relaxed max-h-[260px]"
+                      >
+                        {JSON.stringify(selectedDoc.extracted, null, 2)}
+                      </motion.pre>
+                    ) : (
+                      <div className="h-[240px] flex flex-col items-center justify-center text-center p-6 bg-[var(--background)] rounded-2xl border border-[var(--color-border)]">
+                        <FileText className="w-10 h-10 opacity-30 mb-3" />
+                        <p className="font-mono text-xs text-[var(--foreground)] opacity-75 mb-1">{t.lab.ocrNotExtracted}</p>
+                        <p className="text-[11px] text-[var(--foreground)] opacity-60 font-medium max-w-xs">
+                          {t.lab.ocrClickToStart.split("{button}")[0]}
+                          <span className="font-bold">&quot;{t.lab.ocrRunScan}&quot;</span>
+                          {t.lab.ocrClickToStart.split("{button}")[1]}
+                        </p>
+                      </div>
+                    )}
                   </div>
 
-                  {isScanning ? (
-                    <div className="h-[260px] flex flex-col items-center justify-center text-center p-6 bg-slate-950 rounded-xl border border-amber-400/30 text-amber-300">
-                      <div className="w-8 h-8 rounded-full border-2 border-accent border-t-transparent animate-spin mb-3" />
-                      <p className="font-mono text-xs font-bold animate-pulse">{t.lab.ocrAnalyzingFull}</p>
-                    </div>
-                  ) : scanComplete ? (
-                    <motion.pre
-                      initial={{ opacity: 0, scale: 0.98 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3 }}
-                      className="text-slate-300 bg-slate-950 p-4 rounded-xl border border-accent/40 shadow-[0_0_20px_rgba(202,164,86,0.1)] overflow-x-auto text-2xs leading-relaxed max-h-[300px]"
-                    >
-                      {JSON.stringify(selectedDoc.extracted, null, 2)}
-                    </motion.pre>
-                  ) : (
-                    <div className="h-[260px] flex flex-col items-center justify-center text-center p-6 bg-slate-950 rounded-xl border border-slate-800/80 text-slate-500">
-                      <FileText className="w-10 h-10 text-slate-700 mb-3" />
-                      <p className="font-mono text-xs text-slate-400 mb-1">{t.lab.ocrNotExtracted}</p>
-                      <p className="font-headline text-2xs text-slate-500 font-light max-w-xs">
-                        {t.lab.ocrClickToStart.split("{button}")[0]}
-                        <span className="text-accent font-semibold">&quot;{t.lab.ocrRunScan}&quot;</span>
-                        {t.lab.ocrClickToStart.split("{button}")[1]}
-                      </p>
-                    </div>
-                  )}
-
-                  <div className="mt-4 flex items-center gap-2 text-2xs text-slate-400 pt-2 border-t border-slate-800/80">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-accent" />
+                  <div className="mt-4 flex items-center gap-2 text-xs text-[var(--foreground)] opacity-75 pt-2 border-t border-[var(--color-border)]">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
                     <span>{t.lab.ocrReadyForDb}</span>
                   </div>
-                </GlassPanel>
+                </div>
               </div>
 
             </div>
@@ -360,29 +365,37 @@ export function LabContent() {
             transition={{ duration: 0.4 }}
             className="space-y-6"
           >
-            <GlassPanel padding="lg" className="rounded-2xl border border-slate-800 bg-slate-900/80">
-              
+            <div
+              className="rounded-3xl bg-[var(--color-surface)] border-2 border-[var(--color-border)] p-6 sm:p-8"
+              style={{
+                boxShadow: "var(--shadow-sticker, 0 6px 0 rgba(0,0,0,0.22))",
+              }}
+            >
               {/* Controls Header */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-6 mb-6">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--color-border)] pb-6 mb-6">
                 <div>
-                  <h3 className="font-headline text-xl font-bold text-slate-100">{t.lab.gridTitle}</h3>
-                  <p className="font-headline text-sm text-slate-400 font-light">{t.lab.gridSubtitle}</p>
+                  <h3 className="[font-family:var(--font-display)] uppercase text-3xl text-[var(--foreground)] tracking-tight">
+                    {t.lab.gridTitle}
+                  </h3>
+                  <p className="text-sm text-[var(--foreground)] opacity-75 font-medium mt-1">
+                    {t.lab.gridSubtitle}
+                  </p>
                 </div>
 
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => handleGenerateRecords(1000)}
                     disabled={isGenerating}
-                    className="px-3.5 py-2 rounded-xl bg-slate-800 border border-slate-700 text-slate-200 font-mono text-xs hover:border-slate-500 transition-all cursor-pointer"
+                    className="btn-elastic px-4 py-2.5 rounded-full bg-[var(--background)] border-2 border-[var(--color-border)] text-[var(--foreground)] font-mono text-xs font-bold uppercase tracking-wider transition-all cursor-pointer hover:bg-[var(--color-surface)]"
                   >
                     {t.lab.gridGenerate1k}
                   </button>
                   <button
                     onClick={() => handleGenerateRecords(10000)}
                     disabled={isGenerating}
-                    className="px-4 py-2 rounded-xl bg-accent text-slate-950 font-mono text-xs font-bold hover:bg-accent-bright transition-all shadow-[0_0_15px_rgba(202,164,86,0.3)] cursor-pointer flex items-center gap-1.5"
+                    className="btn-elastic px-5 py-2.5 rounded-full bg-[var(--color-pill-bg)] text-[var(--color-pill-text)] font-mono text-xs font-bold uppercase tracking-wider shadow-md cursor-pointer flex items-center gap-1.5"
                   >
-                    <Zap className="w-3.5 h-3.5 fill-slate-950" />
+                    <Zap className="w-3.5 h-3.5" />
                     <span>{t.lab.gridGenerate10k}</span>
                   </button>
                 </div>
@@ -391,71 +404,71 @@ export function LabContent() {
               {/* Live Metric Stats Bar */}
               {recordsCount > 0 && (
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
-                  <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
-                    <div className="font-mono text-2xs text-slate-400">{t.lab.gridRecordsInMemory}</div>
-                    <div className="font-mono text-lg font-bold text-accent">{recordsCount.toLocaleString(locale)}</div>
+                  <div className="p-4 rounded-2xl bg-[var(--background)] border border-[var(--color-border)]">
+                    <div className="font-mono text-xs text-[var(--foreground)] opacity-60 uppercase">{t.lab.gridRecordsInMemory}</div>
+                    <div className="font-mono text-xl font-bold text-[var(--foreground)] mt-1">{recordsCount.toLocaleString(locale)}</div>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
-                    <div className="font-mono text-2xs text-slate-400">{t.lab.gridRenderTime}</div>
-                    <div className="font-mono text-lg font-bold text-slate-100">{generationTime} ms</div>
+                  <div className="p-4 rounded-2xl bg-[var(--background)] border border-[var(--color-border)]">
+                    <div className="font-mono text-xs text-[var(--foreground)] opacity-60 uppercase">{t.lab.gridRenderTime}</div>
+                    <div className="font-mono text-xl font-bold text-[var(--foreground)] mt-1">{generationTime} ms</div>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
-                    <div className="font-mono text-2xs text-slate-400">{t.lab.gridReactiveFilter}</div>
-                    <div className="font-mono text-lg font-bold text-slate-100">{t.lab.gridImmediate}</div>
+                  <div className="p-4 rounded-2xl bg-[var(--background)] border border-[var(--color-border)]">
+                    <div className="font-mono text-xs text-[var(--foreground)] opacity-60 uppercase">{t.lab.gridReactiveFilter}</div>
+                    <div className="font-mono text-xl font-bold text-[var(--foreground)] mt-1">{t.lab.gridImmediate}</div>
                   </div>
                 </div>
               )}
 
               {/* Search Bar */}
-              <div className="relative mb-4">
-                <Search className="absolute left-3.5 top-3 w-4 h-4 text-slate-400" />
+              <div className="relative mb-5">
+                <Search className="absolute left-4 top-3.5 w-4 h-4 opacity-50" />
                 <input
                   type="text"
                   placeholder={t.lab.gridSearchPlaceholder}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 font-mono text-xs text-slate-100 placeholder:text-slate-500 focus:border-accent focus:outline-none transition-all"
+                  className="w-full bg-[var(--background)] border-2 border-[var(--color-border)] rounded-2xl pl-11 pr-4 py-3 font-mono text-xs text-[var(--foreground)] placeholder:text-[var(--foreground)] placeholder:opacity-40 focus:border-[var(--color-pill-bg)] focus:outline-none transition-all"
                 />
               </div>
 
-              {/* HTML table; only the first 50 filtered rows are rendered. */}
-              <div className="border border-slate-800 rounded-xl overflow-hidden bg-slate-950 max-h-[360px] overflow-y-auto">
+              {/* HTML table */}
+              <div className="border-2 border-[var(--color-border)] rounded-2xl overflow-hidden bg-[var(--background)] max-h-[360px] overflow-y-auto">
                 {recordsCount === 0 ? (
-                  <div className="py-16 text-center text-slate-500 font-mono text-xs">
+                  <div className="py-16 text-center text-[var(--foreground)] opacity-50 font-mono text-xs">
                     {t.lab.gridEmptyState}
                   </div>
                 ) : (
-                  <table className="w-full text-left border-collapse font-mono text-2xs">
-                    <thead className="bg-slate-900 text-slate-400 sticky top-0 border-b border-slate-800 z-10">
+                  <table className="w-full text-left border-collapse font-mono text-xs">
+                    <thead className="bg-[var(--color-surface)] text-[var(--foreground)] opacity-80 sticky top-0 border-b border-[var(--color-border)] z-10">
                       <tr>
-                        <th className="p-3 font-semibold">{t.lab.gridColId}</th>
-                        <th className="p-3 font-semibold">{t.lab.gridColName}</th>
-                        <th className="p-3 font-semibold">{t.lab.gridColRole}</th>
-                        <th className="p-3 font-semibold">{t.lab.gridColStatus}</th>
-                        <th className="p-3 font-semibold">{t.lab.gridColScore}</th>
-                        <th className="p-3 font-semibold">{t.lab.gridColTimestamp}</th>
+                        <th className="p-3.5 font-bold uppercase">{t.lab.gridColId}</th>
+                        <th className="p-3.5 font-bold uppercase">{t.lab.gridColName}</th>
+                        <th className="p-3.5 font-bold uppercase">{t.lab.gridColRole}</th>
+                        <th className="p-3.5 font-bold uppercase">{t.lab.gridColStatus}</th>
+                        <th className="p-3.5 font-bold uppercase">{t.lab.gridColScore}</th>
+                        <th className="p-3.5 font-bold uppercase">{t.lab.gridColTimestamp}</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-900 text-slate-300">
+                    <tbody className="divide-y divide-[var(--color-border)]">
                       {filteredRecords.slice(0, 50).map((row) => (
-                        <tr key={row.id} className="hover:bg-slate-900/60 transition-colors">
-                          <td className="p-3 font-bold text-accent">{row.id}</td>
-                          <td className="p-3 font-medium text-slate-100">{row.name}</td>
-                          <td className="p-3 text-slate-400">{row.role}</td>
-                          <td className="p-3">
-                            <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 text-3xs">
+                        <tr key={row.id} className="hover:bg-[var(--color-surface)] transition-colors">
+                          <td className="p-3.5 font-bold text-[var(--foreground)]">{row.id}</td>
+                          <td className="p-3.5 font-medium text-[var(--foreground)]">{row.name}</td>
+                          <td className="p-3.5 text-[var(--foreground)] opacity-70">{row.role}</td>
+                          <td className="p-3.5">
+                            <span className="px-2.5 py-0.5 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] text-[10px] font-bold">
                               {row.status}
                             </span>
                           </td>
-                          <td className="p-3 text-slate-200">{row.score}</td>
-                          <td className="p-3 text-slate-500">{row.timestamp}</td>
+                          <td className="p-3.5 text-[var(--foreground)] font-semibold">{row.score}</td>
+                          <td className="p-3.5 text-[var(--foreground)] opacity-60">{row.timestamp}</td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
                 )}
               </div>
-            </GlassPanel>
+            </div>
           </motion.div>
         )}
 
@@ -469,27 +482,38 @@ export function LabContent() {
           >
             {/* Sliders Control Panel */}
             <div className="lg:col-span-5">
-              <GlassPanel padding="lg" className="rounded-2xl border border-slate-800 bg-slate-900/80 space-y-6">
+              <div
+                className="rounded-3xl bg-[var(--color-surface)] border-2 border-[var(--color-border)] p-6 sm:p-7 space-y-6"
+                style={{
+                  boxShadow: "var(--shadow-sticker, 0 6px 0 rgba(0,0,0,0.22))",
+                }}
+              >
                 <div>
-                  <h3 className="font-headline text-lg font-bold text-slate-100 mb-1">{t.lab.themeTitle}</h3>
-                  <p className="font-headline text-xs text-slate-400 font-light">{t.lab.themeSubtitle}</p>
+                  <h3 className="[font-family:var(--font-display)] uppercase text-2xl text-[var(--foreground)] mb-1">
+                    {t.lab.themeTitle}
+                  </h3>
+                  <p className="text-xs text-[var(--foreground)] opacity-70 font-medium">
+                    {t.lab.themeSubtitle}
+                  </p>
                 </div>
 
                 {/* Accent Color Selector */}
                 <div>
-                  <label className="font-mono text-xs text-slate-300 mb-2 block">{t.lab.themeAccentColor}</label>
+                  <label className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--foreground)] opacity-75 mb-2.5 block">
+                    {t.lab.themeAccentColor}
+                  </label>
                   <div className="flex gap-3">
                     {[
-                      { name: "Lime Neon", hex: "#caa456" },
-                      { name: "Cyan Electric", hex: "#00f0ff" },
-                      { name: "Purple Future", hex: "#a855f7" },
-                      { name: "Emerald Pulse", hex: "#10b981" },
+                      { name: "Monochrome Black", hex: "#181818" },
+                      { name: "Oat Orange", hex: "#ff7906" },
+                      { name: "Electric Blue", hex: "#0779ff" },
+                      { name: "Acid Lime", hex: "#d4ff00" },
                     ].map((c) => (
                       <button
                         key={c.hex}
                         onClick={() => setAccentColor(c.hex)}
                         className={`w-9 h-9 rounded-full border-2 transition-all cursor-pointer ${
-                          accentColor === c.hex ? "scale-110 border-white shadow-lg" : "border-transparent opacity-70 hover:opacity-100"
+                          accentColor === c.hex ? "scale-110 border-[var(--foreground)] shadow-md" : "border-transparent opacity-70 hover:opacity-100"
                         }`}
                         style={{ backgroundColor: c.hex }}
                         title={c.name}
@@ -500,9 +524,9 @@ export function LabContent() {
 
                 {/* Blur Slider */}
                 <div>
-                  <div className="flex justify-between font-mono text-xs text-slate-300 mb-2">
-                    <span>{t.lab.themeBlur}</span>
-                    <span className="text-accent">{blurIntensity}px</span>
+                  <div className="flex justify-between font-mono text-xs text-[var(--foreground)] mb-2">
+                    <span className="font-bold uppercase">{t.lab.themeBlur}</span>
+                    <span>{blurIntensity}px</span>
                   </div>
                   <input
                     type="range"
@@ -510,15 +534,15 @@ export function LabContent() {
                     max="40"
                     value={blurIntensity}
                     onChange={(e) => setBlurIntensity(Number(e.target.value))}
-                    className="w-full accent-accent cursor-pointer"
+                    className="w-full cursor-pointer accent-[var(--color-pill-bg)]"
                   />
                 </div>
 
                 {/* Glow Slider */}
                 <div>
-                  <div className="flex justify-between font-mono text-xs text-slate-300 mb-2">
-                    <span>{t.lab.themeGlow}</span>
-                    <span className="text-accent">{glowPower}px</span>
+                  <div className="flex justify-between font-mono text-xs text-[var(--foreground)] mb-2">
+                    <span className="font-bold uppercase">{t.lab.themeGlow}</span>
+                    <span>{glowPower}px</span>
                   </div>
                   <input
                     type="range"
@@ -526,40 +550,49 @@ export function LabContent() {
                     max="60"
                     value={glowPower}
                     onChange={(e) => setGlowPower(Number(e.target.value))}
-                    className="w-full accent-accent cursor-pointer"
+                    className="w-full cursor-pointer accent-[var(--color-pill-bg)]"
                   />
                 </div>
-              </GlassPanel>
+              </div>
             </div>
 
             {/* Live Interactive Card Result */}
-            <div className="lg:col-span-7 flex items-center justify-center p-8 rounded-3xl bg-slate-950 border border-slate-800 relative overflow-hidden">
+            <div className="lg:col-span-7 flex items-center justify-center p-8 rounded-3xl bg-[var(--background)] border-2 border-[var(--color-border)] relative overflow-hidden">
               <div
-                className="w-full max-w-md p-8 rounded-3xl transition-all duration-300"
+                className="w-full max-w-md p-8 rounded-3xl transition-all duration-300 border-2"
                 style={{
-                  backgroundColor: "rgba(15, 23, 42, 0.65)",
+                  backgroundColor: "var(--color-surface)",
                   backdropFilter: `blur(${blurIntensity}px)`,
-                  border: `1px solid ${accentColor}40`,
-                  boxShadow: `0 0 ${glowPower}px ${accentColor}25`,
+                  borderColor: "var(--color-border)",
+                  boxShadow: `0 10px ${glowPower}px rgba(0,0,0,0.15)`,
                 }}
               >
                 <div className="flex justify-between items-center mb-6">
-                  <span className="font-mono text-xs px-3 py-1 rounded-full font-bold" style={{ backgroundColor: `${accentColor}20`, color: accentColor, border: `1px solid ${accentColor}40` }}>
+                  <span
+                    className="font-mono text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wider"
+                    style={{
+                      backgroundColor: accentColor,
+                      color: accentColor === "#d4ff00" ? "#181818" : "#ffffff",
+                    }}
+                  >
                     {t.lab.themeLivePreviewToken}
                   </span>
-                  <Sparkles className="w-5 h-5" style={{ color: accentColor }} />
+                  <Sparkles className="w-5 h-5 text-[var(--foreground)] opacity-70" />
                 </div>
 
-                <h4 className="font-headline text-2xl font-bold text-slate-100 mb-2">
+                <h4 className="[font-family:var(--font-display)] uppercase text-3xl text-[var(--foreground)] mb-2">
                   {t.lab.themeCardTitle}
                 </h4>
-                <p className="font-headline text-slate-300 text-sm font-light leading-relaxed mb-6">
+                <p className="text-sm text-[var(--foreground)] opacity-75 font-medium leading-relaxed mb-6">
                   {t.lab.themeCardDesc}
                 </p>
 
                 <button
-                  className="w-full py-3 rounded-full font-mono text-xs font-bold text-slate-950 transition-all cursor-pointer shadow-lg"
-                  style={{ backgroundColor: accentColor, boxShadow: `0 0 20px ${accentColor}40` }}
+                  className="btn-elastic w-full py-3.5 rounded-full font-mono text-xs font-bold uppercase tracking-wider shadow-lg cursor-pointer transition-transform hover:scale-102 active:scale-98"
+                  style={{
+                    backgroundColor: accentColor,
+                    color: accentColor === "#d4ff00" ? "#181818" : "#ffffff",
+                  }}
                 >
                   {t.lab.themeCardButton}
                 </button>

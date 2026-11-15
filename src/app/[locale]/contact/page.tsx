@@ -43,8 +43,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-background pt-36 pb-24">
-      <div className="max-w-[1400px] mx-auto px-6 sm:px-8">
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] pt-32 pb-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ContactContent />
       </div>
     </div>
