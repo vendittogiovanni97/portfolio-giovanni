@@ -17,8 +17,11 @@
     "contactMe": "Contattami"
   },
   "work": {
-    "title": "I miei progetti",
-    "subtitle": "Alcuni dei progetti principali a cui ho lavorato.",
+    "title": "Featured Work",
+    "subtitle": "Selezione di piattaforme software e sistemi web in produzione.",
+    "featuredWork": "Featured Work",
+    "moreWork": "More Work",
+    "moreWorkSubtitle": "Archivio di sistemi in produzione, strumenti interni e architetture software.",
     "viewProject": "Vedi Progetto",
     "category": {
       "product": "Prodotto",

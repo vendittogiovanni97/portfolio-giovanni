@@ -27,10 +27,99 @@ interface ShowcaseItem {
   targetHref?: string;
 }
 
+interface ArchiveWorkItem {
+  id: string;
+  title: string;
+  category: string;
+  year: string;
+  description: string;
+  badge: string;
+  image: string;
+  rotation: string;
+  slug?: string;
+  externalOrRoute?: string;
+  tags: string[];
+}
+
 export function SelectedWork({ projects }: SelectedWorkProps) {
-  const { href } = useI18n();
+  const { href, t } = useI18n();
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeModalProject, setActiveModalProject] = useState<ProjectMetadata | null>(null);
+
+  const moreWorkItems: ArchiveWorkItem[] = [
+    {
+      id: "assicurativo-core",
+      title: "Portale Assicurativo — Core Engine",
+      category: "Enterprise System",
+      year: "2025 – 2026",
+      badge: "ERP & Pipeline",
+      image: "/projects/assicurativo-studio/dashboard.png",
+      rotation: "-rotate-1",
+      slug: "assicurativo-studio",
+      tags: ["React 19", "AG Grid 32", "MongoDB", "Tailwind 4"],
+      description: "Architettura enterprise ad alte prestazioni per oltre 12.000 polizze attive, export Excel istantaneo e permission model RBAC granulare.",
+    },
+    {
+      id: "nagma-kanban",
+      title: "Nagma CRM — Kanban & Agenda",
+      category: "SaaS Platform",
+      year: "2025 – 2026",
+      badge: "Production SaaS",
+      image: "/projects/nagma-tattoo-crm/dashboard.png",
+      rotation: "rotate-1",
+      slug: "demo-nagma",
+      tags: ["Next.js 16", "Prisma 7", "PostgreSQL", "Docker"],
+      description: "CRM gestionale per studi con agenda interattiva, consensi informati firmati digitalmente su tablet e analytics integrate.",
+    },
+    {
+      id: "claude-agentic",
+      title: "Anthropic Agentic Tool-Use CLI",
+      category: "AI Architecture",
+      year: "2026",
+      badge: "Claude Certified",
+      image: "/certificates/claude-cowork.png",
+      rotation: "-rotate-1 sm:-rotate-0.5",
+      externalOrRoute: href("/studio#credentials"),
+      tags: ["Claude 3.7", "Function Calling", "Agent Workflows"],
+      description: "Architettura agenziale multimodale con determinismo nell'invocazione di tool esterni e memoria persistente su contesti lunghi.",
+    },
+    {
+      id: "ocr-simulator",
+      title: "Interactive OCR Live Simulator",
+      category: "Creative Lab",
+      year: "2026",
+      badge: "Live Interactive",
+      image: "/projects/assicurativo-studio/elaborazione-polizze.png",
+      rotation: "rotate-1 sm:rotate-0.5",
+      externalOrRoute: href("/lab"),
+      tags: ["Canvas API", "Wasm OCR", "Zod Validation"],
+      description: "Playground interattivo per testare parser documentali complessi con visualizzazione immediata delle confidenze e bounding box.",
+    },
+    {
+      id: "virtual-grid-benchmark",
+      title: "10,000 Records Virtual Grid",
+      category: "Performance Lab",
+      year: "2025",
+      badge: "Zero-Lag 60 FPS",
+      image: "/projects/assicurativo-studio/dashboard.png",
+      rotation: "-rotate-1",
+      externalOrRoute: href("/lab"),
+      tags: ["AG Grid 32", "Virtual Scrolling", "Multi-sort"],
+      description: "Tabella finanziaria ultra-performante con caricamento dinamico di 10.000 righe e calcolo somme su colonne senza ricalcolo DOM.",
+    },
+    {
+      id: "spencer-design-system",
+      title: "Tactile Spencer Gabor System",
+      category: "UI/UX Engineering",
+      year: "2026",
+      badge: "Design System",
+      image: "/certificates/master-fullstack.png",
+      rotation: "rotate-1",
+      externalOrRoute: href("/contact"),
+      tags: ["Tailwind 4", "Elastic Springs", "Theme Switcher"],
+      description: "Sistema di componenti tattili con fisica elastica naturale, palette dinamiche monochrome / oat / lime / blue e micro-interazioni sticker.",
+    },
+  ];
 
   // Combine real projects with flagship items for the 4-slide curved deck
   const items: ShowcaseItem[] = [
@@ -334,6 +423,124 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
               }`}
             />
           ))}
+        </div>
+
+        {/* Spencer Gabor Inspired "More Work" Archive Grid */}
+        <div className="mt-28 sm:mt-36 pt-16 border-t-2 border-[var(--color-border)]">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--color-surface-muted)] border border-[var(--color-border)] mb-3">
+                <Sparkles className="w-3.5 h-3.5 text-[var(--color-accent)]" />
+                <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--foreground)] opacity-80">
+                  Archive & Production Systems
+                </span>
+              </div>
+              <h3 className="[font-family:var(--font-display)] uppercase text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[0.92] text-[var(--foreground)]">
+                {t.work.moreWork || "More Work"}
+              </h3>
+            </div>
+            <p className="text-[15px] sm:text-[17px] text-[var(--foreground)] opacity-70 font-medium max-w-md leading-relaxed">
+              {t.work.moreWorkSubtitle || "Archivio di sistemi in produzione, strumenti interni e architetture software."}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+            {moreWorkItems.map((item) => {
+              const projectMeta = item.slug ? projects.find((p) => p.slug === item.slug) : null;
+
+              return (
+                <motion.div
+                  key={item.id}
+                  whileHover={{ y: -6, rotate: 0 }}
+                  transition={{ type: "spring", stiffness: 350, damping: 22 }}
+                  className={`group rounded-[28px] border-2 border-[var(--color-border)] bg-[var(--color-surface)] p-5 sm:p-6 transition-all duration-300 flex flex-col justify-between hover:shadow-xl ${item.rotation}`}
+                >
+                  <div>
+                    {/* Visual Preview / Thumbnail */}
+                    <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden mb-4 border border-[var(--color-border)] bg-[var(--color-surface-muted)] group-hover:scale-[1.01] transition-transform duration-300">
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        className="object-cover object-top opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+                        sizes="(min-width: 1024px) 360px, (min-width: 768px) 50vw, 100vw"
+                      />
+                      <div className="absolute top-2.5 left-2.5">
+                        <span className="font-mono text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-[var(--color-pill-bg)] text-[var(--color-pill-text)] shadow-sm">
+                          {item.badge}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Meta Row: Category + Year */}
+                    <div className="flex items-center justify-between text-xs font-mono font-semibold mb-2">
+                      <span className="text-[var(--color-accent)] uppercase tracking-wider">
+                        {item.category}
+                      </span>
+                      <span className="text-[var(--foreground)] opacity-55">
+                        {item.year}
+                      </span>
+                    </div>
+
+                    {/* Title */}
+                    <h4 className="text-xl font-bold tracking-tight text-[var(--foreground)] group-hover:text-[var(--color-accent)] transition-colors leading-snug">
+                      {item.title}
+                    </h4>
+
+                    {/* Description */}
+                    <p className="text-[13px] sm:text-[14px] text-[var(--foreground)] opacity-75 font-medium leading-relaxed mt-2 line-clamp-3">
+                      {item.description}
+                    </p>
+                  </div>
+
+                  <div className="mt-5 pt-4 border-t border-[var(--color-border)]">
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {item.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="font-mono text-[10px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[var(--color-surface-muted)] text-[var(--foreground)] opacity-80 border border-[var(--color-border)]"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Action Button */}
+                    {item.slug ? (
+                      <div className="flex items-center gap-2">
+                        <Link
+                          href={href(`/work/${item.slug}`)}
+                          className="flex-1 inline-flex items-center justify-center gap-2 h-10 rounded-full border-2 border-[var(--color-border)] bg-[var(--background)] px-4 text-xs font-bold uppercase tracking-wider text-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-all cursor-pointer"
+                        >
+                          <span>Case Study</span>
+                          <ArrowUpRight className="w-3.5 h-3.5" />
+                        </Link>
+                        {projectMeta && (
+                          <button
+                            onClick={() => setActiveModalProject(projectMeta)}
+                            className="inline-flex items-center justify-center w-10 h-10 rounded-full border-2 border-[var(--color-border)] bg-[var(--color-surface-muted)] text-[var(--foreground)] hover:bg-[var(--color-pill-bg)] hover:text-[var(--color-pill-text)] transition-all cursor-pointer"
+                            aria-label={`Anteprima ${item.title}`}
+                            title="Anteprima rapida"
+                          >
+                            <Eye className="w-4 h-4" />
+                          </button>
+                        )}
+                      </div>
+                    ) : (
+                      <Link
+                        href={item.externalOrRoute || href("/work")}
+                        className="w-full inline-flex items-center justify-center gap-2 h-10 rounded-full border-2 border-[var(--color-border)] bg-[var(--background)] px-4 text-xs font-bold uppercase tracking-wider text-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-all cursor-pointer"
+                      >
+                        <span>Esplora</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </Link>
+                    )}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </div>
 

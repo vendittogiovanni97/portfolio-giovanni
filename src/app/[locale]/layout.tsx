@@ -112,12 +112,12 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
     },
     icons: {
       icon: [
-        { url: "/favicon.svg?v=20261115b", type: "image/svg+xml" },
-        { url: "/icon.png?v=20261115b", sizes: "512x512", type: "image/png" },
-        { url: "/favicon.ico?v=20261115b", sizes: "any" },
+        { url: "/favicon.svg?v=20261115c", type: "image/svg+xml" },
+        { url: "/icon.png?v=20261115c", sizes: "512x512", type: "image/png" },
+        { url: "/favicon.ico?v=20261115c", sizes: "any" },
       ],
-      shortcut: "/favicon.svg?v=20261115b",
-      apple: "/apple-touch-icon.png?v=20261115b",
+      shortcut: "/favicon.svg?v=20261115c",
+      apple: "/apple-touch-icon.png?v=20261115c",
     },
     manifest: "/manifest.json",
   };
@@ -138,10 +138,10 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
   return (
     <html lang={locale} className={`h-full antialiased ${displayFont.variable} ${bodyFont.variable}`} data-theme="white" suppressHydrationWarning>
       <head>
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20261115b" />
-        <link rel="icon" type="image/png" sizes="512x512" href="/icon.png?v=20261115b" />
-        <link rel="alternate icon" href="/favicon.ico?v=20261115b" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20261115b" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20261115c" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/icon.png?v=20261115c" />
+        <link rel="alternate icon" href="/favicon.ico?v=20261115c" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20261115c" />
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var t=localStorage.getItem('portfolio-theme')||'white';document.documentElement.setAttribute('data-theme',t);}catch(e){}})()`,

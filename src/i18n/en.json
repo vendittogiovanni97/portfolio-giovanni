@@ -17,8 +17,11 @@
     "contactMe": "Contact Me"
   },
   "work": {
-    "title": "My Projects",
-    "subtitle": "Some of the main projects I have worked on.",
+    "title": "Featured Work",
+    "subtitle": "Selection of production software platforms and web systems.",
+    "featuredWork": "Featured Work",
+    "moreWork": "More Work",
+    "moreWorkSubtitle": "Archive of production systems, internal tooling, and software architectures.",
     "viewProject": "View Project",
     "category": {
       "product": "Product",
