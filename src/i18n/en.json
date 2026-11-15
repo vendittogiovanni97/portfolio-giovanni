@@ -212,22 +212,47 @@
     }
   },
   "experience": {
-    "title": "Experience",
-    "subtitle": "My current position.",
+    "title": "Experience & Key Roles",
+    "subtitle": "My journey as a Fullstack Engineer: enterprise platforms, cloud architectures, and AI-ready systems.",
+    "currentBadge": "Current Position · Active",
+    "advisoryTitle": "Software Systems & Advisory",
+    "advisorySubtitle": "Architecture of custom CRMs, real-time OCR pipelines, and scalable platforms for startups and enterprises.",
     "expand": "Expand details",
     "collapse": "Hide details",
-    "results": "Activities & Results",
+    "results": "Core Domains & Deliverables",
+    "pillars": {
+      "frontend": {
+        "title": "Frontend Engineering",
+        "desc": "Architecting responsive, high-performance web applications with Next.js 16, React 19, and strict TypeScript."
+      },
+      "backend": {
+        "title": "Backend & REST APIs",
+        "desc": "Designing resilient microservices and endpoints with Node.js, Express, and scalable architectural patterns."
+      },
+      "database": {
+        "title": "Database & DevOps",
+        "desc": "Relational and document data modeling on MongoDB and PostgreSQL, with Docker containerization."
+      }
+    },
+    "metrics": {
+      "metric1Val": "Next.js 16",
+      "metric1Label": "Server Components & App Router",
+      "metric2Val": "Anthropic AI",
+      "metric2Label": "Certified Agentic Integrations",
+      "metric3Val": "Production",
+      "metric3Label": "Zero-Downtime & High Reliability"
+    },
     "milestones": {
       "agilae": {
         "year": "March 2025 – Present",
         "role": "Fullstack Engineer",
         "company": "Agilae",
         "location": "Napoli / Remote",
-        "description": "Development of web platforms and business management software, working on both frontend and backend.",
+        "description": "End-to-end development of enterprise platforms and internal management software, delivering high-performance user experiences alongside resilient data infrastructure and backend APIs.",
         "achievements": [
-          "Building modern responsive user interfaces with React and Next.js.",
-          "Designing and building REST backend APIs in Node.js and Express.",
-          "Database management, data modeling, and performance optimization."
+          "Building modular responsive user interfaces with Next.js 16 App Router and React 19.",
+          "Designing REST backend APIs in Node.js and Express for secure real-time data sync.",
+          "Database modeling, query indexing, and production performance optimization."
         ]
       }
     }
