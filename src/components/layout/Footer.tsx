@@ -4,6 +4,7 @@ import { config } from "@/lib/config";
 import Link from "next/link";
 import { ArrowUpRight, Download, Mail } from "lucide-react";
 import { useI18n } from "@/i18n";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 
 export function Footer() {
   const { href } = useI18n();
@@ -96,9 +97,7 @@ export function Footer() {
         {/* Bottom Credits */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold text-[var(--foreground)] opacity-60">
           <div className="flex items-center gap-3">
-            <span className="flex h-7 w-7 items-center justify-center rounded-[8px] bg-[var(--color-pill-bg)] text-[12px] font-black text-[var(--color-pill-text)]">
-              GV
-            </span>
+            <BrandLogo className="w-7 h-7 rounded-[8px] overflow-hidden" />
             <span>
               {config.authorName} · Fullstack & Creative AI Engineer
             </span>

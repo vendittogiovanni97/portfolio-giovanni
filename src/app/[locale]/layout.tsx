@@ -112,13 +112,15 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
     },
     icons: {
       icon: "/favicon.svg",
+      shortcut: "/favicon.svg",
+      apple: "/favicon.svg",
     },
     manifest: "/manifest.json",
   };
 }
 
 export const viewport: Viewport = {
-  themeColor: "#14100b",
+  themeColor: "#181513",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,

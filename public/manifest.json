@@ -4,8 +4,8 @@
   "description": "Fullstack Engineer specializzato in React 19, Next.js 16, Node.js e soluzioni AI-first certificate Anthropic Claude.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#14100b",
-  "theme_color": "#14100b",
+  "background_color": "#181513",
+  "theme_color": "#ff5722",
   "icons": [
     {
       "src": "/favicon.svg",

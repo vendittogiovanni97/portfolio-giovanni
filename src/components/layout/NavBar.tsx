@@ -8,6 +8,7 @@ import { config } from "@/lib/config";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, Download } from "lucide-react";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 
 export function NavBar() {
   const pathname = usePathname();
@@ -132,9 +133,7 @@ export function NavBar() {
             prefetch={true}
             className="group flex items-center gap-2.5 outline-none transition-transform active:scale-95"
           >
-            <span className="flex h-7 w-7 items-center justify-center rounded-[8px] bg-[var(--color-pill-bg)] text-[12px] font-black text-[var(--color-pill-text)] tracking-tight">
-              GV
-            </span>
+            <BrandLogo className="w-7 h-7 rounded-[8px] overflow-hidden shadow-xs" />
             <span className="text-[14.5px] font-bold tracking-tight text-[var(--foreground)] hidden sm:inline">
               Giovanni Venditto
             </span>
