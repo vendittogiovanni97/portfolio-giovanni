@@ -8,9 +8,6 @@ import {
   Database,
   Sparkles,
   CheckCircle2,
-  ShieldCheck,
-  Cpu,
-  Layers,
 } from "lucide-react";
 
 function TechBrandIcon({ id, className = "w-4 h-4" }: { id: string; className?: string }) {

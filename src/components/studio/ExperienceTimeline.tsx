@@ -45,70 +45,76 @@ export function ExperienceTimeline() {
   }, []);
 
   return (
-    <section id="experience" ref={sectionRef} className="w-full py-20 relative">
-      <div className="max-w-[1400px] mx-auto px-6 sm:px-8">
-        <div className="mb-10 border-b border-black/[0.08] pb-6">
-          <h2 className="text-[32px] sm:text-[44px] font-semibold tracking-[-0.035em] text-[#111111]">
+    <section id="experience" ref={sectionRef} className="w-full relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-10 border-b border-[var(--color-border)] pb-6">
+          <span className="text-xs font-bold uppercase tracking-widest text-[var(--color-accent)] mb-2 block">
+            Career Journey
+          </span>
+          <h2 className="[font-family:var(--font-display)] uppercase text-5xl sm:text-7xl lg:text-8xl tracking-tight leading-[0.88] text-[var(--foreground)]">
             {t.experience.title}
           </h2>
-          <p className="mt-2 text-neutral-600 text-[15px] sm:text-[16px] max-w-xl">
+          <p className="mt-3 text-[var(--foreground)] opacity-75 text-[16px] sm:text-[18px] max-w-xl font-medium">
             {t.experience.subtitle}
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto space-y-4">
+        <div className="max-w-4xl space-y-6">
           {MILESTONES.map((item, idx) => {
             const copy = t.experience.milestones[item.id];
             return (
               <motion.div
                 key={item.id}
-                initial={reduce ? false : { opacity: 0, y: 16 }}
+                initial={reduce ? false : { opacity: 0, y: 20 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.08 }}
-                className="rounded-2xl card-elevation-high p-7 sm:p-9 hover:-translate-y-1 transition-all duration-300"
+                className="rounded-3xl bg-[var(--color-surface)] border-2 border-[var(--color-border)] p-7 sm:p-9 transition-transform hover:scale-[1.01]"
+                style={{
+                  boxShadow: "var(--shadow-sticker, 0 5px 0 rgba(0,0,0,0.25))",
+                }}
               >
                 <div>
                   <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
                     <div className="flex items-center gap-4">
-                      <div className="relative w-12 h-12 rounded-xl bg-[#111111] flex items-center justify-center text-white shrink-0 shadow-xs">
-                        <Building2 className="w-6 h-6" />
-                        <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
+                      <div className="relative w-12 h-12 rounded-2xl bg-[var(--color-pill-bg)] flex items-center justify-center text-[var(--color-pill-text)] shrink-0 shadow-md">
+                        <Building2 className="w-6 h-6 text-[var(--color-accent)]" />
+                        <span className="absolute -top-1 -right-1 flex h-3 w-3">
                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+                          <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500" />
                         </span>
                       </div>
                       <div>
-                        <h3 className="text-[22px] sm:text-[26px] font-semibold text-[#111111] leading-tight tracking-tight">
+                        <h3 className="[font-family:var(--font-display)] uppercase text-2xl sm:text-3xl text-[var(--foreground)] leading-tight tracking-tight">
                           {copy.role}
                         </h3>
                         <div className="flex flex-wrap items-center gap-2 mt-1">
-                          <span className="text-[12px] font-semibold text-[#111111] px-2.5 py-0.5 rounded-full bg-black/[0.04]">
+                          <span className="text-[12px] font-bold text-[var(--foreground)] px-3 py-1 rounded-full bg-[var(--background)] border border-[var(--color-border)]">
                             {copy.company}
                           </span>
-                          <span className="text-[12px] font-medium text-neutral-500 flex items-center gap-1">
-                            <Calendar className="w-3 h-3" />
+                          <span className="text-[12px] font-semibold text-[var(--foreground)] opacity-70 flex items-center gap-1">
+                            <Calendar className="w-3.5 h-3.5" />
                             {copy.year}
                           </span>
-                          <span className="text-[12px] text-neutral-400">· {copy.location}</span>
+                          <span className="text-[12px] font-medium text-[var(--foreground)] opacity-50">· {copy.location}</span>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <p className="text-neutral-600 text-[15px] leading-relaxed mb-6 max-w-2xl">
+                  <p className="text-[var(--foreground)] opacity-80 text-[15px] sm:text-[16px] leading-relaxed mb-6 font-medium max-w-2xl">
                     {copy.description}
                   </p>
 
                   <div className="mb-6">
-                    <div className="text-[12px] uppercase font-semibold text-neutral-800 tracking-wider flex items-center gap-2 mb-3">
-                      <Sparkles className="w-3.5 h-3.5" />
+                    <div className="text-[12px] uppercase font-bold text-[var(--foreground)] tracking-wider flex items-center gap-2 mb-3">
+                      <Sparkles className="w-3.5 h-3.5 text-[var(--color-accent)]" />
                       <span>{t.experience.results}</span>
                     </div>
-                    <ul className="space-y-2">
+                    <ul className="space-y-2.5">
                       {copy.achievements.map((ach, aIdx) => (
-                        <li key={aIdx} data-achievement className="flex items-start gap-2.5 text-[14px] text-neutral-700">
-                          <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#111111] shrink-0" />
+                        <li key={aIdx} data-achievement className="flex items-start gap-2.5 text-[14.5px] text-[var(--foreground)] opacity-85 font-medium">
+                          <span className="mt-2 w-2 h-2 rounded-full bg-[var(--color-accent)] shrink-0" />
                           <span>{ach}</span>
                         </li>
                       ))}
@@ -117,11 +123,11 @@ export function ExperienceTimeline() {
                 </div>
 
                 {/* Tech stack */}
-                <div className="border-t border-black/[0.06] pt-4 flex flex-wrap gap-1.5">
+                <div className="border-t border-[var(--color-border)] pt-5 flex flex-wrap gap-2">
                   {item.stack.map((tech) => (
                     <span
                       key={tech}
-                      className="px-2.5 py-1 rounded-md text-[11.5px] font-medium bg-[#f5f4f2] text-neutral-700"
+                      className="px-3 py-1 rounded-full text-[12px] font-semibold bg-[var(--background)] text-[var(--foreground)] opacity-85 border border-[var(--color-border)]"
                     >
                       {tech}
                     </span>

@@ -21,10 +21,9 @@ export function NavBar() {
 
   const navLinks = [
     { href: `${homeHref}#work`, label: t.nav.work, targetId: "work" },
-    { href: href("/lab"), label: "Lab Demo" },
+    { href: href("/lab"), label: "Creative Lab" },
     { href: href("/writing"), label: t.nav.writing },
-    { href: "/documents/CV_Giovanni_Venditto.pdf", label: "Curriculum", isDownload: true },
-    { href: `${homeHref}#faq`, label: "FAQ", targetId: "faq" },
+    { href: "/documents/CV_Giovanni_Venditto.pdf", label: "CV", isDownload: true },
   ];
 
   const socialLinks = [
@@ -125,18 +124,18 @@ export function NavBar() {
         role="navigation"
         aria-label="Main navigation"
       >
-        <div className="max-w-[1400px] mx-auto flex justify-between items-center rounded-full bg-white/85 border border-black/[0.08] shadow-[0_1px_3px_rgba(0,0,0,0.05),0_12px_24px_-8px_rgba(0,0,0,0.06)] backdrop-blur-md px-4 sm:px-6 py-2">
+        <div className="max-w-[1400px] mx-auto flex justify-between items-center rounded-full bg-[var(--color-surface)]/90 border border-[var(--color-border)] shadow-md backdrop-blur-md px-4 sm:px-6 py-2 transition-colors duration-450">
 
-          {/* Logo TasteSkill Style */}
+          {/* Logo Spencer Gabor / Taste Style */}
           <Link
             href={homeHref}
             prefetch={true}
-            className="group flex items-center gap-2 outline-none transition-transform active:scale-95"
+            className="group flex items-center gap-2.5 outline-none transition-transform active:scale-95"
           >
-            <span className="flex h-7 w-7 items-center justify-center rounded-[8px] bg-[#151515] text-[13px] font-bold text-white tracking-tight">
+            <span className="flex h-7 w-7 items-center justify-center rounded-[8px] bg-[var(--color-pill-bg)] text-[12px] font-black text-[var(--color-pill-text)] tracking-tight">
               GV
             </span>
-            <span className="text-[14.5px] font-semibold tracking-[-0.02em] text-[#111111] hidden sm:inline">
+            <span className="text-[14.5px] font-bold tracking-tight text-[var(--foreground)] hidden sm:inline">
               Giovanni Venditto
             </span>
           </Link>
@@ -156,7 +155,7 @@ export function NavBar() {
                   animate={{ opacity: 1, left: hoverRect.left, width: hoverRect.width }}
                   exit={{ opacity: 0 }}
                   transition={{ type: "spring", stiffness: 420, damping: 34 }}
-                  className="absolute top-0 h-full rounded-full bg-black/[0.05] pointer-events-none"
+                  className="absolute top-0 h-full rounded-full bg-[var(--foreground)]/10 pointer-events-none"
                 />
               )}
             </AnimatePresence>
@@ -170,9 +169,9 @@ export function NavBar() {
                   rel="noopener noreferrer"
                   download="CV_Giovanni_Venditto.pdf"
                   onMouseEnter={handleLinkHover}
-                  className="relative z-10 text-neutral-600 font-medium text-[13.5px] hover:text-[#111111] px-3.5 py-1.5 rounded-full transition-colors flex items-center gap-1.5"
+                  className="relative z-10 text-[var(--foreground)] opacity-75 font-semibold text-[13.5px] hover:opacity-100 px-3.5 py-1.5 rounded-full transition-all flex items-center gap-1.5"
                 >
-                  <Download className="w-3.5 h-3.5 text-neutral-500" />
+                  <Download className="w-3.5 h-3.5 opacity-70" />
                   <span>{link.label}</span>
                 </a>
               ) : (
@@ -186,7 +185,7 @@ export function NavBar() {
                     }
                   }}
                   onMouseEnter={handleLinkHover}
-                  className="relative z-10 text-neutral-600 font-medium text-[13.5px] hover:text-[#111111] px-3.5 py-1.5 rounded-full transition-colors"
+                  className="relative z-10 text-[var(--foreground)] opacity-75 font-semibold text-[13.5px] hover:opacity-100 px-3.5 py-1.5 rounded-full transition-all"
                 >
                   {link.label}
                 </Link>
@@ -197,14 +196,14 @@ export function NavBar() {
           {/* Controls & Social Links */}
           <div className="hidden md:flex items-center gap-3">
             {/* Social Icons Floating inside Nav Pill */}
-            <div className="flex items-center gap-1.5 pr-3 border-r border-black/[0.08]">
+            <div className="flex items-center gap-1.5 pr-3 border-r border-[var(--color-border)]">
               {socialLinks.map((s) => (
                 <a
                   key={s.label}
                   href={s.href}
                   target={s.href.startsWith("mailto") ? undefined : "_blank"}
                   rel={s.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-                  className="p-1.5 rounded-full text-neutral-500 hover:text-[#111111] hover:bg-black/[0.04] transition-all"
+                  className="p-1.5 rounded-full text-[var(--foreground)] opacity-70 hover:opacity-100 hover:bg-[var(--foreground)]/10 transition-all"
                   aria-label={s.label}
                   title={s.label}
                 >
@@ -216,7 +215,7 @@ export function NavBar() {
             <LanguageToggle />
             <Link
               href={href("/contact")}
-              className="px-4 py-2 rounded-full bg-[#111111] text-white text-[13px] font-medium hover:bg-neutral-800 transition-all shadow-xs active:scale-95"
+              className="btn-elastic px-4 py-2 rounded-full bg-[var(--color-accent)] text-[var(--color-accent-contrast)] text-[12.5px] font-bold uppercase tracking-wider shadow-sm active:scale-95"
             >
               {t.nav.contact}
             </Link>
@@ -224,7 +223,7 @@ export function NavBar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-neutral-800 p-1"
+            className="md:hidden text-[var(--foreground)] p-1"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-expanded={mobileMenuOpen}
             aria-label="Toggle menu"
@@ -241,7 +240,7 @@ export function NavBar() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
-              className="md:hidden mt-3 max-w-4xl mx-auto glass-panel rounded-2xl p-5 flex flex-col gap-4"
+              className="md:hidden mt-3 max-w-4xl mx-auto rounded-2xl p-5 flex flex-col gap-4 bg-[var(--color-surface)] border border-[var(--color-border)] shadow-2xl text-[var(--foreground)]"
             >
               <div className="flex flex-col gap-2">
                 {navLinks.map((link, i) =>
@@ -256,9 +255,9 @@ export function NavBar() {
                       rel="noopener noreferrer"
                       download="CV_Giovanni_Venditto.pdf"
                       onClick={() => setMobileMenuOpen(false)}
-                      className="text-slate-100 [font-family:var(--font-display)] uppercase text-sm hover:text-accent py-2 border-b border-slate-900 flex items-center gap-2"
+                      className="text-[var(--foreground)] [font-family:var(--font-display)] uppercase text-base hover:text-[var(--color-accent)] py-2.5 border-b border-[var(--color-border)] flex items-center gap-2"
                     >
-                      <Download className="w-4 h-4 text-accent" />
+                      <Download className="w-4 h-4 text-[var(--color-accent)]" />
                       <span>{link.label} (PDF)</span>
                     </motion.a>
                   ) : (
@@ -277,7 +276,7 @@ export function NavBar() {
                             scrollToTarget(link.targetId);
                           }
                         }}
-                        className="text-slate-100 [font-family:var(--font-display)] uppercase text-sm hover:text-accent py-2 border-b border-slate-900 block"
+                        className="text-[var(--foreground)] [font-family:var(--font-display)] uppercase text-base hover:text-[var(--color-accent)] py-2.5 border-b border-[var(--color-border)] block"
                       >
                         {link.label}
                       </Link>
@@ -286,7 +285,7 @@ export function NavBar() {
                 )}
               </div>
 
-              <div className="flex items-center justify-between pt-2 border-t border-slate-800">
+              <div className="flex items-center justify-between pt-2 border-t border-[var(--color-border)]">
                 <div className="flex items-center gap-3">
                   {socialLinks.map((s) => (
                     <a
@@ -294,7 +293,7 @@ export function NavBar() {
                       href={s.href}
                       target={s.href.startsWith("mailto") ? undefined : "_blank"}
                       rel={s.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-                      className="p-2 rounded-full border border-slate-800 text-slate-300 hover:text-accent"
+                      className="p-2 rounded-full border border-[var(--color-border)] text-[var(--foreground)] opacity-80 hover:opacity-100 hover:text-[var(--color-accent)]"
                     >
                       {s.icon}
                     </a>
@@ -306,7 +305,7 @@ export function NavBar() {
               <Link
                 href={href("/contact")}
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full py-2.5 text-center rounded-xl bg-accent text-slate-950 [font-family:var(--font-display)] uppercase text-sm shadow-[0_0_15px_rgba(202,164,86,0.3)]"
+                className="w-full py-3 text-center rounded-full bg-[var(--color-accent)] text-[var(--color-accent-contrast)] [font-family:var(--font-display)] uppercase text-sm font-bold tracking-wider btn-elastic shadow-md"
               >
                 {t.nav.contact}
               </Link>

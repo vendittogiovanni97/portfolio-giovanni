@@ -14,6 +14,7 @@ import { displayFont, bodyFont } from "@/lib/fonts";
 import { config } from "@/lib/config";
 import { localeAlternates } from "@/lib/seo";
 import { AgentationLoader } from "@/components/dev/AgentationLoader";
+import { FloatingThemeSwitcher } from "@/components/ui/FloatingThemeSwitcher";
 import "../globals.css";
 
 interface LayoutProps {
@@ -129,8 +130,15 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
   const locale = rawLocale;
 
   return (
-    <html lang={locale} className={`h-full antialiased ${displayFont.variable} ${bodyFont.variable}`} data-theme="light" suppressHydrationWarning>
-      <body className="min-h-full flex flex-col bg-[#f5f4f2] text-[#111111]">
+    <html lang={locale} className={`h-full antialiased ${displayFont.variable} ${bodyFont.variable}`} data-theme="oat" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('portfolio-theme')||'oat';document.documentElement.setAttribute('data-theme',t);}catch(e){}})()`,
+          }}
+        />
+      </head>
+      <body className="min-h-full flex flex-col bg-[var(--background)] text-[var(--foreground)]">
         <Script id="register-sw" strategy="afterInteractive">
           {`if ('serviceWorker' in navigator) {
             window.addEventListener('load', function () {
@@ -203,6 +211,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
             </PageTransition>
           </main>
           <Footer />
+          <FloatingThemeSwitcher />
           <EasterEggs />
           <CursorSpotlight />
         </I18nProvider>
