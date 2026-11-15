@@ -7,18 +7,25 @@ interface BrandLogoProps {
 export function BrandLogo({ className = "w-7 h-7" }: BrandLogoProps) {
   return (
     <svg
-      viewBox="0 0 64 64"
+      viewBox="0 0 120 120"
       className={className}
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
-      <rect width="64" height="64" rx="16" fill="var(--color-pill-bg)" />
-      <path
-        d="M 32 14 C 22.059 14 14 22.059 14 32 C 14 41.941 22.059 50 32 50 C 39.5 50 45.8 45.5 48.5 39 L 41 39 C 39 42.5 35.8 44.5 32 44.5 C 25.1 44.5 19.5 38.9 19.5 32 C 19.5 25.1 25.1 19.5 32 19.5 C 36 19.5 39.5 21.5 41.5 25 L 49 20 C 45 16 38.8 14 32 14 Z"
-        fill="var(--color-pill-text)"
-      />
-      <path d="M 32 28 L 44 48 L 50 48 L 38 28 Z" fill="var(--color-accent)" />
-      <circle cx="45" cy="22" r="3.5" fill="var(--color-accent)" />
+      <circle cx="60" cy="60" r="56" fill="#ffffff" stroke="#181818" strokeWidth="6" />
+      <path d="M 32 50 C 32 30, 88 30, 88 50 Z" fill="var(--color-accent)" stroke="#181818" strokeWidth="5" strokeLinejoin="round" />
+      <path d="M 26 50 C 32 46, 88 46, 94 50 C 94 54, 26 54, 26 50 Z" fill="#181818" />
+      <path d="M 36 50 C 36 78, 84 78, 84 50" fill="#ffffff" stroke="#181818" strokeWidth="5" strokeLinecap="round" />
+      <circle cx="47" cy="60" r="8.5" fill="#ffffff" stroke="#181818" strokeWidth="4.5" />
+      <circle cx="48" cy="60" r="2.5" fill="#181818" />
+      <circle cx="73" cy="60" r="8.5" fill="#ffffff" stroke="#181818" strokeWidth="4.5" />
+      <circle cx="72" cy="60" r="2.5" fill="#181818" />
+      <path d="M 55.5 60 C 58 58, 62 58, 64.5 60" fill="none" stroke="#181818" strokeWidth="4" strokeLinecap="round" />
+      <path d="M 50 74 C 55 79, 65 79, 70 74" fill="none" stroke="#181818" strokeWidth="4.5" strokeLinecap="round" />
+      <circle cx="39" cy="69" r="3" fill="var(--color-accent)" opacity="0.85" />
+      <circle cx="81" cy="69" r="3" fill="var(--color-accent)" opacity="0.85" />
+      <path d="M 36 56 C 32 56, 32 64, 36 64" fill="#ffffff" stroke="#181818" strokeWidth="4" strokeLinecap="round" />
+      <path d="M 84 56 C 88 56, 88 64, 84 64" fill="#ffffff" stroke="#181818" strokeWidth="4" strokeLinecap="round" />
     </svg>
   );
 }
