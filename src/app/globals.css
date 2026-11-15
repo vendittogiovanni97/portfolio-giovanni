@@ -30,32 +30,51 @@
   --spacing-gutter: 24px;
 }
 
-:root, [data-theme="oat"] {
-  --background: #f4efe6;
-  --foreground: #191614;
+:root, [data-theme="white"] {
+  --background: #ffffff;
+  --foreground: #1c1c1c;
+  --color-secondary: #dcdcdc;
   --color-surface: #ffffff;
-  --color-surface-muted: #ece5d8;
-  --color-border: rgba(25, 22, 20, 0.12);
+  --color-surface-muted: #f6f6f6;
+  --color-border: rgba(0, 0, 0, 0.08);
   --color-accent: #ff5722;
   --color-accent-contrast: #ffffff;
-  --color-pill-bg: #191614;
-  --color-pill-text: #f4efe6;
+  --color-pill-bg: #1c1c1c;
+  --color-pill-text: #ffffff;
+  --color-badge-bg: #f4f4f4;
+  --color-badge-text: #1c1c1c;
+  --shadow-sticker: 0 4px 16px rgba(0, 0, 0, 0.06);
+  --shadow-sticker-hover: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="oat"] {
+  --background: #ede6d3;
+  --foreground: #2c2c2c;
+  --color-secondary: #b8af96;
+  --color-surface: #ffffff;
+  --color-surface-muted: #e2dac4;
+  --color-border: rgba(44, 44, 44, 0.12);
+  --color-accent: #ff7906;
+  --color-accent-contrast: #ffffff;
+  --color-pill-bg: #2c2c2c;
+  --color-pill-text: #ede6d3;
   --color-badge-bg: #ffffff;
-  --color-badge-text: #191614;
-  --shadow-sticker: 0 5px 0 #191614;
-  --shadow-sticker-hover: 0 8px 0 #191614;
+  --color-badge-text: #2c2c2c;
+  --shadow-sticker: 0 5px 0 #2c2c2c;
+  --shadow-sticker-hover: 0 8px 0 #2c2c2c;
 }
 
 [data-theme="blue"] {
-  --background: #0866ff;
+  --background: #0779ff;
   --foreground: #ffffff;
+  --color-secondary: #002180;
   --color-surface: #0050d4;
   --color-surface-muted: #0045b8;
   --color-border: rgba(255, 255, 255, 0.22);
   --color-accent: #ffea00;
   --color-accent-contrast: #111111;
   --color-pill-bg: #ffffff;
-  --color-pill-text: #0866ff;
+  --color-pill-text: #0779ff;
   --color-badge-bg: #0045b8;
   --color-badge-text: #ffffff;
   --shadow-sticker: 0 5px 0 #001b5e;
@@ -65,6 +84,7 @@
 [data-theme="lime"] {
   --background: #0d1012;
   --foreground: #f4f6f8;
+  --color-secondary: #272f36;
   --color-surface: #171b1f;
   --color-surface-muted: #20262b;
   --color-border: rgba(212, 255, 0, 0.22);
@@ -79,10 +99,11 @@
 }
 
 [data-theme="purple"] {
-  --background: #340446;
+  --background: #3c0350;
   --foreground: #ffffff;
-  --color-surface: #4a0763;
-  --color-surface-muted: #5e0c7d;
+  --color-secondary: #db30f5;
+  --color-surface: #52066d;
+  --color-surface-muted: #660888;
   --color-border: rgba(255, 255, 255, 0.22);
   --color-accent: #ff7906;
   --color-accent-contrast: #ffffff;

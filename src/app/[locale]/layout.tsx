@@ -132,11 +132,11 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
   const locale = rawLocale;
 
   return (
-    <html lang={locale} className={`h-full antialiased ${displayFont.variable} ${bodyFont.variable}`} data-theme="oat" suppressHydrationWarning>
+    <html lang={locale} className={`h-full antialiased ${displayFont.variable} ${bodyFont.variable}`} data-theme="white" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('portfolio-theme')||'oat';document.documentElement.setAttribute('data-theme',t);}catch(e){}})()`,
+            __html: `(function(){try{var t=localStorage.getItem('portfolio-theme')||'white';document.documentElement.setAttribute('data-theme',t);}catch(e){}})()`,
           }}
         />
       </head>

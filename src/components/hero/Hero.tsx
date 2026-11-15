@@ -160,7 +160,7 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="w-full text-center"
         >
-          <h2 className="[font-family:var(--font-display)] uppercase text-4xl sm:text-6xl md:text-8xl lg:text-[7.5rem] tracking-tight leading-[0.88] text-[var(--foreground)] opacity-30 transition-opacity duration-300 hover:opacity-50">
+          <h2 className="[font-family:var(--font-display)] uppercase text-4xl sm:text-6xl md:text-8xl lg:text-[7.5rem] tracking-tight leading-[0.88] text-[var(--color-secondary)] transition-colors duration-450 select-none">
             Fullstack, Designer &amp; AI
           </h2>
         </motion.div>
