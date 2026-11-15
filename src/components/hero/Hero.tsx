@@ -1,153 +1,186 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import { useI18n } from "@/i18n";
-import {
-  ArrowDown,
-  ArrowUpRight,
-  Sparkles,
-} from "lucide-react";
-import Link from "next/link";
-import { InteractiveGridCanvas } from "@/components/canvas/InteractiveGridCanvas";
-import { FloatingAICoreCanvas } from "@/components/canvas/FloatingAICoreCanvas";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
+
+interface HeroCardProps {
+  title: string;
+  subtitle: string;
+  image: string;
+  href: string;
+  rotation: string;
+  translateY: string;
+  zIndex: number;
+  badge?: string;
+  accentBg?: string;
+}
+
+const HERO_CARDS: HeroCardProps[] = [
+  {
+    title: "Portale Assicurativo",
+    subtitle: "Enterprise ERP & AI OCR",
+    image: "/projects/assicurativo-studio/dashboard.png",
+    href: "#work",
+    rotation: "-rotate-8",
+    translateY: "translate-y-3",
+    zIndex: 10,
+    badge: "ERP & OCR",
+    accentBg: "#10b981",
+  },
+  {
+    title: "Nagma Tattoo CRM",
+    subtitle: "SaaS & Kanban Studio",
+    image: "/projects/nagma-tattoo-crm/dashboard.png",
+    href: "#work",
+    rotation: "-rotate-2",
+    translateY: "-translate-y-3",
+    zIndex: 11,
+    badge: "Next.js 16",
+    accentBg: "#06b6d4",
+  },
+  {
+    title: "Anthropic Claude",
+    subtitle: "Official 101 & Cowork Certified",
+    image: "/certificates/claude-cowork.png",
+    href: "#credentials",
+    rotation: "rotate-4",
+    translateY: "translate-y-4",
+    zIndex: 12,
+    badge: "Anthropic",
+    accentBg: "#d97706",
+  },
+  {
+    title: "AI Document Engine",
+    subtitle: "Deep OCR & Gemini Pipeline",
+    image: "/projects/assicurativo-studio/elaborazione-polizze.png",
+    href: "#work",
+    rotation: "rotate-8",
+    translateY: "-translate-y-2",
+    zIndex: 13,
+    badge: "AI Pipeline",
+    accentBg: "#8b5cf6",
+  },
+];
 
 export function Hero() {
-  const { t, href } = useI18n();
-  const reduce = useReducedMotion();
-
-  const reveal = (delay: number) =>
-    reduce
-      ? {}
-      : {
-          initial: { opacity: 0, y: 20 },
-          animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] as const },
-        };
 
   return (
-    <header className="relative w-full overflow-hidden pt-28 pb-16 lg:pt-36 lg:pb-24 bg-transparent text-[var(--foreground)]">
-      {/* 3D WebGL Fluid Interactive Grid in Background */}
-      <InteractiveGridCanvas />
+    <header className="relative w-full min-h-[95vh] sm:min-h-screen flex flex-col justify-between items-center text-center px-4 sm:px-6 pt-24 sm:pt-28 pb-10 select-none overflow-hidden">
       
-      {/* Bottom Soft Vignette Fade to current theme background */}
-      <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[var(--background)] to-transparent pointer-events-none z-1 transition-colors duration-450" />
+      {/* 1. TOP METADATA (Spencer Gabor Style) */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="flex flex-col items-center gap-1 z-10"
+      >
+        <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-[0.25em] text-[var(--foreground)] opacity-85">
+          NAPOLI, ITALY · REMOTE / WORLDWIDE
+        </span>
+        <a
+          href="mailto:giovannivenditto99@gmail.com"
+          className="font-mono text-[11px] sm:text-xs font-semibold text-[var(--foreground)] opacity-55 hover:opacity-100 hover:text-[var(--color-accent)] transition-all"
+        >
+          giovannivenditto99@gmail.com
+        </a>
+      </motion.div>
 
-      <div className="relative z-2 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
-          
-          {/* LEFT: Massive Kinetic Typography & Bold Positioning */}
-          <div className="lg:col-span-7 flex flex-col items-start">
-            
-            {/* Live Availability Badge & Anthropic Pill (Spencer Gabor Sticker Style) */}
-            <motion.div {...reveal(0.04)} className="flex flex-wrap items-center gap-2.5 mb-6">
-              <div className="inline-flex items-center gap-2.5 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] py-1.5 pl-1.5 pr-4 text-[13px] shadow-sm transition-transform hover:scale-105 active:scale-95 duration-300">
-                <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-[var(--color-pill-bg)] py-1 px-3 text-[11px] font-bold text-[var(--color-pill-text)] uppercase tracking-wider">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping"></span>
-                  Disponibile
-                </span>
-                <span className="font-semibold text-[var(--foreground)] opacity-90">Per nuovi progetti & ruoli</span>
-              </div>
+      {/* 2. MID POSTER CENTERPIECE: Spencer Gabor Sandwich Composition */}
+      <div className="w-full max-w-7xl mx-auto flex flex-col items-center justify-center my-auto py-4 z-10">
+        
+        {/* LINE 1: Bold Solid Headline */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full text-center"
+        >
+          <h1 className="[font-family:var(--font-display)] uppercase text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] tracking-tight leading-[0.86] text-[var(--foreground)] drop-shadow-xs">
+            Giovanni Venditto
+          </h1>
+        </motion.div>
 
-              <div className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] py-1.5 px-3.5 text-[12.5px] font-semibold text-[var(--foreground)] shadow-sm transition-transform hover:scale-105 active:scale-95 duration-300">
-                <Sparkles className="w-3.5 h-3.5 text-[var(--color-accent)] animate-pulse" />
-                <span>Anthropic Claude Certified</span>
-              </div>
-            </motion.div>
-
-            {/* Sculptural Spencer Gabor Headline */}
-            <motion.div {...reveal(0.1)} className="w-full">
-              <h1 className="[font-family:var(--font-display)] uppercase text-6xl sm:text-8xl lg:text-9xl tracking-tight leading-[0.88] text-[var(--foreground)]">
-                Giovanni
-                <br />
-                <span className="text-[var(--color-accent)] transition-colors duration-450 drop-shadow-sm">
-                  Venditto
-                </span>
-              </h1>
-              
-              <p className="mt-6 text-[20px] sm:text-[24px] font-bold uppercase tracking-tight text-[var(--foreground)] opacity-95">
-                Fullstack & Creative AI Engineer
-              </p>
-            </motion.div>
-
-            {/* Tagline & Manifesto */}
-            <motion.p
-              {...reveal(0.18)}
-              className="mt-4 max-w-[50ch] text-[16px] sm:text-[18px] leading-relaxed text-[var(--foreground)] opacity-80"
-            >
-              {t.hero.tagline}
-            </motion.p>
-
-            {/* Elastic Pill CTAs */}
-            <motion.div {...reveal(0.26)} className="mt-8 flex flex-wrap items-center gap-4">
-              <a
-                href="#work"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById("work")?.scrollIntoView({ behavior: "smooth" });
+        {/* FANNED TILTED PROJECT CARDS DECK (Spencer Gabor Signature) */}
+        <div className="relative flex items-center justify-center w-full my-1 sm:my-3 py-4">
+          <div className="flex items-center justify-center -space-x-8 sm:-space-x-12 md:-space-x-16">
+            {HERO_CARDS.map((card, idx) => (
+              <motion.div
+                key={card.title}
+                initial={{ opacity: 0, y: 40, scale: 0.8 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.15 + idx * 0.08,
+                  ease: [0.16, 1, 0.3, 1],
                 }}
-                className="btn-elastic inline-flex h-12 sm:h-13 items-center justify-center gap-2.5 rounded-full bg-[var(--color-accent)] px-7 text-[15px] font-bold uppercase tracking-wider text-[var(--color-accent-contrast)] cursor-pointer shadow-lg hover:shadow-xl"
-                style={{
-                  boxShadow: "var(--shadow-sticker, 0 5px 0 rgba(0,0,0,0.3))",
-                }}
+                className={`relative group ${card.rotation} ${card.translateY} transition-all duration-500 ease-out hover:scale-120 hover:z-40 hover:rotate-0 hover:-translate-y-6 cursor-pointer`}
+                style={{ zIndex: card.zIndex }}
               >
-                <span>{t.hero.exploreWork}</span>
-                <ArrowDown className="w-4 h-4 stroke-[2.5]" />
-              </a>
+                <a
+                  href={card.href}
+                  className="block w-28 sm:w-44 md:w-56 aspect-square rounded-2xl sm:rounded-3xl overflow-hidden border-2 sm:border-3 border-[var(--color-border)] bg-[var(--color-surface)] p-1.5 sm:p-2 shadow-2xl transition-all duration-300 group-hover:shadow-[0_25px_50px_rgba(0,0,0,0.35)]"
+                  style={{
+                    boxShadow: "var(--shadow-sticker, 0 8px 0 rgba(0,0,0,0.3))",
+                  }}
+                >
+                  <div className="relative w-full h-full rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-950">
+                    <Image
+                      src={card.image}
+                      alt={card.title}
+                      fill
+                      sizes="(min-width: 768px) 250px, 140px"
+                      className="object-cover object-top transition-transform duration-700 group-hover:scale-110"
+                    />
 
-              <Link
-                href={href("/contact")}
-                className="btn-elastic inline-flex h-12 sm:h-13 items-center justify-center gap-2.5 rounded-full border-2 border-[var(--color-border)] bg-[var(--color-surface)] px-7 text-[15px] font-bold uppercase tracking-wider text-[var(--foreground)] cursor-pointer shadow-sm hover:border-[var(--color-accent)]"
-              >
-                <span>{t.hero.contactMe}</span>
-                <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
-              </Link>
-            </motion.div>
+                    {/* Subtle Badge Tag */}
+                    {card.badge && (
+                      <span className="absolute top-2 left-2 px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider bg-black/80 text-white backdrop-blur-xs border border-white/20">
+                        {card.badge}
+                      </span>
+                    )}
 
-            {/* Tactile Impact Numbers (Sticker Style) */}
-            <motion.div
-              {...reveal(0.34)}
-              className="mt-10 p-5 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)]/90 backdrop-blur-md w-full grid grid-cols-3 gap-3 sm:gap-4 shadow-sm"
-              style={{
-                boxShadow: "var(--shadow-sticker, 0 4px 0 rgba(0,0,0,0.2))",
-              }}
-            >
-              <div>
-                <div className="[font-family:var(--font-display)] text-[28px] sm:text-[34px] uppercase tracking-tight text-[var(--foreground)] leading-none">
-                  2+ Anni
-                </div>
-                <div className="text-[12px] font-semibold text-[var(--foreground)] opacity-70 mt-1 uppercase tracking-wider">
-                  Produzione
-                </div>
-              </div>
-              <div className="border-x border-[var(--color-border)] px-2 sm:px-4">
-                <div className="[font-family:var(--font-display)] text-[28px] sm:text-[34px] uppercase tracking-tight text-[var(--color-accent)] leading-none transition-colors duration-450">
-                  4x ROI
-                </div>
-                <div className="text-[12px] font-semibold text-[var(--foreground)] opacity-70 mt-1 uppercase tracking-wider">
-                  Automazione AI
-                </div>
-              </div>
-              <div>
-                <div className="[font-family:var(--font-display)] text-[28px] sm:text-[34px] uppercase tracking-tight text-emerald-500 leading-none">
-                  &lt;180ms
-                </div>
-                <div className="text-[12px] font-semibold text-[var(--foreground)] opacity-70 mt-1 uppercase tracking-wider">
-                  Core Web Vitals
-                </div>
-              </div>
-            </motion.div>
+                    {/* Hover Glow Hint */}
+                    <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <span className="p-2 rounded-full bg-[var(--color-accent)] text-[var(--color-accent-contrast)] shadow-lg">
+                        <ArrowUpRight className="w-4 h-4 stroke-[3]" />
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </motion.div>
+            ))}
           </div>
-
-          {/* RIGHT: Pure Floating 3D AI Core */}
-          <motion.div
-            {...reveal(0.18)}
-            className="lg:col-span-5 w-full flex items-center justify-center relative min-h-[360px] sm:min-h-[460px]"
-          >
-            <FloatingAICoreCanvas />
-          </motion.div>
-
         </div>
+
+        {/* LINE 2: Ghost / Muted Giant Headline (Behind / Below Cards) */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, y: -20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full text-center"
+        >
+          <h2 className="[font-family:var(--font-display)] uppercase text-4xl sm:text-6xl md:text-8xl lg:text-[7.5rem] tracking-tight leading-[0.88] text-[var(--foreground)] opacity-30 transition-opacity duration-300 hover:opacity-50">
+            Fullstack, Designer &amp; AI
+          </h2>
+        </motion.div>
       </div>
+
+      {/* 3. BOTTOM LINE: Clients & Tech (Spencer Gabor Style) */}
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+        className="flex flex-col items-center gap-1 z-10 max-w-3xl px-2"
+      >
+        <span className="font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.25em] text-[var(--foreground)] opacity-60">
+          CORE STACK &amp; PRODUCTION SYSTEMS
+        </span>
+        <p className="font-mono text-[11px] sm:text-[12.5px] font-semibold uppercase tracking-wider text-[var(--foreground)] opacity-80 leading-relaxed">
+          REACT 19 · NEXT.JS 16 · ANTHROPIC CLAUDE · THREE.JS · TYPESCRIPT · NODE.JS · DOCKER · TAILWIND 4
+        </p>
+      </motion.div>
+
     </header>
   );
 }
