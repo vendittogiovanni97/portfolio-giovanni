@@ -3,8 +3,8 @@
   <circle cx="60" cy="60" r="56" fill="#ffffff" stroke="#181818" stroke-width="4"/>
 
   <!-- Character Group: Creative Engineer (Spencer Gabor Style) -->
-  <!-- Cap / Beanie in Safety Orange -->
-  <path d="M 32 50 C 32 30, 88 30, 88 50 Z" fill="#ff5722" stroke="#181818" stroke-width="3.5" stroke-linejoin="round"/>
+  <!-- Cap / Beanie in Dark Charcoal -->
+  <path d="M 32 50 C 32 30, 88 30, 88 50 Z" fill="#181818" stroke="#181818" stroke-width="3.5" stroke-linejoin="round"/>
   <!-- Cap Brim / Visor -->
   <path d="M 26 50 C 32 46, 88 46, 94 50 C 94 54, 26 54, 26 50 Z" fill="#181818"/>
 
@@ -24,10 +24,6 @@
   <!-- Nose & Smirk / Smile -->
   <path d="M 60 64 L 60 68 L 62 68" fill="none" stroke="#181818" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M 50 74 C 55 79, 65 79, 70 74" fill="none" stroke="#181818" stroke-width="3" stroke-linecap="round"/>
-
-  <!-- Small Cheek Blush / Pop -->
-  <circle cx="39" cy="69" r="3" fill="#ff5722" opacity="0.8"/>
-  <circle cx="81" cy="69" r="3" fill="#ff5722" opacity="0.8"/>
 
   <!-- Ears -->
   <path d="M 36 56 C 32 56, 32 64, 36 64" fill="#ffffff" stroke="#181818" stroke-width="3" stroke-linecap="round"/>
