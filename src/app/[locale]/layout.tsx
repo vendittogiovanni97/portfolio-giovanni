@@ -111,9 +111,13 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
       description: c.twitterDescription,
     },
     icons: {
-      icon: "/favicon.svg",
-      shortcut: "/favicon.svg",
-      apple: "/favicon.svg",
+      icon: [
+        { url: "/favicon.svg?v=20261115", type: "image/svg+xml" },
+        { url: "/icon.png?v=20261115", sizes: "512x512", type: "image/png" },
+        { url: "/favicon.ico?v=20261115", sizes: "any" },
+      ],
+      shortcut: "/favicon.svg?v=20261115",
+      apple: "/apple-touch-icon.png?v=20261115",
     },
     manifest: "/manifest.json",
   };
@@ -134,6 +138,10 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
   return (
     <html lang={locale} className={`h-full antialiased ${displayFont.variable} ${bodyFont.variable}`} data-theme="white" suppressHydrationWarning>
       <head>
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20261115" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/icon.png?v=20261115" />
+        <link rel="alternate icon" href="/favicon.ico?v=20261115" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20261115" />
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var t=localStorage.getItem('portfolio-theme')||'white';document.documentElement.setAttribute('data-theme',t);}catch(e){}})()`,
