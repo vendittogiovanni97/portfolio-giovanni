@@ -27,6 +27,69 @@
     "location": "NAPOLI, ITALIA · REMOTO / WORLDWIDE",
     "coreStack": "CORE STACK & SISTEMI IN PRODUZIONE"
   },
+  "engineeringServices": {
+    "badge": "COME LAVORO // METODO",
+    "title": "Servizi & Competenze Chiave",
+    "subtitle": "Dalla progettazione architetturale all'ingegneria AI: soluzioni software su misura focalizzate su ROI, velocità e zero debito tecnico.",
+    "items": [
+      {
+        "id": "fullstack",
+        "badge": "Core Specialty",
+        "title": "Fullstack Systems & SaaS",
+        "shortDesc": "Next.js 16, React 19, TypeScript, architetture scalabili",
+        "fullDesc": "Sviluppo piattaforme web complete, CRM dedicati e applicazioni SaaS enterprise a partire da zero o rifattorizzando codebase obsolete. Nessun debito tecnico, tipizzazione end-to-end e focus totale sui tempi di caricamento.",
+        "deliverables": [
+          "Architetture Next.js 16 App Router con Server Components",
+          "Database design relazionale & noSQL con caching Redis",
+          "Autenticazione sicura, RBAC multi-ruolo e pagamenti Stripe",
+          "API REST & GraphQL documentate e performanti"
+        ],
+        "techStack": ["React 19", "Next.js 16", "TypeScript", "Node.js", "PostgreSQL", "Tailwind 4", "Prisma"]
+      },
+      {
+        "id": "ai",
+        "badge": "Anthropic Certified",
+        "title": "AI Agents & Intelligent OCR",
+        "shortDesc": "Agenti autonomi, pipeline documentali, Claude & Gemini",
+        "fullDesc": "Integrazione avanzata di Large Language Models e agenti autonomi nei flussi operativi aziendali. Dai sistemi di estrazione documentale complessa (polizze, fatture) ad agenti intelligenti capaci di prendere decisioni e chiamare tool in background.",
+        "deliverables": [
+          "Pipeline OCR & estrazione dati strutturati ad alta precisione",
+          "Agenti multi-step autonomi con tool calling & memory",
+          "RAG enterprise su documentazione privata aziendale",
+          "Ottimizzazione costi token e latenza con prompt caching"
+        ],
+        "techStack": ["Anthropic Claude", "Gemini 2.5", "LangChain", "Python", "Vector DBs", "Prompt Caching"]
+      },
+      {
+        "id": "craft",
+        "badge": "Awwwards Feel",
+        "title": "Design Engineering & UI Craft",
+        "shortDesc": "Figma to Code, micro-interazioni 60fps, tactile feel",
+        "fullDesc": "Ponte perfetto tra design e codice. Trasformo mockup e idee di design in interfacce tattili, fluide e memorabili. Micro-interazioni a 60fps, suoni sintetici Web Audio, fisica interattiva e zero layout shift.",
+        "deliverables": [
+          "Sistemi di design scalabili con Design Tokens",
+          "Micro-interazioni tattili & feedback Web Audio",
+          "Animazioni fluide con Framer Motion & View Transitions",
+          "Accessibilità WCAG AA & supporto screen reader"
+        ],
+        "techStack": ["Framer Motion", "Tailwind 4", "Web Audio API", "Figma", "View Transitions", "CSS Grid Zero-CLS"]
+      },
+      {
+        "id": "performance",
+        "badge": "100 Lighthouse",
+        "title": "Cloud, DevOps & Performance",
+        "shortDesc": "Core Web Vitals, Docker, CI/CD, architetture cloud",
+        "fullDesc": "Audit e ottimizzazione estrema delle performance web per massimizzare conversioni e posizionamento SEO. Configurazione di pipeline CI/CD automatizzate, containerizzazione Docker e deploy serverless o VPS con monitoraggio proattivo.",
+        "deliverables": [
+          "Ottimizzazione Core Web Vitals (LCP, INP, CLS sotto soglia verde)",
+          "Containerizzazione Docker e orchestrazione microservizi",
+          "Pipeline CI/CD automatizzate con GitHub Actions",
+          "Monitoraggio telemetria, errori e uptime 99.9%"
+        ],
+        "techStack": ["Docker", "Vercel", "AWS / VPS", "GitHub Actions", "Sentry", "PostHog", "Nginx"]
+      }
+    ]
+  },
   "work": {
     "title": "Featured Work",
     "subtitle": "Selezione di piattaforme software e sistemi web in produzione.",

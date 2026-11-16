@@ -27,6 +27,69 @@
     "location": "NAPLES, ITALY · REMOTE / WORLDWIDE",
     "coreStack": "CORE STACK & PRODUCTION SYSTEMS"
   },
+  "engineeringServices": {
+    "badge": "HOW I WORK // METHOD",
+    "title": "Services & Core Engineering",
+    "subtitle": "From system architecture to AI automation: custom software solutions focused on ROI, velocity, and zero technical debt.",
+    "items": [
+      {
+        "id": "fullstack",
+        "badge": "Core Specialty",
+        "title": "Fullstack Systems & SaaS",
+        "shortDesc": "Next.js 16, React 19, TypeScript, scalable architectures",
+        "fullDesc": "Designing and building complete web platforms, custom CRMs, and enterprise SaaS apps from scratch or modernizing legacy codebases. Zero technical debt, end-to-end strict typing, and relentless focus on load speed.",
+        "deliverables": [
+          "Next.js 16 App Router architectures with Server Components",
+          "Relational & NoSQL database design with Redis caching",
+          "Secure authentication, multi-role RBAC, and Stripe billing",
+          "Documented, high-throughput REST & GraphQL APIs"
+        ],
+        "techStack": ["React 19", "Next.js 16", "TypeScript", "Node.js", "PostgreSQL", "Tailwind 4", "Prisma"]
+      },
+      {
+        "id": "ai",
+        "badge": "Anthropic Certified",
+        "title": "AI Agents & Intelligent OCR",
+        "shortDesc": "Autonomous agents, document pipelines, Claude & Gemini",
+        "fullDesc": "Enterprise-grade integration of Large Language Models and autonomous agent systems into business operations. From complex document extraction pipelines (insurance policies, invoices) to multi-step background agents.",
+        "deliverables": [
+          "High-precision OCR & structured schema extraction",
+          "Autonomous multi-step agents with tool calling & memory",
+          "Enterprise RAG over proprietary company knowledge bases",
+          "Token cost and latency optimization with prompt caching"
+        ],
+        "techStack": ["Anthropic Claude", "Gemini 2.5", "LangChain", "Python", "Vector DBs", "Prompt Caching"]
+      },
+      {
+        "id": "craft",
+        "badge": "Awwwards Feel",
+        "title": "Design Engineering & UI Craft",
+        "shortDesc": "Figma to Code, 60fps micro-interactions, tactile feel",
+        "fullDesc": "The seamless bridge between design and code. Turning Figma mockups into tactile, fluid, and memorable web experiences. 60fps micro-interactions, synthesized Web Audio haptics, physics, and zero layout shift.",
+        "deliverables": [
+          "Scalable design systems powered by Design Tokens",
+          "Tactile micro-interactions & Web Audio feedback",
+          "Fluid choreography with Framer Motion & View Transitions",
+          "WCAG AA compliance & screen reader accessibility"
+        ],
+        "techStack": ["Framer Motion", "Tailwind 4", "Web Audio API", "Figma", "View Transitions", "CSS Grid Zero-CLS"]
+      },
+      {
+        "id": "performance",
+        "badge": "100 Lighthouse",
+        "title": "Cloud, DevOps & Performance",
+        "shortDesc": "Core Web Vitals, Docker, CI/CD, cloud architectures",
+        "fullDesc": "Extreme web performance audits to maximize conversion rates and organic SEO rankings. Automated CI/CD pipelines, Docker container orchestration, and serverless/VPS deployments with proactive telemetry.",
+        "deliverables": [
+          "Core Web Vitals optimization (LCP, INP, CLS in green zone)",
+          "Docker containerization & microservice orchestration",
+          "Automated GitHub Actions CI/CD workflows",
+          "Telemetry, error logging, and 99.9% uptime monitoring"
+        ],
+        "techStack": ["Docker", "Vercel", "AWS / VPS", "GitHub Actions", "Sentry", "PostHog", "Nginx"]
+      }
+    ]
+  },
   "work": {
     "title": "Featured Work",
     "subtitle": "Selection of production software platforms and web systems.",

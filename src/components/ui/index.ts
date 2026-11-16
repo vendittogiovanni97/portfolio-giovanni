@@ -6,6 +6,7 @@ export { HolographicFoilCard } from "./HolographicFoilCard";
 export { InteractiveAudioEngine, SoundToggle } from "./InteractiveAudio";
 export { SlideToUnlock } from "./SlideToUnlock";
 export { TextSwap } from "./TextSwap";
+export { AppleAccordion } from "./AppleAccordion";
 
 
 

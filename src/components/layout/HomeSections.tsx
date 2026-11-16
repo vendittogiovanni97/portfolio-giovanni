@@ -3,6 +3,7 @@
 import type { ProjectMetadata } from "@/lib/content";
 import { SelectedWork } from "@/components/work/SelectedWork";
 import { Credentials } from "@/components/credentials/Credentials";
+import { ServicesSection } from "@/components/home/ServicesSection";
 import { StickerPlayground } from "@/components/home/StickerPlayground";
 import { CreativeLabStrip } from "@/components/home/CreativeLabStrip";
 import { ExperienceTimeline } from "@/components/studio/ExperienceTimeline";
@@ -20,7 +21,12 @@ export function HomeSections({ projects }: { projects: ProjectMetadata[] }) {
         <Credentials />
       </section>
 
-      {/* 3. Physical Sticker Playground (Spencer Gabor Interactive Tactile Zone) */}
+      {/* 3. Engineering Method & Services (Apple Accordion) */}
+      <section id="services" className="w-full border-t border-[var(--color-border)] pt-16 sm:pt-20">
+        <ServicesSection />
+      </section>
+
+      {/* 4. Physical Sticker Playground (Spencer Gabor Interactive Tactile Zone) */}
       <section className="w-full border-t border-[var(--color-border)] pt-16 sm:pt-20">
         <StickerPlayground />
       </section>
