@@ -8,6 +8,8 @@ import { useI18n } from "@/i18n";
 import Link from "next/link";
 import { ArrowUpRight, Eye } from "lucide-react";
 import { ProjectQuickViewModal } from "./ProjectQuickViewModal";
+import { HolographicFoilCard } from "@/components/ui";
+
 
 interface SelectedWorkProps {
   projects: ProjectMetadata[];
@@ -159,15 +161,17 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
                     : "0 8px 24px rgba(0,0,0,0.12)",
                 }}
               >
-                {/* Full 3:4 Magazine Poster Artwork (100% Uncropped 1:1 Mapping) */}
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 768px) 420px, 85vw"
-                  priority={isCenter}
-                />
+                {/* Full 3:4 Magazine Poster Artwork (100% Uncropped 1:1 Mapping with Holographic Foil) */}
+                <HolographicFoilCard isCenter={isCenter} dataCursor="view">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 768px) 420px, 85vw"
+                    priority={isCenter}
+                  />
+                </HolographicFoilCard>
               </motion.div>
             );
           })}
