@@ -23,46 +23,42 @@ const HERO_CARDS: HeroCardConfig[] = [
   {
     title: "Portale Assicurativo",
     subtitle: "Enterprise ERP & AI OCR",
-    image: "/projects/assicurativo-studio/showcase.png",
+    image: "/hero/hero-assicurativo.png",
     href: "#work",
     baseRotate: -8,
     baseY: 10,
     zIndex: 10,
     depth: 1.25,
-    badge: "ERP & OCR",
   },
   {
     title: "Nagma Tattoo CRM",
     subtitle: "SaaS & Kanban Studio",
-    image: "/projects/nagma-tattoo-crm/showcase.png",
+    image: "/hero/hero-nagma.png",
     href: "#work",
     baseRotate: -2,
     baseY: -8,
     zIndex: 11,
     depth: 0.85,
-    badge: "Next.js 16",
   },
   {
     title: "N2G Inkflow",
     subtitle: "Studio Management & Calendar",
-    image: "/projects/n2g-inkflow/showcase.png",
+    image: "/hero/hero-inkflow.png",
     href: "#work",
     baseRotate: 3,
     baseY: 8,
     zIndex: 12,
     depth: 1.05,
-    badge: "FullCalendar",
   },
   {
     title: "Anthropic Claude",
     subtitle: "Official AI 101 & Cowork Certified",
-    image: "/certificates/art/claude-cowork-art.png",
+    image: "/hero/hero-claude.png",
     href: "#credentials",
     baseRotate: 8,
     baseY: -6,
     zIndex: 13,
     depth: 1.4,
-    badge: "Anthropic AI",
   },
 ];
 
@@ -130,16 +126,9 @@ function InteractiveHeroCard({
             alt={card.title}
             fill
             sizes="(min-width: 768px) 250px, 140px"
-            className="object-cover object-top transition-transform duration-700 group-hover:scale-110"
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
             priority={index < 2}
           />
-
-          {/* Subtle Badge Tag */}
-          {card.badge && (
-            <span className="absolute top-2 left-2 px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider bg-black/80 text-white backdrop-blur-xs border border-white/20">
-              {card.badge}
-            </span>
-          )}
 
           {/* Hover Glow Hint */}
           <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
