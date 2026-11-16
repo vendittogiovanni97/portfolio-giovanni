@@ -49,75 +49,75 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
   const moreWorkItems: ArchiveWorkItem[] = [
     {
       id: "assicurativo-core",
-      title: "Portale Assicurativo — Core Engine",
-      category: "Enterprise System",
+      title: t.work.archive.assicurativoCore.title,
+      category: t.work.archive.assicurativoCore.category,
       year: "2025 – 2026",
-      badge: "ERP & Pipeline",
+      badge: t.work.archive.assicurativoCore.badge,
       image: "/projects/assicurativo-studio/dashboard.png",
       rotation: "-rotate-1",
       slug: "assicurativo-studio",
       tags: ["React 19", "AG Grid 32", "MongoDB", "Tailwind 4"],
-      description: "Architettura enterprise ad alte prestazioni per oltre 12.000 polizze attive, export Excel istantaneo e permission model RBAC granulare.",
+      description: t.work.archive.assicurativoCore.description,
     },
     {
       id: "nagma-kanban",
-      title: "Nagma CRM — Kanban & Agenda",
-      category: "SaaS Platform",
+      title: t.work.archive.nagmaKanban.title,
+      category: t.work.archive.nagmaKanban.category,
       year: "2025 – 2026",
-      badge: "Production SaaS",
+      badge: t.work.archive.nagmaKanban.badge,
       image: "/projects/nagma-tattoo-crm/dashboard.png",
       rotation: "rotate-1",
       slug: "demo-nagma",
       tags: ["Next.js 16", "Prisma 7", "PostgreSQL", "Docker"],
-      description: "CRM gestionale per studi con agenda interattiva, consensi informati firmati digitalmente su tablet e analytics integrate.",
+      description: t.work.archive.nagmaKanban.description,
     },
     {
       id: "claude-agentic",
-      title: "Anthropic Agentic Tool-Use CLI",
-      category: "AI Architecture",
+      title: t.work.archive.claudeAgentic.title,
+      category: t.work.archive.claudeAgentic.category,
       year: "2026",
-      badge: "Claude Certified",
+      badge: t.work.archive.claudeAgentic.badge,
       image: "/certificates/claude-cowork.png",
       rotation: "-rotate-1 sm:-rotate-0.5",
       externalOrRoute: href("/studio#credentials"),
       tags: ["Claude 3.7", "Function Calling", "Agent Workflows"],
-      description: "Architettura agenziale multimodale con determinismo nell'invocazione di tool esterni e memoria persistente su contesti lunghi.",
+      description: t.work.archive.claudeAgentic.description,
     },
     {
       id: "ocr-simulator",
-      title: "Interactive OCR Live Simulator",
-      category: "Creative Lab",
+      title: t.work.archive.ocrSimulator.title,
+      category: t.work.archive.ocrSimulator.category,
       year: "2026",
-      badge: "Live Interactive",
+      badge: t.work.archive.ocrSimulator.badge,
       image: "/projects/assicurativo-studio/elaborazione-polizze.png",
       rotation: "rotate-1 sm:rotate-0.5",
       externalOrRoute: href("/lab"),
       tags: ["Canvas API", "Wasm OCR", "Zod Validation"],
-      description: "Playground interattivo per testare parser documentali complessi con visualizzazione immediata delle confidenze e bounding box.",
+      description: t.work.archive.ocrSimulator.description,
     },
     {
       id: "virtual-grid-benchmark",
-      title: "10,000 Records Virtual Grid",
-      category: "Performance Lab",
+      title: t.work.archive.virtualGrid.title,
+      category: t.work.archive.virtualGrid.category,
       year: "2025",
-      badge: "Zero-Lag 60 FPS",
+      badge: t.work.archive.virtualGrid.badge,
       image: "/projects/assicurativo-studio/dashboard.png",
       rotation: "-rotate-1",
       externalOrRoute: href("/lab"),
       tags: ["AG Grid 32", "Virtual Scrolling", "Multi-sort"],
-      description: "Tabella finanziaria ultra-performante con caricamento dinamico di 10.000 righe e calcolo somme su colonne senza ricalcolo DOM.",
+      description: t.work.archive.virtualGrid.description,
     },
     {
       id: "spencer-design-system",
-      title: "Tactile Spencer Gabor System",
-      category: "UI/UX Engineering",
+      title: t.work.archive.spencerSystem.title,
+      category: t.work.archive.spencerSystem.category,
       year: "2026",
-      badge: "Design System",
+      badge: t.work.archive.spencerSystem.badge,
       image: "/certificates/master-fullstack.png",
       rotation: "rotate-1",
       externalOrRoute: href("/contact"),
       tags: ["Tailwind 4", "Elastic Springs", "Theme Switcher"],
-      description: "Sistema di componenti tattili con fisica elastica naturale, palette dinamiche monochrome / oat / lime / blue e micro-interazioni sticker.",
+      description: t.work.archive.spencerSystem.description,
     },
   ];
 
@@ -126,46 +126,46 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
     {
       id: "assicurativo-studio",
       slug: "assicurativo-studio",
-      title: "Portale Assicurativo",
-      subtitle: "ERP Finanziario & Pipeline OCR",
-      category: "Enterprise System",
-      badge: "Flagship ERP & AI",
+      title: t.work.showcase.assicurativo.title,
+      subtitle: t.work.showcase.assicurativo.subtitle,
+      category: t.work.showcase.assicurativo.category,
+      badge: t.work.showcase.assicurativo.badge,
       image: "/projects/assicurativo-studio/dashboard.png",
       stack: ["React 19", "Next.js 16", "AG Grid 32", "MongoDB", "Claude OCR"],
-      description: "Piattaforma enterprise end-to-end per agenzie assicurative con estrazione polizze AI a latenza <180ms.",
+      description: t.work.showcase.assicurativo.description,
     },
     {
       id: "demo-nagma",
       slug: "demo-nagma",
-      title: "Nagma Tattoo CRM",
-      subtitle: "CRM Creativo & Kanban Studio",
-      category: "SaaS Platform",
-      badge: "Production CRM",
+      title: t.work.showcase.nagma.title,
+      subtitle: t.work.showcase.nagma.subtitle,
+      category: t.work.showcase.nagma.category,
+      badge: t.work.showcase.nagma.badge,
       image: "/projects/nagma-tattoo-crm/dashboard.png",
       stack: ["Next.js 16", "Prisma 7", "PostgreSQL", "Tailwind 4", "Docker"],
-      description: "CRM gestionale su misura per studi creativi con agenda interattiva, consensi digitali e tracking real-time.",
+      description: t.work.showcase.nagma.description,
     },
     {
       id: "ai-ocr-engine",
       slug: "assicurativo-studio",
-      title: "AI Document Intelligence",
-      subtitle: "Pipeline Vision & LLM Parsing",
-      category: "AI Architecture",
-      badge: "Anthropic Claude",
+      title: t.work.showcase.aiOcr.title,
+      subtitle: t.work.showcase.aiOcr.subtitle,
+      category: t.work.showcase.aiOcr.category,
+      badge: t.work.showcase.aiOcr.badge,
       image: "/projects/assicurativo-studio/elaborazione-polizze.png",
       stack: ["Anthropic Claude", "Gemini 2.5", "TypeScript", "Node.js", "Zod"],
-      description: "Motore di scansione e strutturazione documentale automatizzata con accuratezza 99.8% e zero data-loss.",
+      description: t.work.showcase.aiOcr.description,
     },
     {
       id: "creative-lab-webgl",
       slug: "lab",
-      title: "Creative WebGL Lab",
-      subtitle: "Shaders & Three.js Canvas",
-      category: "Creative Engineering",
-      badge: "60 FPS WebGL",
+      title: t.work.showcase.creativeLab.title,
+      subtitle: t.work.showcase.creativeLab.subtitle,
+      category: t.work.showcase.creativeLab.category,
+      badge: t.work.showcase.creativeLab.badge,
       image: "/certificates/claude-cowork.png",
       stack: ["Three.js", "GLSL Shaders", "GSAP", "Lenis", "Framer Motion"],
-      description: "Playground interattivo per sperimentazioni grafiche 3D, calcolo particellare e micro-interazioni fisiche.",
+      description: t.work.showcase.creativeLab.description,
       isExternalOrRoute: true,
       targetHref: href("/lab"),
     },
@@ -213,13 +213,13 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
       {/* 1. Header (Spencer Gabor Centered Headline) */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12 sm:mb-16">
         <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-[0.25em] text-[var(--foreground)] opacity-60 mb-2 block">
-          Select Recent &amp; Notable Projects
+          {t.work.curvedBadge}
         </span>
         <h2 className="[font-family:var(--font-display)] uppercase text-6xl sm:text-8xl md:text-9xl tracking-tight leading-[0.88] text-[var(--foreground)] drop-shadow-xs">
-          Featured Work
+          {t.work.featuredWork}
         </h2>
         <p className="mt-3 text-[16px] sm:text-[18px] text-[var(--foreground)] opacity-70 font-medium max-w-xl mx-auto">
-          Sistemi di produzione ad alto impatto, piattaforme enterprise e pipeline AI.
+          {t.work.subtitle}
         </p>
       </div>
 
@@ -229,7 +229,7 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
         {/* Navigation Arrows (Float at sides) */}
         <button
           onClick={handlePrev}
-          aria-label="Progetto precedente"
+          aria-label={t.work.caseStudy.previous}
           className="btn-elastic absolute left-2 sm:left-6 z-40 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] shadow-xl flex items-center justify-center text-[var(--foreground)] hover:bg-[var(--color-pill-bg)] hover:text-[var(--color-pill-text)] transition-colors cursor-pointer"
         >
           <ChevronLeft className="w-6 h-6 stroke-[2.5]" />
@@ -237,7 +237,7 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
 
         <button
           onClick={handleNext}
-          aria-label="Progetto successivo"
+          aria-label={t.work.caseStudy.next}
           className="btn-elastic absolute right-2 sm:right-6 z-40 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] shadow-xl flex items-center justify-center text-[var(--foreground)] hover:bg-[var(--color-pill-bg)] hover:text-[var(--color-pill-text)] transition-colors cursor-pointer"
         >
           <ChevronRight className="w-6 h-6 stroke-[2.5]" />
@@ -386,7 +386,7 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
                 className="btn-elastic inline-flex h-13 sm:h-14 items-center justify-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--foreground)] px-6 text-[13px] font-bold uppercase tracking-wider shadow-sm cursor-pointer"
               >
                 <Eye className="w-4 h-4 stroke-[2.5] opacity-70" />
-                <span>Anteprima</span>
+                <span>{t.work.preview}</span>
               </button>
             </div>
 
@@ -433,7 +433,7 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--color-surface-muted)] border border-[var(--color-border)] mb-3">
                 <Sparkles className="w-3.5 h-3.5 text-[var(--color-accent)]" />
                 <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--foreground)] opacity-80">
-                  Archive & Production Systems
+                  {t.work.archiveBadge}
                 </span>
               </div>
               <h3 className="[font-family:var(--font-display)] uppercase text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[0.92] text-[var(--foreground)]">
@@ -514,15 +514,15 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
                           href={href(`/work/${item.slug}`)}
                           className="flex-1 inline-flex items-center justify-center gap-2 h-10 rounded-full border-2 border-[var(--color-border)] bg-[var(--background)] px-4 text-xs font-bold uppercase tracking-wider text-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-all cursor-pointer"
                         >
-                          <span>Case Study</span>
+                          <span>{t.work.caseStudyBtn}</span>
                           <ArrowUpRight className="w-3.5 h-3.5" />
                         </Link>
                         {projectMeta && (
                           <button
                             onClick={() => setActiveModalProject(projectMeta)}
                             className="inline-flex items-center justify-center w-10 h-10 rounded-full border-2 border-[var(--color-border)] bg-[var(--color-surface-muted)] text-[var(--foreground)] hover:bg-[var(--color-pill-bg)] hover:text-[var(--color-pill-text)] transition-all cursor-pointer"
-                            aria-label={`Anteprima ${item.title}`}
-                            title="Anteprima rapida"
+                            aria-label={`${t.work.preview} ${item.title}`}
+                            title={t.work.previewAria}
                           >
                             <Eye className="w-4 h-4" />
                           </button>
@@ -533,7 +533,7 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
                         href={item.externalOrRoute || href("/work")}
                         className="w-full inline-flex items-center justify-center gap-2 h-10 rounded-full border-2 border-[var(--color-border)] bg-[var(--background)] px-4 text-xs font-bold uppercase tracking-wider text-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-all cursor-pointer"
                       >
-                        <span>Esplora</span>
+                        <span>{t.work.explore}</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />
                       </Link>
                     )}

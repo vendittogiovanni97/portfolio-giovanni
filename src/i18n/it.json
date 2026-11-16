@@ -14,7 +14,12 @@
     "currentFocus": "Focus Attuale",
     "availability": "Disponibile per nuovi progetti & freelance",
     "exploreWork": "Vedi i progetti",
-    "contactMe": "Contattami"
+    "contactMe": "Contattami",
+    "copyEmail": "Copia",
+    "copiedEmail": "Copiata!",
+    "copyEmailAria": "Copia email negli appunti",
+    "location": "NAPOLI, ITALIA · REMOTO / WORLDWIDE",
+    "coreStack": "CORE STACK & SISTEMI IN PRODUZIONE"
   },
   "work": {
     "title": "Featured Work",
@@ -59,7 +64,81 @@
       "closePreviewAria": "Chiudi anteprima progetto"
     },
     "quickView": "Anteprima Rapida",
-    "openDetail": "Apri Dettaglio"
+    "openDetail": "Apri Dettaglio",
+    "curvedBadge": "PROGETTI SELEZIONATI & DI RILIEVO",
+    "archiveBadge": "ARCHIVIO & SISTEMI IN PRODUZIONE",
+    "preview": "Anteprima",
+    "previewAria": "Anteprima rapida",
+    "explore": "Esplora",
+    "caseStudyBtn": "Case Study",
+    "showcase": {
+      "assicurativo": {
+        "title": "Portale Assicurativo",
+        "subtitle": "ERP Finanziario & Pipeline OCR",
+        "category": "Sistema Enterprise",
+        "badge": "Flagship ERP & AI",
+        "description": "Piattaforma enterprise end-to-end per agenzie assicurative con estrazione polizze AI a latenza <180ms."
+      },
+      "nagma": {
+        "title": "Nagma Tattoo CRM",
+        "subtitle": "CRM Creativo & Kanban Studio",
+        "category": "Piattaforma SaaS",
+        "badge": "CRM in Produzione",
+        "description": "CRM gestionale su misura per studi creativi con agenda interattiva, consensi digitali e tracking real-time."
+      },
+      "aiOcr": {
+        "title": "AI Document Intelligence",
+        "subtitle": "Pipeline Vision & Parsing LLM",
+        "category": "Architettura AI",
+        "badge": "Anthropic Claude",
+        "description": "Motore di scansione e strutturazione documentale automatizzata con accuratezza 99.8% e zero perdite di dati."
+      },
+      "creativeLab": {
+        "title": "Creative WebGL Lab",
+        "subtitle": "Shader & Three.js Canvas",
+        "category": "Ingegneria Creativa",
+        "badge": "60 FPS WebGL",
+        "description": "Playground interattivo per sperimentazioni grafiche 3D, calcolo particellare e micro-interazioni fisiche."
+      }
+    },
+    "archive": {
+      "assicurativoCore": {
+        "title": "Portale Assicurativo — Core Engine",
+        "category": "Sistema Enterprise",
+        "badge": "ERP & Pipeline",
+        "description": "Architettura enterprise ad alte prestazioni per oltre 12.000 polizze attive, export Excel istantaneo e permission model RBAC granulare."
+      },
+      "nagmaKanban": {
+        "title": "Nagma CRM — Kanban & Agenda",
+        "category": "Piattaforma SaaS",
+        "badge": "SaaS in Produzione",
+        "description": "CRM gestionale per studi con agenda interattiva, consensi informati firmati digitalmente su tablet e analytics integrate."
+      },
+      "claudeAgentic": {
+        "title": "Anthropic Agentic Tool-Use CLI",
+        "category": "Architettura AI",
+        "badge": "Certificato Claude",
+        "description": "Architettura agenziale multimodale con determinismo nell'invocazione di tool esterni e memoria persistente su contesti lunghi."
+      },
+      "ocrSimulator": {
+        "title": "Simulatore OCR Interattivo",
+        "category": "Creative Lab",
+        "badge": "Live Interattivo",
+        "description": "Playground interattivo per testare parser documentali complessi con visualizzazione immediata delle confidenze e bounding box."
+      },
+      "virtualGrid": {
+        "title": "Griglia Virtuale 10.000 Record",
+        "category": "Performance Lab",
+        "badge": "Zero-Lag 60 FPS",
+        "description": "Tabella finanziaria ultra-performante con caricamento dinamico di 10.000 righe e calcolo somme su colonne senza ricalcolo DOM."
+      },
+      "spencerSystem": {
+        "title": "Sistema Tattile Spencer Gabor",
+        "category": "Ingegneria UI/UX",
+        "badge": "Design System",
+        "description": "Sistema di componenti tattili con fisica elastica naturale, palette dinamiche monochrome / oat / lime / blue e micro-interazioni sticker."
+      }
+    }
   },
   "writing": {
     "title": "Articoli",
@@ -258,7 +337,13 @@
           "Modellazione database, indicizzazione query e ottimizzazione delle performance in produzione."
         ]
       }
-    }
+    },
+    "sectionBadge": "PERCORSO PROFESSIONALE · IMPATTO IN PRODUZIONE",
+    "stackTooling": "Stack di Produzione & Strumenti",
+    "benchmarksTitle": "Benchmark Ingegneristici",
+    "proprietaryBadge": "Sistemi Proprietari",
+    "presentPeriod": "2025 – Oggi",
+    "exploreSystems": "Esplora i Sistemi in Produzione"
   },
   "contact": {
     "title": "Contattami",
@@ -293,7 +378,12 @@
   "footer": {
     "builtWith": "Costruito con Next.js",
     "madeWith": "Fatto con cura",
-    "letsBuild": "Restiamo in contatto."
+    "letsBuild": "Restiamo in contatto.",
+    "available": "Disponibile per Q1 / Q2 2026",
+    "pitch": "Piattaforme web scalabili, architetture dati resilienti o interfacce creative ad altissimo impatto. Disponibile per contratti freelance, advisory e ruoli chiave internazionali.",
+    "contactForm": "Modulo Contatto",
+    "downloadCv": "Scarica CV",
+    "role": "Fullstack & Creative AI Engineer"
   },
   "credentials": {
     "title": "Percorso Studi & Formazione",
@@ -315,6 +405,18 @@
       "official": "Certificazione Ufficiale",
       "academic": "Percorso Universitario",
       "specialization": "Specializzazione Frontend"
+    },
+    "sectionBadge": "ACCREDITAMENTI & STUDI · 2025–2026",
+    "completedBadge": "4 / 4 Completate · 2026",
+    "closeAria": "Chiudi",
+    "keyboardHint": "Usa le frecce della tastiera (← / →) o Esc per chiudere",
+    "academicTypes": {
+      "university": "Percorso Universitario",
+      "professional": "Corso Professionalizzante"
+    },
+    "academicBadges": {
+      "linkCampus": "Specializzazione Accademica",
+      "nexusPozzuoli": "Ingegneria Frontend"
     }
   },
   "lab": {

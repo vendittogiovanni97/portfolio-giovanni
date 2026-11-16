@@ -7,7 +7,7 @@ import { useI18n } from "@/i18n";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 
 export function Footer() {
-  const { href } = useI18n();
+  const { href, t } = useI18n();
 
   return (
     <footer className="relative w-full border-t border-[var(--color-border)] mt-24 bg-[var(--color-surface)] text-[var(--foreground)] transition-colors duration-450">
@@ -16,7 +16,7 @@ export function Footer() {
         {/* Massive Spencer Gabor CTA */}
         <div className="mb-14">
           <span className="text-xs font-bold uppercase tracking-widest text-[var(--color-accent)] mb-3 block">
-            Available for Q1 / Q2 2026
+            {t.footer.available}
           </span>
           <h2 className="[font-family:var(--font-display)] uppercase text-6xl sm:text-8xl lg:text-9xl tracking-tight leading-[0.88] text-[var(--foreground)]">
             Let&apos;s Build
@@ -26,7 +26,7 @@ export function Footer() {
             </span>
           </h2>
           <p className="mt-6 text-[18px] sm:text-[22px] font-medium text-[var(--foreground)] opacity-75 max-w-2xl leading-relaxed">
-            Piattaforme web scalabili, architetture dati resilienti o interfacce creative ad altissimo impatto. Disponibile per contratti freelance, advisory e ruoli chiave internazionali.
+            {t.footer.pitch}
           </p>
         </div>
 
@@ -47,7 +47,7 @@ export function Footer() {
             href={href("/contact")}
             className="btn-elastic inline-flex h-13 sm:h-14 items-center justify-center gap-3 rounded-full border-2 border-[var(--color-border)] bg-[var(--background)] px-7 text-[15px] font-bold uppercase tracking-wider text-[var(--foreground)] cursor-pointer"
           >
-            <span>Modulo Contatto</span>
+            <span>{t.footer.contactForm}</span>
             <ArrowUpRight className="w-5 h-5 stroke-[2.5]" />
           </Link>
 
@@ -59,7 +59,7 @@ export function Footer() {
             className="btn-elastic inline-flex h-13 sm:h-14 items-center justify-center gap-3 rounded-full border-2 border-[var(--color-border)] bg-[var(--background)] px-7 text-[15px] font-bold uppercase tracking-wider text-[var(--foreground)] cursor-pointer"
           >
             <Download className="w-5 h-5 stroke-[2.5]" />
-            <span>Scarica CV</span>
+            <span>{t.footer.downloadCv}</span>
           </a>
         </div>
 
@@ -99,7 +99,7 @@ export function Footer() {
           <div className="flex items-center gap-3">
             <BrandLogo className="w-7 h-7 rounded-[8px] overflow-hidden" />
             <span>
-              {config.authorName} · Fullstack & Creative AI Engineer
+              {config.authorName} · {t.footer.role}
             </span>
           </div>
 

@@ -155,7 +155,7 @@ export function Credentials() {
         <div className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[var(--color-border)] pb-8">
           <div>
             <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-[0.25em] text-[var(--foreground)] opacity-70 mb-2 block">
-              ACCREDITATIONS & STUDIES · 2025–2026
+              {t.credentials.sectionBadge}
             </span>
             <h2 className="[font-family:var(--font-display)] uppercase text-5xl sm:text-7xl lg:text-8xl tracking-tight leading-[0.88] text-[var(--foreground)]">
               {t.credentials.title}
@@ -224,7 +224,7 @@ export function Credentials() {
 
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] text-xs font-bold uppercase tracking-wider text-[var(--foreground)]">
                 <CheckCircle className="w-3.5 h-3.5 opacity-80" />
-                <span>4 / 4 Completate · 2026</span>
+                <span>{t.credentials.completedBadge}</span>
               </div>
             </div>
 
@@ -358,7 +358,7 @@ export function Credentials() {
                       <div className="mb-3">
                         <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[var(--background)] border border-[var(--color-border)] text-[var(--foreground)] opacity-85 mb-2">
                           <Icon className="w-3.5 h-3.5 opacity-70" />
-                          {item.badge}
+                          {t.credentials.academicBadges[item.descKey]}
                         </span>
                         <h4 className="[font-family:var(--font-display)] uppercase text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight leading-none">
                           {item.title}
@@ -458,7 +458,7 @@ export function Credentials() {
                     type="button"
                     onClick={() => setModalIndex(null)}
                     className="btn-elastic p-2 rounded-full border border-[var(--color-border)] bg-[var(--background)] text-[var(--foreground)] hover:bg-[var(--color-pill-bg)] hover:text-[var(--color-pill-text)] transition-colors cursor-pointer ml-1"
-                    aria-label="Chiudi"
+                    aria-label={t.credentials.closeAria}
                   >
                     <X className="w-5 h-5 stroke-[2.5]" />
                   </button>
@@ -491,7 +491,7 @@ export function Credentials() {
                 </div>
 
                 <span className="font-mono text-[11px] text-[var(--foreground)] opacity-55">
-                  Usa le frecce della tastiera (← / →) o Esc per chiudere
+                  {t.credentials.keyboardHint}
                 </span>
               </div>
             </motion.div>

@@ -50,7 +50,7 @@ export function ExperienceTimeline() {
         {/* Section Header */}
         <div className="mb-10 border-b border-[var(--color-border)] pb-8">
           <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-[0.25em] text-[var(--foreground)] opacity-70 mb-2 block">
-            CAREER JOURNEY · PRODUCTION IMPACT
+            {t.experience.sectionBadge}
           </span>
           <h2 className="[font-family:var(--font-display)] uppercase text-5xl sm:text-7xl lg:text-8xl tracking-tight leading-[0.88] text-[var(--foreground)]">
             {t.experience.title}
@@ -170,7 +170,7 @@ export function ExperienceTimeline() {
             {/* Stack Cloud */}
             <div className="pt-6 border-t border-[var(--color-border)]">
               <span className="font-mono text-[10.5px] font-bold uppercase tracking-wider text-[var(--foreground)] opacity-55 block mb-2.5">
-                Production Stack & Tooling
+                {t.experience.stackTooling}
               </span>
               <div className="flex flex-wrap gap-2">
                 {AGILAE_STACK.map((tech) => (
@@ -204,7 +204,7 @@ export function ExperienceTimeline() {
                   <ShieldCheck className="w-4 h-4" />
                 </div>
                 <h4 className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[var(--foreground)] opacity-80">
-                  Engineering Benchmarks
+                  {t.experience.benchmarksTitle}
                 </h4>
               </div>
 
@@ -262,10 +262,10 @@ export function ExperienceTimeline() {
               <div>
                 <div className="flex items-center justify-between gap-2 mb-4">
                   <span className="font-mono text-[10.5px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[var(--background)] border border-[var(--color-border)] text-[var(--foreground)]">
-                    Proprietary Systems
+                    {t.experience.proprietaryBadge}
                   </span>
                   <span className="font-mono text-[11px] font-semibold text-[var(--foreground)] opacity-60">
-                    2025 – Oggi
+                    {t.experience.presentPeriod}
                   </span>
                 </div>
 
@@ -295,7 +295,7 @@ export function ExperienceTimeline() {
                 href={href("/#work")}
                 className="btn-elastic inline-flex items-center justify-between px-5 py-2.5 rounded-full bg-[var(--color-pill-bg)] text-[var(--color-pill-text)] text-xs font-bold uppercase tracking-wider shadow-sm cursor-pointer"
               >
-                <span>Esplora i Sistemi in Produzione</span>
+                <span>{t.experience.exploreSystems}</span>
                 <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
               </Link>
             </motion.div>

@@ -5,6 +5,7 @@ import { motion, useMotionValue, useSpring, useTransform, useReducedMotion, type
 import Image from "next/image";
 import { ArrowUpRight, Check, Copy } from "lucide-react";
 import { config } from "@/lib/config";
+import { useI18n } from "@/i18n";
 
 interface HeroCardConfig {
   title: string;
@@ -153,6 +154,7 @@ function InteractiveHeroCard({
 }
 
 export function Hero() {
+  const { t } = useI18n();
   const containerRef = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
   const [copied, setCopied] = useState(false);
@@ -204,7 +206,7 @@ export function Hero() {
         className="flex flex-col items-center gap-1.5 z-10"
       >
         <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-[0.25em] text-[var(--foreground)] opacity-85">
-          NAPOLI, ITALY · REMOTE / WORLDWIDE
+          {t.hero.location}
         </span>
         
         <div className="flex items-center gap-2">
@@ -219,18 +221,18 @@ export function Hero() {
             type="button"
             onClick={handleCopyEmail}
             className="btn-elastic inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] text-[10px] font-mono text-[var(--foreground)] opacity-70 hover:opacity-100 cursor-pointer transition-all"
-            title="Copia email"
-            aria-label="Copia email negli appunti"
+            title={t.hero.copyEmailAria}
+            aria-label={t.hero.copyEmailAria}
           >
             {copied ? (
               <>
                 <Check className="w-3 h-3 text-emerald-500" />
-                <span className="text-emerald-500 font-bold">Copiata!</span>
+                <span className="text-emerald-500 font-bold">{t.hero.copiedEmail}</span>
               </>
             ) : (
               <>
                 <Copy className="w-2.5 h-2.5 opacity-60" />
-                <span>Copia</span>
+                <span>{t.hero.copyEmail}</span>
               </>
             )}
           </button>
@@ -289,7 +291,7 @@ export function Hero() {
         className="flex flex-col items-center gap-1.5 z-10 max-w-3xl px-2"
       >
         <span className="font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.25em] text-[var(--foreground)] opacity-60">
-          CORE STACK &amp; PRODUCTION SYSTEMS
+          {t.hero.coreStack}
         </span>
         <p className="font-mono text-[11px] sm:text-[12.5px] font-semibold uppercase tracking-wider text-[var(--foreground)] opacity-80 leading-relaxed">
           REACT 19 · NEXT.JS 16 · ANTHROPIC CLAUDE · THREE.JS · TYPESCRIPT · NODE.JS · DOCKER · TAILWIND 4

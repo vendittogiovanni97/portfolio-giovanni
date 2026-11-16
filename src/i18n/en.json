@@ -14,7 +14,12 @@
     "currentFocus": "Current Focus",
     "availability": "Available for new projects & freelance",
     "exploreWork": "View projects",
-    "contactMe": "Contact Me"
+    "contactMe": "Contact Me",
+    "copyEmail": "Copy",
+    "copiedEmail": "Copied!",
+    "copyEmailAria": "Copy email to clipboard",
+    "location": "NAPLES, ITALY · REMOTE / WORLDWIDE",
+    "coreStack": "CORE STACK & PRODUCTION SYSTEMS"
   },
   "work": {
     "title": "Featured Work",
@@ -59,7 +64,81 @@
       "closePreviewAria": "Close project preview"
     },
     "quickView": "Quick Preview",
-    "openDetail": "Open Detail"
+    "openDetail": "Open Detail",
+    "curvedBadge": "SELECT RECENT & NOTABLE PROJECTS",
+    "archiveBadge": "ARCHIVE & PRODUCTION SYSTEMS",
+    "preview": "Preview",
+    "previewAria": "Quick preview",
+    "explore": "Explore",
+    "caseStudyBtn": "Case Study",
+    "showcase": {
+      "assicurativo": {
+        "title": "Insurance Portal",
+        "subtitle": "Financial ERP & OCR Pipeline",
+        "category": "Enterprise System",
+        "badge": "Flagship ERP & AI",
+        "description": "End-to-end enterprise platform for insurance brokerages with AI policy data extraction at <180ms latency."
+      },
+      "nagma": {
+        "title": "Nagma Tattoo CRM",
+        "subtitle": "Creative CRM & Studio Kanban",
+        "category": "SaaS Platform",
+        "badge": "Production CRM",
+        "description": "Tailored operations CRM for creative studios with interactive calendar, digital consents, and real-time tracking."
+      },
+      "aiOcr": {
+        "title": "AI Document Intelligence",
+        "subtitle": "Vision Pipeline & LLM Parsing",
+        "category": "AI Architecture",
+        "badge": "Anthropic Claude",
+        "description": "Automated document scanning and structured extraction engine with 99.8% accuracy and zero data loss."
+      },
+      "creativeLab": {
+        "title": "Creative WebGL Lab",
+        "subtitle": "Shaders & Three.js Canvas",
+        "category": "Creative Engineering",
+        "badge": "60 FPS WebGL",
+        "description": "Interactive playground for 3D graphic experiments, particle computing, and tactile physics interactions."
+      }
+    },
+    "archive": {
+      "assicurativoCore": {
+        "title": "Insurance Portal — Core Engine",
+        "category": "Enterprise System",
+        "badge": "ERP & Pipeline",
+        "description": "High-performance enterprise architecture managing over 12,000 active policies, instant Excel exports, and granular RBAC permissions."
+      },
+      "nagmaKanban": {
+        "title": "Nagma CRM — Kanban & Calendar",
+        "category": "SaaS Platform",
+        "badge": "Production SaaS",
+        "description": "Studio operations CRM featuring an interactive calendar, tablet-signed digital informed consents, and built-in analytics."
+      },
+      "claudeAgentic": {
+        "title": "Anthropic Agentic Tool-Use CLI",
+        "category": "AI Architecture",
+        "badge": "Claude Certified",
+        "description": "Multimodal agentic architecture featuring deterministic external tool-calling and persistent long-context memory."
+      },
+      "ocrSimulator": {
+        "title": "Interactive OCR Live Simulator",
+        "category": "Creative Lab",
+        "badge": "Live Interactive",
+        "description": "Interactive playground for testing complex document parsers with real-time confidence scores and bounding boxes."
+      },
+      "virtualGrid": {
+        "title": "10,000 Records Virtual Grid",
+        "category": "Performance Lab",
+        "badge": "Zero-Lag 60 FPS",
+        "description": "Ultra-fast financial data table with dynamic rendering of 10,000 rows and real-time column sums without DOM thrashing."
+      },
+      "spencerSystem": {
+        "title": "Tactile Spencer Gabor System",
+        "category": "UI/UX Engineering",
+        "badge": "Design System",
+        "description": "Tactile component system with custom spring physics, dynamic monochrome / oat / lime / blue palettes, and sticker micro-interactions."
+      }
+    }
   },
   "writing": {
     "title": "Writing",
@@ -258,7 +337,13 @@
           "Database modeling, query indexing, and production performance optimization."
         ]
       }
-    }
+    },
+    "sectionBadge": "CAREER JOURNEY · PRODUCTION IMPACT",
+    "stackTooling": "Production Stack & Tooling",
+    "benchmarksTitle": "Engineering Benchmarks",
+    "proprietaryBadge": "Proprietary Systems",
+    "presentPeriod": "2025 – Present",
+    "exploreSystems": "Explore Production Systems"
   },
   "contact": {
     "title": "Contact Me",
@@ -293,7 +378,12 @@
   "footer": {
     "builtWith": "Built with Next.js",
     "madeWith": "Made with care",
-    "letsBuild": "Let's get in touch."
+    "letsBuild": "Let's get in touch.",
+    "available": "Available for Q1 / Q2 2026",
+    "pitch": "Scalable web platforms, resilient data architectures, or high-impact creative interfaces. Available for freelance contracts, advisory, and key international roles.",
+    "contactForm": "Contact Form",
+    "downloadCv": "Download CV",
+    "role": "Fullstack & Creative AI Engineer"
   },
   "credentials": {
     "title": "Education & Studies",
@@ -315,6 +405,18 @@
       "official": "Official Certification",
       "academic": "University Degree",
       "specialization": "Frontend Specialization"
+    },
+    "sectionBadge": "ACCREDITATIONS & STUDIES · 2025–2026",
+    "completedBadge": "4 / 4 Completed · 2026",
+    "closeAria": "Close",
+    "keyboardHint": "Use keyboard arrows (← / →) or Esc to close",
+    "academicTypes": {
+      "university": "University Degree",
+      "professional": "Professional Specialization"
+    },
+    "academicBadges": {
+      "linkCampus": "Academic Specialization",
+      "nexusPozzuoli": "Frontend Engineering"
     }
   },
   "lab": {
