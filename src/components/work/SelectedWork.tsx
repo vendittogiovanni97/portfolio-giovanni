@@ -39,7 +39,7 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
       subtitle: t.work.showcase.assicurativo.subtitle,
       category: t.work.showcase.assicurativo.category,
       badge: t.work.showcase.assicurativo.badge,
-      image: "/projects/assicurativo-studio/showcase.png",
+      image: "/projects/assicurativo-studio/showcase-poster.png",
       stack: ["React 19", "Next.js 16", "AG Grid 32", "MongoDB", "Claude OCR"],
       description: t.work.showcase.assicurativo.description,
     },
@@ -50,7 +50,7 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
       subtitle: t.work.showcase.nagma.subtitle,
       category: t.work.showcase.nagma.category,
       badge: t.work.showcase.nagma.badge,
-      image: "/projects/nagma-tattoo-crm/showcase.png",
+      image: "/projects/nagma-tattoo-crm/showcase-poster.png",
       stack: ["Next.js 16", "Prisma 7", "PostgreSQL", "Tailwind 4", "Docker"],
       description: t.work.showcase.nagma.description,
     },
@@ -61,7 +61,7 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
       subtitle: t.work.showcase.inkflow?.subtitle || "Platform Studio & FullCalendar Engine",
       category: t.work.showcase.inkflow?.category || "Piattaforma Gestionale",
       badge: t.work.showcase.inkflow?.badge || "FullCalendar & AG Grid",
-      image: "/projects/n2g-inkflow/showcase.png",
+      image: "/projects/n2g-inkflow/showcase-poster.png",
       stack: ["React 19", "FullCalendar", "AG Grid", "Node.js", "Express", "MongoDB"],
       description:
         t.work.showcase.inkflow?.description ||
@@ -108,20 +108,25 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
         </p>
       </div>
 
-      {/* 2. Spencer Gabor Curved 3D Card Track (Aspect 3:4 Vertical Edge-to-Edge) */}
-      <div className="relative w-full max-w-6xl mx-auto px-4 h-[420px] sm:h-[500px] md:h-[560px] flex items-center justify-center">
+      {/* 2. Spencer Gabor Curved 3D Card Track (Aspect 3:4 Uncropped Poster Trio) */}
+      <div className="relative w-full max-w-6xl mx-auto px-4 h-[400px] sm:h-[480px] md:h-[530px] flex items-center justify-center">
         {/* Carousel Deck Track */}
         <div className="relative w-full h-full flex items-center justify-center">
           {items.map((item, idx) => {
-            const offset = idx - activeIndex;
+            const count = items.length;
+            let offset = idx - activeIndex;
+            if (offset > 1) offset -= count;
+            if (offset < -1) offset += count;
             const isCenter = offset === 0;
 
-            // Spencer Gabor Catena Arc: active card lifted & flat; side cards angled & lowered
-            const xPercent = offset * 80;
-            const yOffset = Math.abs(offset) * 22;
+            // Spencer Gabor Signature Fan Arc:
+            // Center card: flat, elevated, full focus
+            // Side cards: tilted ~8deg, gently lowered, visible side-by-side
+            const xPercent = offset === 0 ? 0 : offset * 80;
+            const yOffset = Math.abs(offset) * 20;
             const rotateAngle = offset * 8;
-            const scale = isCenter ? 1 : 0.88;
-            const opacity = isCenter ? 1 : 0.72;
+            const scale = isCenter ? 1 : 0.92;
+            const opacity = isCenter ? 1 : 0.78;
             const zIndex = isCenter ? 30 : 10;
 
             return (
@@ -143,8 +148,8 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
                   damping: 24,
                   mass: 0.8,
                 }}
-                className={`absolute w-[270px] sm:w-[340px] md:w-[390px] aspect-[3/4] rounded-[28px] sm:rounded-[36px] overflow-hidden cursor-pointer border-2 border-[var(--color-border)] bg-[var(--color-surface)] transition-shadow duration-300 ${
-                  isCenter ? "shadow-2xl" : "shadow-md hover:opacity-90"
+                className={`absolute w-[260px] sm:w-[320px] md:w-[370px] aspect-[3/4] rounded-[24px] sm:rounded-[32px] overflow-hidden cursor-pointer border-2 border-[var(--color-border)] bg-[var(--color-surface)] transition-shadow duration-300 ${
+                  isCenter ? "shadow-2xl" : "shadow-md hover:opacity-95"
                 }`}
                 style={{
                   transformOrigin: "center 85%",
@@ -153,7 +158,7 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
                     : "0 8px 24px rgba(0,0,0,0.12)",
                 }}
               >
-                {/* Full-bleed Edge-to-edge Project Poster Artwork (Uncropped) */}
+                {/* Full 3:4 Magazine Poster Artwork (100% Uncropped 1:1 Mapping) */}
                 <Image
                   src={item.image}
                   alt={item.title}

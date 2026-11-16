@@ -185,7 +185,7 @@ export function Hero() {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative w-full min-h-[95vh] sm:min-h-screen flex flex-col justify-between items-center text-center px-4 sm:px-6 pt-24 sm:pt-28 pb-10 select-none overflow-hidden"
+      className="relative w-full min-h-[88vh] sm:min-h-[92vh] flex flex-col justify-between items-center text-center px-4 sm:px-6 pt-20 sm:pt-24 pb-6 sm:pb-8 select-none overflow-hidden"
     >
       {/* 1. TOP METADATA & 1-CLICK EMAIL (Spencer Gabor Style) */}
       <motion.div
@@ -244,7 +244,7 @@ export function Hero() {
         </motion.div>
 
         {/* FANNED TILTED PROJECT CARDS DECK (With Mouse Parallax & Tactile Drag Physics) */}
-        <div className="relative flex items-center justify-center w-full my-2 sm:my-3 py-2 perspective-1000">
+        <div className="relative flex items-center justify-center w-full my-1 sm:my-2 py-1 perspective-1000">
           <div className="flex items-center justify-center -space-x-4 sm:-space-x-6 md:-space-x-8">
             {HERO_CARDS.map((card, idx) => (
               <InteractiveHeroCard
@@ -259,12 +259,12 @@ export function Hero() {
           </div>
         </div>
 
-        {/* LINE 2: Ghost / Muted Giant Headline (Behind / Below Cards) */}
+        {/* LINE 2: Ghost / Muted Giant Headline (Separated from Cards & Lifted Upwards) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: -20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full text-center"
+          className="w-full text-center mt-5 sm:mt-7"
         >
           <h2 className="[font-family:var(--font-display)] uppercase text-2xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4rem] tracking-tight leading-[0.92] text-[var(--color-secondary)] transition-colors duration-450 select-none">
             Fullstack, Designer &amp; AI
