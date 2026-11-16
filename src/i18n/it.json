@@ -587,6 +587,21 @@
     "unlocked": "Scaricamento in corso...",
     "downloaded": "CV Sbloccato!"
   },
+  "passport": {
+    "badge": "Passaporto Ufficiale · 3D Folio",
+    "title": "Developer Passport & Credenziali",
+    "subtitle": "Libretto 3D interattivo: clicca o trascina lo slider per sfogliare il passaporto con timbri ufficiali Anthropic e percorso accademico.",
+    "openBooklet": "Apri Libretto 3D",
+    "closeBooklet": "Chiudi Libretto",
+    "dragToOpen": "Trascina lo slider per sfogliare a 180°",
+    "officialBadge": "PASSAPORTO TECNICO UFFICIALE",
+    "republic": "REPUBBLICA DEGLI SVILUPPATORI",
+    "biometrics": "Dati Anagrafici & Formazione",
+    "academicStamps": "Visti Accademici & Specializzazioni",
+    "aiVisas": "Visti Ufficiali Anthropic AI",
+    "openLightbox": "Vedi Certificati Originali",
+    "verified": "VERIFICATO · 2026"
+  },
   "common": {
     "somethingWentWrong": "Qualcosa è andato storto.",
     "tryAgain": "Riprova",
