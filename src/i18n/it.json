@@ -574,6 +574,14 @@
       }
     ]
   },
+  "stickers": {
+    "badge": "Fisica Tattile · Spencer Gabor",
+    "title": "Sticker Playground",
+    "subtitle": "Trascina, scaglia e lancia gli sticker fisici: hanno massa, inerzia e rimbalzo elastico.",
+    "reset": "Riordina Posizioni",
+    "scatter": "Lancia Tutti",
+    "hint": "Trascina o lancia con il cursore ↔"
+  },
   "common": {
     "somethingWentWrong": "Qualcosa è andato storto.",
     "tryAgain": "Riprova",

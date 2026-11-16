@@ -574,6 +574,14 @@
       }
     ]
   },
+  "stickers": {
+    "badge": "Tactile Physics · Spencer Gabor",
+    "title": "Sticker Playground",
+    "subtitle": "Drag, flick, and toss physical stickers: equipped with mass, inertia, and elastic bounce.",
+    "reset": "Reset Positions",
+    "scatter": "Toss All",
+    "hint": "Drag or toss with cursor ↔"
+  },
   "common": {
     "somethingWentWrong": "Something went wrong.",
     "tryAgain": "Try again",
