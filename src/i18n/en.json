@@ -8,6 +8,12 @@
   "hero": {
     "greeting": "Fullstack & AI-Ready Engineer",
     "role": "Fullstack & AI-Ready Engineer",
+    "roles": [
+      "Fullstack, Designer & AI",
+      "React 19 & Next.js 16",
+      "Anthropic Claude Certified",
+      "Enterprise Systems & SaaS"
+    ],
     "aiBadge": "Official Anthropic Claude Certified",
     "tagline": "I design and build modern web applications, enterprise platforms, and high-performance AI automations that scale your business.",
     "bio": "Fullstack Engineer specializing in React 19/Next.js 16, Node.js, and Anthropic-certified AI-first solutions (Claude & Gemini). Helping companies and startups turn complex workflows into fast, secure, ROI-driven software.",

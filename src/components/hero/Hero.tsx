@@ -7,6 +7,7 @@ import { ArrowUpRight, Check, Copy } from "lucide-react";
 import { config } from "@/lib/config";
 import { useI18n } from "@/i18n";
 import { sound } from "@/lib/sound";
+import { TextSwap } from "@/components/ui";
 
 
 interface HeroCardConfig {
@@ -274,7 +275,7 @@ export function Hero() {
           className="w-full text-center mt-5 sm:mt-7"
         >
           <h2 className="[font-family:var(--font-display)] uppercase text-2xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4rem] tracking-tight leading-[0.92] text-[var(--color-secondary)] transition-colors duration-450 select-none">
-            Fullstack, Designer &amp; AI
+            <TextSwap texts={t.hero.roles} interval={3400} />
           </h2>
         </motion.div>
       </div>
