@@ -9,6 +9,8 @@ import Link from "next/link";
 import { ArrowUpRight, Eye } from "lucide-react";
 import { ProjectQuickViewModal } from "./ProjectQuickViewModal";
 import { HolographicFoilCard } from "@/components/ui";
+import { sound } from "@/lib/sound";
+
 
 
 interface SelectedWorkProps {
@@ -134,7 +136,10 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
             return (
               <motion.div
                 key={item.id}
-                onClick={() => setActiveIndex(idx)}
+                onClick={() => {
+                  sound.playPop();
+                  setActiveIndex(idx);
+                }}
                 initial={false}
                 data-cursor="view"
                 animate={{
@@ -202,7 +207,10 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
 
             <button
               type="button"
-              onClick={() => setActiveModalProject(getActiveProjectForModal())}
+              onClick={() => {
+                sound.playChime();
+                setActiveModalProject(getActiveProjectForModal());
+              }}
               data-cursor="zoom"
               className="btn-elastic inline-flex h-11 sm:h-12 items-center justify-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--foreground)] px-4 sm:px-5 text-xs sm:text-[12px] font-bold uppercase tracking-wider shadow-sm cursor-pointer hover:bg-[var(--color-surface-muted)] transition-colors"
               title={t.work.previewAria}
@@ -219,7 +227,10 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
           {items.map((_, dotIdx) => (
             <button
               key={dotIdx}
-              onClick={() => setActiveIndex(dotIdx)}
+              onClick={() => {
+                sound.playPop();
+                setActiveIndex(dotIdx);
+              }}
               aria-label={`Vai al progetto ${dotIdx + 1}`}
               className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
                 activeIndex === dotIdx

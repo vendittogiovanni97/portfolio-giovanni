@@ -11,6 +11,8 @@ import {
 } from "framer-motion";
 import { useI18n } from "@/i18n";
 import { RotateCcw, Sparkles, Move } from "lucide-react";
+import { sound } from "@/lib/sound";
+
 
 interface StickerItem {
   id: string;
@@ -236,8 +238,14 @@ function PhysicalSticker({
         bounceStiffness: 450,
         bounceDamping: 18,
       }}
-      onDragStart={() => setIsGrabbed(true)}
-      onDragEnd={() => setIsGrabbed(false)}
+      onDragStart={() => {
+        setIsGrabbed(true);
+        sound.playPop();
+      }}
+      onDragEnd={() => {
+        setIsGrabbed(false);
+        sound.playThud();
+      }}
       data-cursor="drag"
       whileHover={{
         scale: 1.08,
@@ -302,10 +310,12 @@ export function StickerPlayground() {
   const [scatterTrigger, setScatterTrigger] = useState(0);
 
   const handleReset = () => {
+    sound.playPop();
     setResetTrigger((prev) => prev + 1);
   };
 
   const handleScatter = () => {
+    sound.playSwish();
     setScatterTrigger((prev) => prev + 1);
   };
 

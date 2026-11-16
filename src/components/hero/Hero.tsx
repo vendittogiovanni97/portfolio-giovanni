@@ -6,6 +6,8 @@ import Image from "next/image";
 import { ArrowUpRight, Check, Copy } from "lucide-react";
 import { config } from "@/lib/config";
 import { useI18n } from "@/i18n";
+import { sound } from "@/lib/sound";
+
 
 interface HeroCardConfig {
   title: string;
@@ -95,6 +97,8 @@ function InteractiveHeroCard({
       dragConstraints={{ top: 0, bottom: 0, left: 0, right: 0 }}
       dragElastic={0.35}
       dragTransition={{ bounceStiffness: 450, bounceDamping: 22 }}
+      onDragStart={() => sound.playPop()}
+      onDragEnd={() => sound.playThud()}
       whileHover={{
         scale: 1.15,
         rotate: 0,
@@ -176,6 +180,7 @@ export function Hero() {
 
   const handleCopyEmail = (e: React.MouseEvent) => {
     e.preventDefault();
+    sound.playChime();
     navigator.clipboard.writeText(config.email);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);

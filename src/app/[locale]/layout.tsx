@@ -8,6 +8,7 @@ import { NavBar } from "@/components/layout/NavBar";
 import { Footer } from "@/components/layout/Footer";
 import { CursorSpotlight } from "@/components/ui/CursorSpotlight";
 import { CreativeCursor } from "@/components/ui/CreativeCursor";
+import { InteractiveAudioEngine } from "@/components/ui/InteractiveAudio";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import Script from "next/script";
 import { isLocale, locales, type Locale } from "@/i18n/server";
@@ -226,6 +227,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
           <EasterEggs />
           <CursorSpotlight />
           <CreativeCursor />
+          <InteractiveAudioEngine />
         </I18nProvider>
         {process.env.NODE_ENV === "development" && <AgentationLoader />}
       </body>

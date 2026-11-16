@@ -3,6 +3,9 @@
 import { useState, useSyncExternalStore } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Palette, Check } from "lucide-react";
+import { sound } from "@/lib/sound";
+import { SoundToggle } from "./InteractiveAudio";
+
 
 export type ThemeId = "white" | "oat" | "blue" | "lime" | "purple";
 
@@ -66,6 +69,7 @@ export function FloatingThemeSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
 
   const selectTheme = (theme: ThemeId) => {
+    sound.playChime();
     setCurrentTheme(theme);
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("portfolio-theme", theme);
@@ -121,15 +125,21 @@ export function FloatingThemeSwitcher() {
         )}
       </AnimatePresence>
 
+      {/* Sound Mute/Unmute Toggle Button */}
+      <SoundToggle />
+
       {/* Main floating trigger pill */}
       <button
-        onClick={() => setIsOpen((prev) => !prev)}
-        className="group flex h-13 w-13 items-center justify-center rounded-full shadow-[0_10px_25px_rgba(0,0,0,0.18)] border-2 border-black/10 bg-[var(--color-pill-bg)] text-[var(--color-pill-text)] transition-transform duration-300 hover:scale-110 active:scale-95 cursor-pointer"
+        onClick={() => {
+          sound.playPop();
+          setIsOpen((prev) => !prev);
+        }}
+        className="group flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-full shadow-[0_10px_25px_rgba(0,0,0,0.18)] border-2 border-black/10 bg-[var(--color-pill-bg)] text-[var(--color-pill-text)] transition-transform duration-300 hover:scale-110 active:scale-95 cursor-pointer"
         aria-label="Apri selettore palette colori"
         title="Cambia palette tema"
       >
         <Palette
-          className={`h-6 w-6 transition-transform duration-500 ${
+          className={`h-5 w-5 sm:h-6 sm:w-6 transition-transform duration-500 ${
             isOpen ? "rotate-90 scale-110" : "group-hover:rotate-12"
           }`}
         />
