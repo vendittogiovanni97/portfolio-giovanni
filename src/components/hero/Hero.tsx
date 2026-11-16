@@ -56,7 +56,7 @@ const HERO_CARDS: HeroCardConfig[] = [
   {
     title: "Anthropic Claude",
     subtitle: "Official AI 101 & Cowork Certified",
-    image: "/certificates/art/claude-cowork-art.svg",
+    image: "/certificates/art/claude-cowork-art.png",
     href: "#credentials",
     baseRotate: 8,
     baseY: -6,
@@ -119,9 +119,9 @@ function InteractiveHeroCard({
     >
       <a
         href={card.href}
-        className="block w-28 sm:w-44 md:w-56 aspect-square rounded-2xl sm:rounded-3xl overflow-hidden border-2 sm:border-3 border-[var(--color-border)] bg-[var(--color-surface)] p-1.5 sm:p-2 shadow-2xl transition-shadow duration-300 group-hover:shadow-[0_25px_50px_rgba(0,0,0,0.35)]"
+        className="block w-24 sm:w-32 md:w-36 lg:w-40 aspect-square rounded-2xl overflow-hidden border-2 border-[var(--color-border)] bg-[var(--color-surface)] p-1.5 sm:p-2 shadow-xl transition-shadow duration-300 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.25)]"
         style={{
-          boxShadow: "var(--shadow-sticker, 0 8px 0 rgba(0,0,0,0.3))",
+          boxShadow: "var(--shadow-sticker, 0 6px 0 rgba(0,0,0,0.25))",
         }}
       >
         <div className="relative w-full h-full rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-950 pointer-events-none">
@@ -249,14 +249,14 @@ export function Hero() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="w-full text-center"
         >
-          <h1 className="[font-family:var(--font-display)] uppercase text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] tracking-tight leading-[0.86] text-[var(--foreground)] drop-shadow-xs">
+          <h1 className="[font-family:var(--font-display)] uppercase text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.25rem] tracking-tight leading-[0.9] text-[var(--foreground)] drop-shadow-xs">
             Giovanni Venditto
           </h1>
         </motion.div>
 
         {/* FANNED TILTED PROJECT CARDS DECK (With Mouse Parallax & Tactile Drag Physics) */}
-        <div className="relative flex items-center justify-center w-full my-1 sm:my-3 py-4 perspective-1000">
-          <div className="flex items-center justify-center -space-x-8 sm:-space-x-12 md:-space-x-16">
+        <div className="relative flex items-center justify-center w-full my-2 sm:my-3 py-2 perspective-1000">
+          <div className="flex items-center justify-center -space-x-4 sm:-space-x-6 md:-space-x-8">
             {HERO_CARDS.map((card, idx) => (
               <InteractiveHeroCard
                 key={card.title}
@@ -277,7 +277,7 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="w-full text-center"
         >
-          <h2 className="[font-family:var(--font-display)] uppercase text-4xl sm:text-6xl md:text-8xl lg:text-[7.5rem] tracking-tight leading-[0.88] text-[var(--color-secondary)] transition-colors duration-450 select-none">
+          <h2 className="[font-family:var(--font-display)] uppercase text-2xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4rem] tracking-tight leading-[0.92] text-[var(--color-secondary)] transition-colors duration-450 select-none">
             Fullstack, Designer &amp; AI
           </h2>
         </motion.div>

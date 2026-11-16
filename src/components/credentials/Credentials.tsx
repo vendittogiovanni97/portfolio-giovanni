@@ -34,7 +34,7 @@ const ANTHROPIC_CERTS: CertificateItem[] = [
     title: "Claude 101",
     issuer: "Anthropic",
     image: "/certificates/claude-101.png",
-    artImage: "/certificates/art/claude-101-art.svg",
+    artImage: "/certificates/art/claude-101-art.png",
     skills: ["Prompt Engineering", "LLM Fundamentals", "In-Context Learning"],
   },
   {
@@ -43,7 +43,7 @@ const ANTHROPIC_CERTS: CertificateItem[] = [
     title: "Claude Code 101",
     issuer: "Anthropic",
     image: "/certificates/claude-code-101.png",
-    artImage: "/certificates/art/claude-code-101-art.svg",
+    artImage: "/certificates/art/claude-code-101-art.png",
     skills: ["Agentic CLI", "Code Automation", "Terminal Workflows"],
   },
   {
@@ -52,7 +52,7 @@ const ANTHROPIC_CERTS: CertificateItem[] = [
     title: "Claude Platform 101",
     issuer: "Anthropic",
     image: "/certificates/claude-platform-101.png",
-    artImage: "/certificates/art/claude-platform-101-art.svg",
+    artImage: "/certificates/art/claude-platform-101-art.png",
     skills: ["Anthropic API", "Tool Use & Functions", "Cost & Latency"],
   },
   {
@@ -61,7 +61,7 @@ const ANTHROPIC_CERTS: CertificateItem[] = [
     title: "Claude Cowork",
     issuer: "Anthropic",
     image: "/certificates/claude-cowork.png",
-    artImage: "/certificates/art/claude-cowork-art.svg",
+    artImage: "/certificates/art/claude-cowork-art.png",
     skills: ["Multi-Agent Collaboration", "Human-in-the-loop", "Workflow Design"],
   },
 ];
