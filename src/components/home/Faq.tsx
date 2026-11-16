@@ -15,26 +15,8 @@ export function Faq() {
     setOpenIndex((prev) => (prev === idx ? null : idx));
   };
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: t.faq.items.map((item) => ({
-      "@type": "Question",
-      name: item.q,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.a,
-      },
-    })),
-  };
-
   return (
     <section id="faq" className="w-full py-24 relative overflow-hidden scroll-mt-24">
-      {/* Schema.org FAQPage JSON-LD for rich Google search snippets */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
 
       <div className="max-w-[1200px] mx-auto px-6 sm:px-8">
         {/* Section Header */}

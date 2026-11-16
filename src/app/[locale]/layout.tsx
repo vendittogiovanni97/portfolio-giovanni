@@ -147,16 +147,6 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
             __html: `(function(){try{var t=localStorage.getItem('portfolio-theme')||'white';document.documentElement.setAttribute('data-theme',t);}catch(e){}})()`,
           }}
         />
-      </head>
-      <body className="min-h-full flex flex-col bg-[var(--background)] text-[var(--foreground)]">
-        <Script id="register-sw" strategy="afterInteractive">
-          {`if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function () {
-              navigator.serviceWorker.register('/sw.js');
-            });
-          }`}
-        </Script>
-        <SmoothScroll />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -195,6 +185,16 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
             }),
           }}
         />
+      </head>
+      <body className="min-h-full flex flex-col bg-[var(--background)] text-[var(--foreground)]">
+        <Script id="register-sw" strategy="afterInteractive">
+          {`if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+              navigator.serviceWorker.register('/sw.js');
+            });
+          }`}
+        </Script>
+        <SmoothScroll />
         <I18nProvider initialLocale={locale}>
           <a
             href="#main-content"

@@ -6,7 +6,7 @@ import Image from "next/image";
 import type { ProjectMetadata } from "@/lib/content";
 import { useI18n } from "@/i18n";
 import Link from "next/link";
-import { ArrowUpRight, ChevronLeft, ChevronRight, Eye } from "lucide-react";
+import { ArrowUpRight, Eye } from "lucide-react";
 import { ProjectQuickViewModal } from "./ProjectQuickViewModal";
 
 interface SelectedWorkProps {
@@ -71,14 +71,6 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
 
   const activeItem = items[activeIndex];
 
-  const handlePrev = () => {
-    setActiveIndex((prev) => (prev > 0 ? prev - 1 : items.length - 1));
-  };
-
-  const handleNext = () => {
-    setActiveIndex((prev) => (prev < items.length - 1 ? prev + 1 : 0));
-  };
-
   const getActiveProjectForModal = (): ProjectMetadata => {
     const found = projects.find((p) => p.slug === activeItem.slug);
     if (found) return found;
@@ -116,37 +108,20 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
         </p>
       </div>
 
-      {/* 2. Spencer Gabor Curved 3D Card Track */}
-      <div className="relative w-full max-w-5xl mx-auto px-4 h-[300px] sm:h-[400px] md:h-[460px] flex items-center justify-center">
-        {/* Navigation Arrows (Float at sides) */}
-        <button
-          onClick={handlePrev}
-          aria-label={t.work.caseStudy.previous}
-          className="btn-elastic absolute left-2 sm:left-6 z-40 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] shadow-xl flex items-center justify-center text-[var(--foreground)] hover:bg-[var(--color-pill-bg)] hover:text-[var(--color-pill-text)] transition-colors cursor-pointer"
-        >
-          <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
-        </button>
-
-        <button
-          onClick={handleNext}
-          aria-label={t.work.caseStudy.next}
-          className="btn-elastic absolute right-2 sm:right-6 z-40 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] shadow-xl flex items-center justify-center text-[var(--foreground)] hover:bg-[var(--color-pill-bg)] hover:text-[var(--color-pill-text)] transition-colors cursor-pointer"
-        >
-          <ChevronRight className="w-5 h-5 stroke-[2.5]" />
-        </button>
-
+      {/* 2. Spencer Gabor Curved 3D Card Track (Aspect 3:4 Vertical Edge-to-Edge) */}
+      <div className="relative w-full max-w-6xl mx-auto px-4 h-[420px] sm:h-[500px] md:h-[560px] flex items-center justify-center">
         {/* Carousel Deck Track */}
         <div className="relative w-full h-full flex items-center justify-center">
           {items.map((item, idx) => {
             const offset = idx - activeIndex;
             const isCenter = offset === 0;
 
-            // Catena arc math: active card is lifted & flat; side cards are angled & lowered
-            const xPercent = offset * 86;
-            const yOffset = Math.abs(offset) * 20;
-            const rotateAngle = offset * 6;
+            // Spencer Gabor Catena Arc: active card lifted & flat; side cards angled & lowered
+            const xPercent = offset * 80;
+            const yOffset = Math.abs(offset) * 22;
+            const rotateAngle = offset * 8;
             const scale = isCenter ? 1 : 0.88;
-            const opacity = isCenter ? 1 : 0.65;
+            const opacity = isCenter ? 1 : 0.72;
             const zIndex = isCenter ? 30 : 10;
 
             return (
@@ -168,29 +143,25 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
                   damping: 24,
                   mass: 0.8,
                 }}
-                className={`absolute w-[290px] sm:w-[400px] md:w-[460px] aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer ${
+                className={`absolute w-[270px] sm:w-[340px] md:w-[390px] aspect-[3/4] rounded-[28px] sm:rounded-[36px] overflow-hidden cursor-pointer border-2 border-[var(--color-border)] bg-[var(--color-surface)] transition-shadow duration-300 ${
                   isCenter ? "shadow-2xl" : "shadow-md hover:opacity-90"
                 }`}
                 style={{
-                  transformOrigin: "center 80%",
+                  transformOrigin: "center 85%",
+                  boxShadow: isCenter
+                    ? "var(--shadow-sticker, 0 16px 36px rgba(0,0,0,0.22))"
+                    : "0 8px 24px rgba(0,0,0,0.12)",
                 }}
               >
-                {/* Edge-to-edge Project Screenshot Artwork */}
+                {/* Full-bleed Edge-to-edge Project Poster Artwork (Uncropped) */}
                 <Image
                   src={item.image}
                   alt={item.title}
                   fill
-                  className="object-cover object-top"
-                  sizes="(min-width: 768px) 460px, 85vw"
+                  className="object-cover"
+                  sizes="(min-width: 768px) 420px, 85vw"
                   priority={isCenter}
                 />
-
-                {/* Subtle Overlaid Badge */}
-                <div className="absolute top-3.5 left-3.5 z-10">
-                  <span className="font-mono text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-black/75 text-white backdrop-blur-md shadow-sm">
-                    {item.badge}
-                  </span>
-                </div>
               </motion.div>
             );
           })}
@@ -198,35 +169,35 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
       </div>
 
       {/* 3. Floating Action Pill Directly Below Active Card (Spencer Gabor Signature) */}
-      <div className="mt-7 sm:mt-9 flex flex-col items-center justify-center">
+      <div className="mt-8 sm:mt-10 flex flex-col items-center justify-center">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeItem.id}
             initial={{ opacity: 0, y: 8, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.95 }}
-            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             className="flex items-center gap-3"
           >
             <Link
               href={href(`/work/${activeItem.slug}`)}
-              className="btn-elastic inline-flex h-12 sm:h-13 items-center justify-center gap-2.5 rounded-full bg-[var(--color-pill-bg)] text-[var(--color-pill-text)] px-8 text-[13.5px] font-bold uppercase tracking-widest shadow-xl cursor-pointer hover:scale-105 transition-transform"
+              className="btn-elastic inline-flex h-11 sm:h-12 items-center justify-center gap-2 rounded-full bg-[var(--color-pill-bg)] text-[var(--color-pill-text)] px-8 text-xs sm:text-[13px] font-bold uppercase tracking-widest shadow-xl cursor-pointer hover:scale-105 transition-transform"
               style={{
-                boxShadow: "var(--shadow-sticker, 0 6px 0 rgba(0,0,0,0.25))",
+                boxShadow: "var(--shadow-sticker, 0 5px 0 rgba(0,0,0,0.25))",
               }}
             >
               <span>{activeItem.title}</span>
-              <ArrowUpRight className="w-4 h-4 stroke-[3]" />
+              <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
             </Link>
 
             <button
               type="button"
               onClick={() => setActiveModalProject(getActiveProjectForModal())}
-              className="btn-elastic inline-flex h-12 sm:h-13 items-center justify-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--foreground)] px-5 text-[12.5px] font-bold uppercase tracking-wider shadow-sm cursor-pointer hover:bg-[var(--color-surface-muted)] transition-colors"
+              className="btn-elastic inline-flex h-11 sm:h-12 items-center justify-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--foreground)] px-4 sm:px-5 text-xs sm:text-[12px] font-bold uppercase tracking-wider shadow-sm cursor-pointer hover:bg-[var(--color-surface-muted)] transition-colors"
               title={t.work.previewAria}
               aria-label={`${t.work.preview} ${activeItem.title}`}
             >
-              <Eye className="w-4 h-4 stroke-[2.5] opacity-70" />
+              <Eye className="w-3.5 h-3.5 stroke-[2.5] opacity-70" />
               <span>{t.work.preview}</span>
             </button>
           </motion.div>
