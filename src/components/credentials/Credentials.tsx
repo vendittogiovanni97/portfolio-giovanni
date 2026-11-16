@@ -14,7 +14,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useI18n } from "@/i18n";
-import { FoldablePassport } from "@/components/ui";
+
 
 
 type FilterTab = "all" | "anthropic" | "academic";
@@ -208,11 +208,6 @@ export function Credentials() {
               {t.credentials.academicTab}
             </button>
           </div>
-        </div>
-
-        {/* Spencer Gabor 3D Foldable Developer Passport */}
-        <div className="mb-14">
-          <FoldablePassport onOpenCertificateModal={(idx) => setModalIndex(idx)} />
         </div>
 
         {/* 1. ANTHROPIC CLAUDE CERTIFICATIONS DECK */}

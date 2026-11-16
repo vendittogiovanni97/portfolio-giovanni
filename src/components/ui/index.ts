@@ -5,7 +5,7 @@ export { CreativeCursor } from "./CreativeCursor";
 export { HolographicFoilCard } from "./HolographicFoilCard";
 export { InteractiveAudioEngine, SoundToggle } from "./InteractiveAudio";
 export { SlideToUnlock } from "./SlideToUnlock";
-export { FoldablePassport } from "./FoldablePassport";
+
 
 
 

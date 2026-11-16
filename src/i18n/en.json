@@ -587,21 +587,6 @@
     "unlocked": "Downloading...",
     "downloaded": "CV Unlocked!"
   },
-  "passport": {
-    "badge": "Official Passport · 3D Folio",
-    "title": "Developer Passport & Credentials",
-    "subtitle": "Interactive 3D booklet: click or drag the slider to unfold the passport with official Anthropic visa stamps and academic milestones.",
-    "openBooklet": "Open 3D Booklet",
-    "closeBooklet": "Close Booklet",
-    "dragToOpen": "Drag slider to unfold 180°",
-    "officialBadge": "OFFICIAL TECHNICAL PASSPORT",
-    "republic": "DEVELOPER REPUBLIC",
-    "biometrics": "Biometrics & Education",
-    "academicStamps": "Academic Visas & Degrees",
-    "aiVisas": "Official Anthropic AI Visas",
-    "openLightbox": "View Original Certificates",
-    "verified": "VERIFIED · 2026"
-  },
   "common": {
     "somethingWentWrong": "Something went wrong.",
     "tryAgain": "Try again",
