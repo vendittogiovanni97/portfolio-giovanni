@@ -582,6 +582,11 @@
     "scatter": "Toss All",
     "hint": "Drag or toss with cursor ↔"
   },
+  "slide": {
+    "slideToUnlockCv": "Slide to download CV",
+    "unlocked": "Downloading...",
+    "downloaded": "CV Unlocked!"
+  },
   "common": {
     "somethingWentWrong": "Something went wrong.",
     "tryAgain": "Try again",

@@ -252,6 +252,19 @@ body {
 }
 
 /* Shimmer highlight for CTA buttons */
+@keyframes text-shimmer-sweep {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.animate-shimmer {
+  animation: text-shimmer-sweep 2.8s linear infinite;
+}
+
 @keyframes shimmer-sweep {
   0% {
     transform: translateX(-150%) skewX(-15deg);

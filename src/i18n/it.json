@@ -582,6 +582,11 @@
     "scatter": "Lancia Tutti",
     "hint": "Trascina o lancia con il cursore ↔"
   },
+  "slide": {
+    "slideToUnlockCv": "Scorri per scaricare il CV",
+    "unlocked": "Scaricamento in corso...",
+    "downloaded": "CV Sbloccato!"
+  },
   "common": {
     "somethingWentWrong": "Qualcosa è andato storto.",
     "tryAgain": "Riprova",

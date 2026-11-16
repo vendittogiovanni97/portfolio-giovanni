@@ -2,9 +2,11 @@
 
 import { config } from "@/lib/config";
 import Link from "next/link";
-import { ArrowUpRight, Download, Mail } from "lucide-react";
+import { ArrowUpRight, Mail } from "lucide-react";
 import { useI18n } from "@/i18n";
 import { BrandLogo } from "@/components/ui/BrandLogo";
+import { SlideToUnlock } from "@/components/ui";
+
 
 export function Footer() {
   const { href, t, locale } = useI18n();
@@ -53,16 +55,13 @@ export function Footer() {
             <ArrowUpRight className="w-5 h-5 stroke-[2.5]" />
           </Link>
 
-          <a
-            href={cvPdf}
-            target="_blank"
-            rel="noopener noreferrer"
-            download={cvDownloadName}
-            className="btn-elastic inline-flex h-13 sm:h-14 items-center justify-center gap-3 rounded-full border-2 border-[var(--color-border)] bg-[var(--background)] px-7 text-[15px] font-bold uppercase tracking-wider text-[var(--foreground)] cursor-pointer"
-          >
-            <Download className="w-5 h-5 stroke-[2.5]" />
-            <span>{t.footer.downloadCv}</span>
-          </a>
+          <SlideToUnlock
+            downloadUrl={cvPdf}
+            downloadName={cvDownloadName}
+            label={t.slide.slideToUnlockCv}
+            unlockedLabel={t.slide.downloaded}
+            className="w-full sm:w-[320px] md:w-[340px]"
+          />
         </div>
 
         {/* Social Links Row */}

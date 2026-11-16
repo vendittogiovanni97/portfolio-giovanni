@@ -3,7 +3,9 @@
 import { useI18n } from "@/i18n";
 import { ContactForm } from "@/components/layout/ContactForm";
 import { config } from "@/lib/config";
-import { Calendar, Download, ArrowRight, ArrowUpRight } from "lucide-react";
+import { Calendar, ArrowRight, ArrowUpRight } from "lucide-react";
+import { SlideToUnlock } from "@/components/ui";
+
 
 export function ContactContent() {
   const { t, locale } = useI18n();
@@ -90,7 +92,7 @@ export function ContactContent() {
             </div>
           </div>
 
-          {/* 2. Download CV Card */}
+          {/* 2. Download CV Card with SlideToUnlock */}
           <div
             className="rounded-3xl bg-[var(--color-surface)] border-2 border-[var(--color-border)] p-6"
             style={{
@@ -100,19 +102,16 @@ export function ContactContent() {
             <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--foreground)] opacity-65 block mb-2">
               {t.contact.downloadCvTitle}
             </span>
-            <p className="text-xs sm:text-sm text-[var(--foreground)] opacity-75 leading-relaxed mb-4 font-medium">
+            <p className="text-xs sm:text-sm text-[var(--foreground)] opacity-75 leading-relaxed mb-5 font-medium">
               {t.contact.downloadCvDesc}
             </p>
-            <a
-              href={cvPdf}
-              download={cvDownloadName}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-elastic w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border-2 border-[var(--color-border)] bg-[var(--background)] text-[var(--foreground)] font-bold text-xs uppercase tracking-wider hover:bg-[var(--color-pill-bg)] hover:text-[var(--color-pill-text)] transition-colors cursor-pointer"
-            >
-              <Download className="w-4 h-4" />
-              <span>{t.contact.downloadCvButton}</span>
-            </a>
+            <SlideToUnlock
+              downloadUrl={cvPdf}
+              downloadName={cvDownloadName}
+              label={t.slide.slideToUnlockCv}
+              unlockedLabel={t.slide.downloaded}
+              className="w-full"
+            />
           </div>
 
           {/* 3. Direct Email & Availability */}
