@@ -7,7 +7,7 @@ import { ArrowUpRight, Check, Copy } from "lucide-react";
 import { config } from "@/lib/config";
 import { useI18n } from "@/i18n";
 import { sound } from "@/lib/sound";
-import { TextSwap } from "@/components/ui";
+import { TextSwap, SpinningCircularText } from "@/components/ui";
 
 
 interface HeroCardConfig {
@@ -194,6 +194,36 @@ export function Hero() {
       onMouseLeave={handleMouseLeave}
       className="relative w-full min-h-[88vh] sm:min-h-[92vh] flex flex-col justify-between items-center text-center px-4 sm:px-6 pt-20 sm:pt-24 pb-6 sm:pb-8 select-none overflow-hidden"
     >
+      {/* Editorial Spinning Badge (Awwwards Style Available for Work) */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute top-20 right-4 sm:top-24 sm:right-8 lg:right-16 z-20 hidden md:block"
+      >
+        <a
+          href="#contact"
+          data-cursor="pointer"
+          className="group block transition-transform hover:scale-105 active:scale-95 cursor-pointer"
+          title={t.hero.availability}
+        >
+          <SpinningCircularText
+            text="· AVAILABLE FOR WORK · 2026 · FULLSTACK & AI · "
+            duration={16}
+            charSpacing={1.08}
+            fontSize="9px"
+            className="text-[var(--foreground)]"
+          >
+            <div className="w-10 h-10 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] shadow-md flex items-center justify-center group-hover:border-[var(--color-accent)] transition-colors">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+              </span>
+            </div>
+          </SpinningCircularText>
+        </a>
+      </motion.div>
+
       {/* 1. TOP METADATA & 1-CLICK EMAIL (Spencer Gabor Style) */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
