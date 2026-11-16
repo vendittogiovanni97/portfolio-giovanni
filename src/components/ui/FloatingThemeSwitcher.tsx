@@ -68,11 +68,51 @@ export function FloatingThemeSwitcher() {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const selectTheme = (theme: ThemeId) => {
+  const selectTheme = (theme: ThemeId, e?: React.MouseEvent) => {
     sound.playChime();
-    setCurrentTheme(theme);
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("portfolio-theme", theme);
+
+    const applyTheme = () => {
+      setCurrentTheme(theme);
+      document.documentElement.setAttribute("data-theme", theme);
+      localStorage.setItem("portfolio-theme", theme);
+    };
+
+    // Check if View Transitions API is supported and reduced motion is NOT requested
+    if (
+      typeof document === "undefined" ||
+      !("startViewTransition" in document) ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      applyTheme();
+      return;
+    }
+
+    const x = e?.clientX ?? window.innerWidth - 32;
+    const y = e?.clientY ?? window.innerHeight - 32;
+    const endRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    );
+
+    const transition = (document as Document & { startViewTransition?: (cb: () => void) => { ready?: Promise<void> } }).startViewTransition?.(() => {
+      applyTheme();
+    });
+
+    transition?.ready?.then(() => {
+      document.documentElement.animate(
+        {
+          clipPath: [
+            `circle(0px at ${x}px ${y}px)`,
+            `circle(${endRadius}px at ${x}px ${y}px)`,
+          ],
+        },
+        {
+          duration: 650,
+          easing: "cubic-bezier(0.16, 1, 0.3, 1)",
+          pseudoElement: "::view-transition-new(root)",
+        }
+      );
+    });
   };
 
   if (!mounted) return null;
@@ -97,7 +137,7 @@ export function FloatingThemeSwitcher() {
               return (
                 <button
                   key={t.id}
-                  onClick={() => selectTheme(t.id)}
+                  onClick={(e) => selectTheme(t.id, e)}
                   title={t.name}
                   className={`group relative flex h-10 w-10 items-center justify-center rounded-full border border-black/10 transition-transform active:scale-90 hover:scale-110 cursor-pointer ${
                     isSelected ? "ring-2 ring-black ring-offset-2" : ""

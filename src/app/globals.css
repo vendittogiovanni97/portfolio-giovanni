@@ -20,6 +20,24 @@
   Spencer Gabor Inspired Dynamic Palettes & Elastic Physics
 */
 :root {
+  --expo-out: linear(
+    0 0%,
+    0.1684 2.66%,
+    0.3165 5.49%,
+    0.446 8.52%,
+    0.5581 11.78%,
+    0.6535 15.29%,
+    0.7341 19.11%,
+    0.8011 23.3%,
+    0.8557 27.93%,
+    0.8962 32.68%,
+    0.9283 38.01%,
+    0.9529 44.08%,
+    0.9711 51.14%,
+    0.9833 59.06%,
+    0.9915 68.74%,
+    1 100%
+  );
   --ease-out-elastic: linear(
     0, 0.5737 7.6%, 0.8382 11.87%, 0.9463 14.19%, 1.0292 16.54%,
     1.0886 18.97%, 1.1258 21.53%, 1.137 22.97%, 1.1424 24.48%,
@@ -675,3 +693,26 @@ body {
     font-size: 0.55rem;
   }
 }
+
+/* ---------------------------------------------------------
+   Theme Toggle Effect (Chánh Đại Inspired View Transition)
+   --------------------------------------------------------- */
+::view-transition-group(root) {
+  animation-duration: 0.65s;
+  animation-timing-function: var(--expo-out);
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
