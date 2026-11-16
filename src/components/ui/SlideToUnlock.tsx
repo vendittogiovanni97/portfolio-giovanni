@@ -5,7 +5,7 @@ import {
   motion,
   useMotionValue,
   useTransform,
-  useSpring,
+  animate,
   useReducedMotion,
   AnimatePresence,
 } from "framer-motion";
@@ -32,6 +32,7 @@ export function SlideToUnlock({
   disabled = false,
 }: SlideToUnlockProps) {
   const trackRef = useRef<HTMLDivElement>(null);
+  const handleRef = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
 
   const [trackWidth, setTrackWidth] = useState(0);
@@ -40,26 +41,27 @@ export function SlideToUnlock({
 
   // Measurements
   const handleSize = 48; // px
-  const padding = 5; // px
+  const padding = 6; // px
   const maxDrag = Math.max(0, trackWidth - handleSize - padding * 2);
 
-  // Motion values
+  // Directly bind x to motion value for real-time Framer Motion drag updates
   const x = useMotionValue(0);
-  const springX = useSpring(x, { stiffness: 450, damping: 28 });
-  const progress = useTransform(springX, [0, maxDrag || 1], [0, 1]);
 
   // Visual transforms driven by slider progress
-  const textOpacity = useTransform(progress, [0, 0.65], [1, 0]);
+  const progress = useTransform(x, [0, maxDrag || 1], [0, 1]);
+  const textOpacity = useTransform(progress, [0, 0.6], [1, 0]);
   const progressFill = useTransform(progress, [0, 1], ["0%", "100%"]);
 
   // Track width measurement via ResizeObserver
   useEffect(() => {
     if (!trackRef.current) return;
-    const observer = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        setTrackWidth(entry.contentRect.width);
+    const updateWidth = () => {
+      if (trackRef.current) {
+        setTrackWidth(trackRef.current.clientWidth);
       }
-    });
+    };
+    updateWidth();
+    const observer = new ResizeObserver(updateWidth);
     observer.observe(trackRef.current);
     return () => observer.disconnect();
   }, []);
@@ -78,9 +80,12 @@ export function SlideToUnlock({
 
   const handleUnlockSuccess = useCallback(() => {
     setIsUnlocked(true);
-    x.set(maxDrag);
+    setIsDragging(false);
 
-    // Audio & Haptic multi-sensory feedback
+    // Smoothly animate handle to the end
+    animate(x, maxDrag, { type: "spring", stiffness: 400, damping: 25 });
+
+    // Multi-sensory feedback
     sound.playChime();
     if (typeof window !== "undefined" && "vibrate" in navigator) {
       navigator.vibrate([25, 45, 25]);
@@ -89,10 +94,10 @@ export function SlideToUnlock({
     triggerDownload();
     if (onUnlock) onUnlock();
 
-    // Auto reset after 3.2s so user can re-trigger if desired
+    // Auto-reset after 3.2s
     const timer = setTimeout(() => {
       setIsUnlocked(false);
-      x.set(0);
+      animate(x, 0, { type: "spring", stiffness: 450, damping: 28 });
     }, 3200);
 
     return () => clearTimeout(timer);
@@ -102,14 +107,14 @@ export function SlideToUnlock({
     setIsDragging(false);
     if (disabled || isUnlocked) return;
 
-    // Threshold: 85% of total travel
+    // Threshold: 70% of total travel triggers unlock
     const currentX = x.get();
-    if (currentX >= maxDrag * 0.85) {
+    if (maxDrag > 0 && currentX >= maxDrag * 0.7) {
       handleUnlockSuccess();
     } else {
       // Elastic snap-back
       sound.playThud();
-      x.set(0);
+      animate(x, 0, { type: "spring", stiffness: 450, damping: 28 });
     }
   };
 
@@ -134,7 +139,7 @@ export function SlideToUnlock({
       style={{
         boxShadow: "var(--shadow-sticker, 0 4px 0 rgba(0,0,0,0.2))",
       }}
-      className={`relative h-[56px] sm:h-[60px] w-full max-w-md rounded-full border-2 border-[var(--color-border)] bg-[var(--background)] p-[4px] flex items-center select-none overflow-hidden transition-all duration-300 focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:outline-hidden ${
+      className={`relative h-[56px] sm:h-[60px] w-full max-w-md rounded-full border-2 border-[var(--color-border)] bg-[var(--background)] p-[4px] flex items-center select-none overflow-hidden transition-all duration-300 focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:outline-hidden touch-none ${
         disabled ? "opacity-50 pointer-events-none" : ""
       } ${className}`}
     >
@@ -179,9 +184,10 @@ export function SlideToUnlock({
 
       {/* 4. Draggable Thumb Handle */}
       <motion.div
+        ref={handleRef}
         drag={isUnlocked || disabled ? false : "x"}
         dragConstraints={{ left: 0, right: maxDrag }}
-        dragElastic={0.08}
+        dragElastic={0}
         dragMomentum={false}
         onDragStart={() => {
           setIsDragging(true);
@@ -191,23 +197,22 @@ export function SlideToUnlock({
         data-cursor="drag"
         data-sound-custom="true"
         style={{
-          x: reduce ? (isUnlocked ? maxDrag : 0) : springX,
+          x: reduce ? (isUnlocked ? maxDrag : 0) : x,
         }}
         whileHover={{
           scale: 1.05,
           transition: { type: "spring", stiffness: 400, damping: 20 },
         }}
         whileTap={{
-          scale: 0.98,
+          scale: 0.96,
         }}
-        className={`relative z-10 h-11 w-11 sm:h-12 sm:w-12 rounded-full flex items-center justify-center cursor-grab active:cursor-grabbing border-2 border-[var(--color-border)] shadow-md transition-colors duration-200 ${
+        className={`relative z-10 h-11 w-11 sm:h-12 sm:w-12 rounded-full flex items-center justify-center cursor-grab active:cursor-grabbing border-2 border-[var(--color-border)] shadow-md transition-colors duration-200 touch-none ${
           isUnlocked
             ? "bg-emerald-500 text-white border-emerald-600"
             : isDragging
             ? "bg-[var(--color-accent)] text-[var(--color-accent-contrast)]"
             : "bg-[var(--color-pill-bg)] text-[var(--color-pill-text)]"
         }`}
-        style-shadow="var(--shadow-sticker, 0 3px 0 rgba(0,0,0,0.2))"
       >
         {isUnlocked ? (
           <Check className="w-5 h-5 stroke-[3] animate-in zoom-in-75 duration-200" />
@@ -215,8 +220,7 @@ export function SlideToUnlock({
           <ArrowRight className="w-5 h-5 stroke-[2.5] transition-transform duration-200 group-hover:translate-x-0.5" />
         )}
 
-        {/* Small subtle badge cue */}
-        <span className="sr-only">Slide</span>
+        <span className="sr-only">Slide to unlock</span>
       </motion.div>
     </div>
   );
