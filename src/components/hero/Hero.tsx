@@ -115,6 +115,7 @@ function InteractiveHeroCard({
     >
       <a
         href={card.href}
+        data-cursor="drag"
         className="block w-24 sm:w-32 md:w-36 lg:w-40 aspect-square rounded-2xl overflow-hidden border-2 border-[var(--color-border)] bg-[var(--color-surface)] p-1.5 sm:p-2 shadow-xl transition-shadow duration-300 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.25)]"
         style={{
           boxShadow: "var(--shadow-sticker, 0 6px 0 rgba(0,0,0,0.25))",
@@ -209,6 +210,7 @@ export function Hero() {
           <button
             type="button"
             onClick={handleCopyEmail}
+            data-cursor="copy"
             className="btn-elastic inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] text-[10px] font-mono text-[var(--foreground)] opacity-70 hover:opacity-100 cursor-pointer transition-all"
             title={t.hero.copyEmailAria}
             aria-label={t.hero.copyEmailAria}

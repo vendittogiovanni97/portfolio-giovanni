@@ -134,6 +134,7 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
                 key={item.id}
                 onClick={() => setActiveIndex(idx)}
                 initial={false}
+                data-cursor="view"
                 animate={{
                   x: `${xPercent}%`,
                   y: yOffset,
@@ -198,6 +199,7 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
             <button
               type="button"
               onClick={() => setActiveModalProject(getActiveProjectForModal())}
+              data-cursor="zoom"
               className="btn-elastic inline-flex h-11 sm:h-12 items-center justify-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--foreground)] px-4 sm:px-5 text-xs sm:text-[12px] font-bold uppercase tracking-wider shadow-sm cursor-pointer hover:bg-[var(--color-surface-muted)] transition-colors"
               title={t.work.previewAria}
               aria-label={`${t.work.preview} ${activeItem.title}`}

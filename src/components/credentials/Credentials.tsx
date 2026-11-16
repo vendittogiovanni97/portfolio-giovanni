@@ -269,6 +269,7 @@ export function Credentials() {
                     <button
                       type="button"
                       onClick={() => setModalIndex(idx)}
+                      data-cursor="zoom"
                       className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden border border-[var(--color-border)] mb-4 cursor-pointer group-hover:shadow-md transition-shadow bg-[var(--color-surface-muted)]"
                       aria-label={`Visualizza ${cert.title}`}
                     >

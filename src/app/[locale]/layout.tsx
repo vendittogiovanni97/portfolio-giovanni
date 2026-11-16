@@ -7,6 +7,7 @@ import { EasterEggs } from "@/components/ui/EasterEggs";
 import { NavBar } from "@/components/layout/NavBar";
 import { Footer } from "@/components/layout/Footer";
 import { CursorSpotlight } from "@/components/ui/CursorSpotlight";
+import { CreativeCursor } from "@/components/ui/CreativeCursor";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import Script from "next/script";
 import { isLocale, locales, type Locale } from "@/i18n/server";
@@ -224,6 +225,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
           <FloatingThemeSwitcher />
           <EasterEggs />
           <CursorSpotlight />
+          <CreativeCursor />
         </I18nProvider>
         {process.env.NODE_ENV === "development" && <AgentationLoader />}
       </body>
