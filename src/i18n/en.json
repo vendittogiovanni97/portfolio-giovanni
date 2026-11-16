@@ -99,6 +99,13 @@
         "category": "Creative Engineering",
         "badge": "60 FPS WebGL",
         "description": "Interactive playground for 3D graphic experiments, particle computing, and tactile physics interactions."
+      },
+      "inkflow": {
+        "title": "N2G Inkflow",
+        "subtitle": "Studio Platform & FullCalendar Engine",
+        "category": "Management Platform",
+        "badge": "FullCalendar & AG Grid",
+        "description": "Studio management platform featuring real-time appointment scheduling, paginated client directory, media vault, and granular RBAC."
       }
     },
     "archive": {

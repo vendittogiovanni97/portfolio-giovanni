@@ -23,6 +23,7 @@ interface CertificateItem {
   title: string;
   issuer: string;
   image: string;
+  artImage: string;
   skills: string[];
 }
 
@@ -33,6 +34,7 @@ const ANTHROPIC_CERTS: CertificateItem[] = [
     title: "Claude 101",
     issuer: "Anthropic",
     image: "/certificates/claude-101.png",
+    artImage: "/certificates/art/claude-101-art.svg",
     skills: ["Prompt Engineering", "LLM Fundamentals", "In-Context Learning"],
   },
   {
@@ -41,6 +43,7 @@ const ANTHROPIC_CERTS: CertificateItem[] = [
     title: "Claude Code 101",
     issuer: "Anthropic",
     image: "/certificates/claude-code-101.png",
+    artImage: "/certificates/art/claude-code-101-art.svg",
     skills: ["Agentic CLI", "Code Automation", "Terminal Workflows"],
   },
   {
@@ -49,6 +52,7 @@ const ANTHROPIC_CERTS: CertificateItem[] = [
     title: "Claude Platform 101",
     issuer: "Anthropic",
     image: "/certificates/claude-platform-101.png",
+    artImage: "/certificates/art/claude-platform-101-art.svg",
     skills: ["Anthropic API", "Tool Use & Functions", "Cost & Latency"],
   },
   {
@@ -57,6 +61,7 @@ const ANTHROPIC_CERTS: CertificateItem[] = [
     title: "Claude Cowork",
     issuer: "Anthropic",
     image: "/certificates/claude-cowork.png",
+    artImage: "/certificates/art/claude-cowork-art.svg",
     skills: ["Multi-Agent Collaboration", "Human-in-the-loop", "Workflow Design"],
   },
 ];
@@ -157,10 +162,10 @@ export function Credentials() {
             <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-[0.25em] text-[var(--foreground)] opacity-70 mb-2 block">
               {t.credentials.sectionBadge}
             </span>
-            <h2 className="[font-family:var(--font-display)] uppercase text-5xl sm:text-7xl lg:text-8xl tracking-tight leading-[0.88] text-[var(--foreground)]">
+            <h2 className="[font-family:var(--font-display)] uppercase text-3xl sm:text-5xl lg:text-6xl tracking-tight leading-[0.92] text-[var(--foreground)]">
               {t.credentials.title}
             </h2>
-            <p className="mt-4 text-[var(--foreground)] opacity-75 text-[16px] sm:text-[18px] max-w-2xl font-medium leading-relaxed">
+            <p className="mt-3 text-[15px] sm:text-[17px] text-[var(--foreground)] opacity-75 max-w-2xl font-medium leading-relaxed">
               {t.credentials.subtitle}
             </p>
           </div>
@@ -213,10 +218,10 @@ export function Credentials() {
                   <Award className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="[font-family:var(--font-display)] uppercase text-2xl sm:text-3xl text-[var(--foreground)] tracking-tight">
+                  <h3 className="[font-family:var(--font-display)] uppercase text-xl sm:text-2xl text-[var(--foreground)] tracking-tight">
                     {t.credentials.anthropicBadge}
                   </h3>
-                  <span className="font-mono text-[11.5px] uppercase tracking-wider text-[var(--foreground)] opacity-65 block">
+                  <span className="font-mono text-[11px] uppercase tracking-wider text-[var(--foreground)] opacity-65 block">
                     {t.credentials.anthropicSpotlight}
                   </span>
                 </div>
@@ -260,21 +265,21 @@ export function Credentials() {
                       </span>
                     </div>
 
-                    {/* Preview Image Frame with tactile zoom button */}
+                    {/* Preview Image Frame: Spencer Gabor Custom Sticker Artwork */}
                     <button
                       type="button"
                       onClick={() => setModalIndex(idx)}
-                      className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden bg-neutral-950 border border-[var(--color-border)] mb-4 cursor-pointer group-hover:shadow-md transition-shadow"
+                      className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden border border-[var(--color-border)] mb-4 cursor-pointer group-hover:shadow-md transition-shadow bg-[var(--color-surface-muted)]"
                       aria-label={`Visualizza ${cert.title}`}
                     >
                       <Image
-                        src={cert.image}
+                        src={cert.artImage}
                         alt={cert.title}
                         fill
                         sizes="(min-width: 1024px) 25vw, 50vw"
-                        className="object-contain p-2 transition-transform duration-500 group-hover:scale-105"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <div className="absolute inset-0 bg-black/35 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                         <span className="btn-elastic inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[var(--color-pill-bg)] text-[var(--color-pill-text)] text-xs font-bold uppercase tracking-wider shadow-lg">
                           <ZoomIn className="w-3.5 h-3.5 stroke-[2.5]" />
                           {t.credentials.enlarge}
@@ -313,7 +318,7 @@ export function Credentials() {
               <div className="p-2.5 rounded-2xl bg-[var(--color-pill-bg)] text-[var(--color-pill-text)] shadow-sm">
                 <GraduationCap className="w-5 h-5" />
               </div>
-              <h3 className="[font-family:var(--font-display)] uppercase text-2xl sm:text-3xl text-[var(--foreground)] tracking-tight">
+              <h3 className="[font-family:var(--font-display)] uppercase text-xl sm:text-2xl text-[var(--foreground)] tracking-tight">
                 {t.credentials.academicSectionTitle}
               </h3>
             </div>
@@ -360,7 +365,7 @@ export function Credentials() {
                           <Icon className="w-3.5 h-3.5 opacity-70" />
                           {t.credentials.academicBadges[item.descKey]}
                         </span>
-                        <h4 className="[font-family:var(--font-display)] uppercase text-3xl sm:text-4xl text-[var(--foreground)] tracking-tight leading-none">
+                        <h4 className="[font-family:var(--font-display)] uppercase text-2xl sm:text-3xl text-[var(--foreground)] tracking-tight leading-none">
                           {item.title}
                         </h4>
                       </div>

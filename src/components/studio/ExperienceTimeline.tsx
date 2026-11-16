@@ -52,10 +52,10 @@ export function ExperienceTimeline() {
           <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-[0.25em] text-[var(--foreground)] opacity-70 mb-2 block">
             {t.experience.sectionBadge}
           </span>
-          <h2 className="[font-family:var(--font-display)] uppercase text-5xl sm:text-7xl lg:text-8xl tracking-tight leading-[0.88] text-[var(--foreground)]">
+          <h2 className="[font-family:var(--font-display)] uppercase text-3xl sm:text-5xl lg:text-6xl tracking-tight leading-[0.92] text-[var(--foreground)]">
             {t.experience.title}
           </h2>
-          <p className="mt-4 text-[var(--foreground)] opacity-75 text-[16px] sm:text-[18px] max-w-2xl font-medium leading-relaxed">
+          <p className="mt-3 text-[15px] sm:text-[17px] text-[var(--foreground)] opacity-75 max-w-2xl font-medium leading-relaxed">
             {t.experience.subtitle}
           </p>
         </div>
@@ -108,7 +108,7 @@ export function ExperienceTimeline() {
                   <CheckCircle2 className="w-3.5 h-3.5 opacity-75" />
                   {t.experience.currentBadge}
                 </span>
-                <h3 className="[font-family:var(--font-display)] uppercase text-3xl sm:text-5xl text-[var(--foreground)] tracking-tight leading-none">
+                <h3 className="[font-family:var(--font-display)] uppercase text-2xl sm:text-4xl text-[var(--foreground)] tracking-tight leading-none">
                   {agilaeCopy.role}
                 </h3>
               </div>

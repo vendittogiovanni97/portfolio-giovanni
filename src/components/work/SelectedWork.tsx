@@ -6,7 +6,7 @@ import Image from "next/image";
 import type { ProjectMetadata } from "@/lib/content";
 import { useI18n } from "@/i18n";
 import Link from "next/link";
-import { Eye, ArrowUpRight, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+import { ArrowUpRight, ChevronLeft, ChevronRight, Eye } from "lucide-react";
 import { ProjectQuickViewModal } from "./ProjectQuickViewModal";
 
 interface SelectedWorkProps {
@@ -23,22 +23,6 @@ interface ShowcaseItem {
   image: string;
   stack: string[];
   description: string;
-  isExternalOrRoute?: boolean;
-  targetHref?: string;
-}
-
-interface ArchiveWorkItem {
-  id: string;
-  title: string;
-  category: string;
-  year: string;
-  description: string;
-  badge: string;
-  image: string;
-  rotation: string;
-  slug?: string;
-  externalOrRoute?: string;
-  tags: string[];
 }
 
 export function SelectedWork({ projects }: SelectedWorkProps) {
@@ -46,82 +30,7 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeModalProject, setActiveModalProject] = useState<ProjectMetadata | null>(null);
 
-  const moreWorkItems: ArchiveWorkItem[] = [
-    {
-      id: "assicurativo-core",
-      title: t.work.archive.assicurativoCore.title,
-      category: t.work.archive.assicurativoCore.category,
-      year: "2025 – 2026",
-      badge: t.work.archive.assicurativoCore.badge,
-      image: "/projects/assicurativo-studio/dashboard.png",
-      rotation: "-rotate-1",
-      slug: "assicurativo-studio",
-      tags: ["React 19", "AG Grid 32", "MongoDB", "Tailwind 4"],
-      description: t.work.archive.assicurativoCore.description,
-    },
-    {
-      id: "nagma-kanban",
-      title: t.work.archive.nagmaKanban.title,
-      category: t.work.archive.nagmaKanban.category,
-      year: "2025 – 2026",
-      badge: t.work.archive.nagmaKanban.badge,
-      image: "/projects/nagma-tattoo-crm/dashboard.png",
-      rotation: "rotate-1",
-      slug: "demo-nagma",
-      tags: ["Next.js 16", "Prisma 7", "PostgreSQL", "Docker"],
-      description: t.work.archive.nagmaKanban.description,
-    },
-    {
-      id: "claude-agentic",
-      title: t.work.archive.claudeAgentic.title,
-      category: t.work.archive.claudeAgentic.category,
-      year: "2026",
-      badge: t.work.archive.claudeAgentic.badge,
-      image: "/certificates/claude-cowork.png",
-      rotation: "-rotate-1 sm:-rotate-0.5",
-      externalOrRoute: href("/studio#credentials"),
-      tags: ["Claude 3.7", "Function Calling", "Agent Workflows"],
-      description: t.work.archive.claudeAgentic.description,
-    },
-    {
-      id: "ocr-simulator",
-      title: t.work.archive.ocrSimulator.title,
-      category: t.work.archive.ocrSimulator.category,
-      year: "2026",
-      badge: t.work.archive.ocrSimulator.badge,
-      image: "/projects/assicurativo-studio/elaborazione-polizze.png",
-      rotation: "rotate-1 sm:rotate-0.5",
-      externalOrRoute: href("/lab"),
-      tags: ["Canvas API", "Wasm OCR", "Zod Validation"],
-      description: t.work.archive.ocrSimulator.description,
-    },
-    {
-      id: "virtual-grid-benchmark",
-      title: t.work.archive.virtualGrid.title,
-      category: t.work.archive.virtualGrid.category,
-      year: "2025",
-      badge: t.work.archive.virtualGrid.badge,
-      image: "/projects/assicurativo-studio/dashboard.png",
-      rotation: "-rotate-1",
-      externalOrRoute: href("/lab"),
-      tags: ["AG Grid 32", "Virtual Scrolling", "Multi-sort"],
-      description: t.work.archive.virtualGrid.description,
-    },
-    {
-      id: "spencer-design-system",
-      title: t.work.archive.spencerSystem.title,
-      category: t.work.archive.spencerSystem.category,
-      year: "2026",
-      badge: t.work.archive.spencerSystem.badge,
-      image: "/certificates/master-fullstack.png",
-      rotation: "rotate-1",
-      externalOrRoute: href("/contact"),
-      tags: ["Tailwind 4", "Elastic Springs", "Theme Switcher"],
-      description: t.work.archive.spencerSystem.description,
-    },
-  ];
-
-  // Combine real projects with flagship items for the 4-slide curved deck
+  // 3 Flagship Production Projects (Portale Assicurativo, Nagma CRM, N2G Inkflow)
   const items: ShowcaseItem[] = [
     {
       id: "assicurativo-studio",
@@ -130,7 +39,7 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
       subtitle: t.work.showcase.assicurativo.subtitle,
       category: t.work.showcase.assicurativo.category,
       badge: t.work.showcase.assicurativo.badge,
-      image: "/projects/assicurativo-studio/dashboard.png",
+      image: "/projects/assicurativo-studio/showcase.png",
       stack: ["React 19", "Next.js 16", "AG Grid 32", "MongoDB", "Claude OCR"],
       description: t.work.showcase.assicurativo.description,
     },
@@ -141,33 +50,22 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
       subtitle: t.work.showcase.nagma.subtitle,
       category: t.work.showcase.nagma.category,
       badge: t.work.showcase.nagma.badge,
-      image: "/projects/nagma-tattoo-crm/dashboard.png",
+      image: "/projects/nagma-tattoo-crm/showcase.png",
       stack: ["Next.js 16", "Prisma 7", "PostgreSQL", "Tailwind 4", "Docker"],
       description: t.work.showcase.nagma.description,
     },
     {
-      id: "ai-ocr-engine",
-      slug: "assicurativo-studio",
-      title: t.work.showcase.aiOcr.title,
-      subtitle: t.work.showcase.aiOcr.subtitle,
-      category: t.work.showcase.aiOcr.category,
-      badge: t.work.showcase.aiOcr.badge,
-      image: "/projects/assicurativo-studio/elaborazione-polizze.png",
-      stack: ["Anthropic Claude", "Gemini 2.5", "TypeScript", "Node.js", "Zod"],
-      description: t.work.showcase.aiOcr.description,
-    },
-    {
-      id: "creative-lab-webgl",
-      slug: "lab",
-      title: t.work.showcase.creativeLab.title,
-      subtitle: t.work.showcase.creativeLab.subtitle,
-      category: t.work.showcase.creativeLab.category,
-      badge: t.work.showcase.creativeLab.badge,
-      image: "/certificates/claude-cowork.png",
-      stack: ["Three.js", "GLSL Shaders", "GSAP", "Lenis", "Framer Motion"],
-      description: t.work.showcase.creativeLab.description,
-      isExternalOrRoute: true,
-      targetHref: href("/lab"),
+      id: "n2g-inkflow",
+      slug: "n2g-inkflow",
+      title: t.work.showcase.inkflow?.title || "N2G Inkflow",
+      subtitle: t.work.showcase.inkflow?.subtitle || "Platform Studio & FullCalendar Engine",
+      category: t.work.showcase.inkflow?.category || "Piattaforma Gestionale",
+      badge: t.work.showcase.inkflow?.badge || "FullCalendar & AG Grid",
+      image: "/projects/n2g-inkflow/showcase.png",
+      stack: ["React 19", "FullCalendar", "AG Grid", "Node.js", "Express", "MongoDB"],
+      description:
+        t.work.showcase.inkflow?.description ||
+        "Gestionale per studi creativi con pianificazione appuntamenti real-time, rubrica paginata, media vault e RBAC granulare.",
     },
   ];
 
@@ -181,10 +79,6 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
     setActiveIndex((prev) => (prev < items.length - 1 ? prev + 1 : 0));
   };
 
-  const handleSelectCard = (index: number) => {
-    setActiveIndex(index);
-  };
-
   const getActiveProjectForModal = (): ProjectMetadata => {
     const found = projects.find((p) => p.slug === activeItem.slug);
     if (found) return found;
@@ -194,8 +88,8 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
       description: activeItem.description,
       shortDescription: activeItem.description,
       role: "Lead Fullstack & AI Engineer",
-      company: "Production Project",
-      startDate: "2025 - Present",
+      company: "Production System",
+      startDate: "2024 - Present",
       current: true,
       stack: activeItem.stack,
       category: "product",
@@ -208,31 +102,29 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
   };
 
   return (
-    <section id="work" className="w-full relative py-16 sm:py-24 overflow-hidden select-none">
-      
-      {/* 1. Header (Spencer Gabor Centered Headline) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12 sm:mb-16">
-        <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-[0.25em] text-[var(--foreground)] opacity-60 mb-2 block">
+    <section id="work" className="w-full relative py-14 sm:py-20 overflow-hidden select-none">
+      {/* 1. Header (Spencer Gabor Refined Scale) */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8 sm:mb-12">
+        <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[var(--foreground)] opacity-60 mb-2 block">
           {t.work.curvedBadge}
         </span>
-        <h2 className="[font-family:var(--font-display)] uppercase text-6xl sm:text-8xl md:text-9xl tracking-tight leading-[0.88] text-[var(--foreground)] drop-shadow-xs">
+        <h2 className="[font-family:var(--font-display)] uppercase text-3xl sm:text-5xl lg:text-6xl tracking-tight leading-[0.92] text-[var(--foreground)] drop-shadow-xs">
           {t.work.featuredWork}
         </h2>
-        <p className="mt-3 text-[16px] sm:text-[18px] text-[var(--foreground)] opacity-70 font-medium max-w-xl mx-auto">
+        <p className="mt-2.5 text-[15px] sm:text-[17px] text-[var(--foreground)] opacity-70 font-medium max-w-md mx-auto leading-relaxed">
           {t.work.subtitle}
         </p>
       </div>
 
-      {/* 2. Spencer Gabor Curved 3D Card Deck (Arched Trajectory) */}
-      <div className="relative w-full max-w-6xl mx-auto px-4 h-[340px] sm:h-[440px] md:h-[500px] flex items-center justify-center">
-        
+      {/* 2. Spencer Gabor Curved 3D Card Track */}
+      <div className="relative w-full max-w-5xl mx-auto px-4 h-[300px] sm:h-[400px] md:h-[460px] flex items-center justify-center">
         {/* Navigation Arrows (Float at sides) */}
         <button
           onClick={handlePrev}
           aria-label={t.work.caseStudy.previous}
           className="btn-elastic absolute left-2 sm:left-6 z-40 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] shadow-xl flex items-center justify-center text-[var(--foreground)] hover:bg-[var(--color-pill-bg)] hover:text-[var(--color-pill-text)] transition-colors cursor-pointer"
         >
-          <ChevronLeft className="w-6 h-6 stroke-[2.5]" />
+          <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
         </button>
 
         <button
@@ -240,7 +132,7 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
           aria-label={t.work.caseStudy.next}
           className="btn-elastic absolute right-2 sm:right-6 z-40 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] shadow-xl flex items-center justify-center text-[var(--foreground)] hover:bg-[var(--color-pill-bg)] hover:text-[var(--color-pill-text)] transition-colors cursor-pointer"
         >
-          <ChevronRight className="w-6 h-6 stroke-[2.5]" />
+          <ChevronRight className="w-5 h-5 stroke-[2.5]" />
         </button>
 
         {/* Carousel Deck Track */}
@@ -248,107 +140,56 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
           {items.map((item, idx) => {
             const offset = idx - activeIndex;
             const isCenter = offset === 0;
-            const isLeft = offset === -1;
-            const isRight = offset === 1;
 
-            // Arched catenary trajectory math
-            let xPos = "0%";
-            let yPos = 0;
-            let rotateAngle = 0;
-            let scaleVal = 1;
-            let zIndexVal = 20;
-            let opacityVal = 1;
-
-            if (isCenter) {
-              xPos = "0%";
-              yPos = 0;
-              rotateAngle = 0;
-              scaleVal = 1;
-              zIndexVal = 30;
-              opacityVal = 1;
-            } else if (isLeft) {
-              xPos = "-58%";
-              yPos = 36;
-              rotateAngle = -7;
-              scaleVal = 0.88;
-              zIndexVal = 15;
-              opacityVal = 0.65;
-            } else if (isRight) {
-              xPos = "58%";
-              yPos = 36;
-              rotateAngle = 7;
-              scaleVal = 0.88;
-              zIndexVal = 15;
-              opacityVal = 0.65;
-            } else {
-              xPos = offset > 0 ? "110%" : "-110%";
-              yPos = 70;
-              rotateAngle = offset > 0 ? 12 : -12;
-              scaleVal = 0.72;
-              zIndexVal = 5;
-              opacityVal = 0;
-            }
+            // Catena arc math: active card is lifted & flat; side cards are angled & lowered
+            const xPercent = offset * 86;
+            const yOffset = Math.abs(offset) * 20;
+            const rotateAngle = offset * 6;
+            const scale = isCenter ? 1 : 0.88;
+            const opacity = isCenter ? 1 : 0.65;
+            const zIndex = isCenter ? 30 : 10;
 
             return (
               <motion.div
                 key={item.id}
+                onClick={() => setActiveIndex(idx)}
+                initial={false}
                 animate={{
-                  x: xPos,
-                  y: yPos,
+                  x: `${xPercent}%`,
+                  y: yOffset,
                   rotate: rotateAngle,
-                  scale: scaleVal,
-                  opacity: opacityVal,
+                  scale: scale,
+                  opacity: opacity,
+                  zIndex: zIndex,
                 }}
                 transition={{
                   type: "spring",
-                  stiffness: 280,
-                  damping: 26,
+                  stiffness: 260,
+                  damping: 24,
                   mass: 0.8,
                 }}
-                onClick={() => handleSelectCard(idx)}
-                style={{ zIndex: zIndexVal }}
-                className={`absolute w-[290px] sm:w-[380px] md:w-[460px] aspect-square rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer ${
-                  !isCenter ? "pointer-events-auto hover:opacity-90" : "pointer-events-auto"
+                className={`absolute w-[290px] sm:w-[400px] md:w-[460px] aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer ${
+                  isCenter ? "shadow-2xl" : "shadow-md hover:opacity-90"
                 }`}
+                style={{
+                  transformOrigin: "center 80%",
+                }}
               >
-                {/* Square Card Container with Spencer Gabor Multi-level Shadow */}
-                <div
-                  className="relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden bg-neutral-950 transition-all duration-300"
-                  style={{
-                    boxShadow: isCenter
-                      ? "0px 14px 28px rgba(0,0,0,0.08), 0px 36px 54px rgba(0,0,0,0.06), 0px 80px 80px rgba(0,0,0,0.03)"
-                      : "0px 8px 18px rgba(0,0,0,0.04)",
-                  }}
-                >
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    sizes="(min-width: 1024px) 460px, 85vw"
-                    className="object-cover object-top transition-transform duration-700 ease-out hover:scale-105"
-                    priority={isCenter}
-                  />
+                {/* Edge-to-edge Project Screenshot Artwork */}
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover object-top"
+                  sizes="(min-width: 768px) 460px, 85vw"
+                  priority={isCenter}
+                />
 
-                  {/* Dark gradient for legibility */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
-
-                  {/* Corner Badge */}
-                  <div className="absolute top-4 left-4 z-10">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-black/80 text-white backdrop-blur-md border border-white/20">
-                      <Sparkles className="w-3 h-3 text-[var(--color-accent)]" />
-                      {item.badge}
-                    </span>
-                  </div>
-
-                  {/* Bottom title preview on card */}
-                  <div className="absolute bottom-5 left-5 right-5 text-left text-white z-10 pointer-events-none">
-                    <span className="font-mono text-[11px] uppercase tracking-wider text-white/70 block mb-1">
-                      {item.category}
-                    </span>
-                    <h3 className="[font-family:var(--font-display)] uppercase text-2xl sm:text-3xl tracking-tight leading-none text-white">
-                      {item.title}
-                    </h3>
-                  </div>
+                {/* Subtle Overlaid Badge */}
+                <div className="absolute top-3.5 left-3.5 z-10">
+                  <span className="font-mono text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-black/75 text-white backdrop-blur-md shadow-sm">
+                    {item.badge}
+                  </span>
                 </div>
               </motion.div>
             );
@@ -356,61 +197,43 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
         </div>
       </div>
 
-      {/* 3. Spencer Gabor Floating Action Pill Under Active Card */}
-      <div className="max-w-2xl mx-auto px-4 mt-8 sm:mt-12 text-center flex flex-col items-center">
+      {/* 3. Floating Action Pill Directly Below Active Card (Spencer Gabor Signature) */}
+      <div className="mt-7 sm:mt-9 flex flex-col items-center justify-center">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeItem.id}
-            initial={{ opacity: 0, y: 12, scale: 0.95 }}
+            initial={{ opacity: 0, y: 8, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -12, scale: 0.95 }}
-            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-center"
+            exit={{ opacity: 0, y: -8, scale: 0.95 }}
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+            className="flex items-center gap-3"
           >
-            {/* Action Buttons: Spencer Gabor Signature Pill */}
-            <div className="flex flex-wrap items-center justify-center gap-3 mb-5">
-              <Link
-                href={activeItem.targetHref || href(`/work/${activeItem.slug}`)}
-                className="btn-elastic inline-flex h-13 sm:h-14 items-center justify-center gap-2.5 rounded-full bg-[var(--color-pill-bg)] text-[var(--color-pill-text)] px-8 text-[14px] font-bold uppercase tracking-widest shadow-xl cursor-pointer"
-                style={{
-                  boxShadow: "var(--shadow-sticker, 0 6px 0 rgba(0,0,0,0.25))",
-                }}
-              >
-                <span>{activeItem.title}</span>
-                <ArrowUpRight className="w-4 h-4 stroke-[3]" />
-              </Link>
+            <Link
+              href={href(`/work/${activeItem.slug}`)}
+              className="btn-elastic inline-flex h-12 sm:h-13 items-center justify-center gap-2.5 rounded-full bg-[var(--color-pill-bg)] text-[var(--color-pill-text)] px-8 text-[13.5px] font-bold uppercase tracking-widest shadow-xl cursor-pointer hover:scale-105 transition-transform"
+              style={{
+                boxShadow: "var(--shadow-sticker, 0 6px 0 rgba(0,0,0,0.25))",
+              }}
+            >
+              <span>{activeItem.title}</span>
+              <ArrowUpRight className="w-4 h-4 stroke-[3]" />
+            </Link>
 
-              <button
-                type="button"
-                onClick={() => setActiveModalProject(getActiveProjectForModal())}
-                className="btn-elastic inline-flex h-13 sm:h-14 items-center justify-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--foreground)] px-6 text-[13px] font-bold uppercase tracking-wider shadow-sm cursor-pointer"
-              >
-                <Eye className="w-4 h-4 stroke-[2.5] opacity-70" />
-                <span>{t.work.preview}</span>
-              </button>
-            </div>
-
-            {/* Description */}
-            <p className="text-[15px] sm:text-[16px] text-[var(--foreground)] opacity-75 font-medium max-w-lg mb-4">
-              {activeItem.description}
-            </p>
-
-            {/* Stack Tags */}
-            <div className="flex flex-wrap items-center justify-center gap-1.5">
-              {activeItem.stack.map((tag) => (
-                <span
-                  key={tag}
-                  className="font-mono text-[11px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-[var(--color-surface-muted)] text-[var(--foreground)] opacity-85 border border-[var(--color-border)]"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
+            <button
+              type="button"
+              onClick={() => setActiveModalProject(getActiveProjectForModal())}
+              className="btn-elastic inline-flex h-12 sm:h-13 items-center justify-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--foreground)] px-5 text-[12.5px] font-bold uppercase tracking-wider shadow-sm cursor-pointer hover:bg-[var(--color-surface-muted)] transition-colors"
+              title={t.work.previewAria}
+              aria-label={`${t.work.preview} ${activeItem.title}`}
+            >
+              <Eye className="w-4 h-4 stroke-[2.5] opacity-70" />
+              <span>{t.work.preview}</span>
+            </button>
           </motion.div>
         </AnimatePresence>
 
         {/* Carousel Pagination Dots */}
-        <div className="flex items-center justify-center gap-2 mt-8">
+        <div className="flex items-center justify-center gap-2.5 mt-5">
           {items.map((_, dotIdx) => (
             <button
               key={dotIdx}
@@ -418,7 +241,7 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
               aria-label={`Vai al progetto ${dotIdx + 1}`}
               className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
                 activeIndex === dotIdx
-                  ? "w-8 bg-[var(--color-pill-bg)]"
+                  ? "w-7 bg-[var(--color-pill-bg)]"
                   : "w-2 bg-[var(--foreground)] opacity-20 hover:opacity-40"
               }`}
             />
@@ -426,125 +249,7 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
         </div>
       </div>
 
-      {/* Spencer Gabor Inspired "More Work" Archive Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-28 sm:mt-36 pt-16 border-t-2 border-[var(--color-border)]">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--color-surface-muted)] border border-[var(--color-border)] mb-3">
-                <Sparkles className="w-3.5 h-3.5 text-[var(--color-accent)]" />
-                <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--foreground)] opacity-80">
-                  {t.work.archiveBadge}
-                </span>
-              </div>
-              <h3 className="[font-family:var(--font-display)] uppercase text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[0.92] text-[var(--foreground)]">
-                {t.work.moreWork || "More Work"}
-              </h3>
-            </div>
-            <p className="text-[15px] sm:text-[17px] text-[var(--foreground)] opacity-70 font-medium max-w-md leading-relaxed">
-              {t.work.moreWorkSubtitle || "Archivio di sistemi in produzione, strumenti interni e architetture software."}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
-            {moreWorkItems.map((item) => {
-              const projectMeta = item.slug ? projects.find((p) => p.slug === item.slug) : null;
-
-              return (
-                <motion.div
-                  key={item.id}
-                  whileHover={{ y: -6, rotate: 0 }}
-                  transition={{ type: "spring", stiffness: 350, damping: 22 }}
-                  className={`group rounded-[28px] border-2 border-[var(--color-border)] bg-[var(--color-surface)] p-5 sm:p-6 transition-all duration-300 flex flex-col justify-between hover:shadow-xl ${item.rotation}`}
-                >
-                  <div>
-                    {/* Visual Preview / Thumbnail */}
-                    <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden mb-4 border border-[var(--color-border)] bg-[var(--color-surface-muted)] group-hover:scale-[1.01] transition-transform duration-300">
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        fill
-                        className="object-cover object-top opacity-90 group-hover:opacity-100 transition-opacity duration-300"
-                        sizes="(min-width: 1024px) 360px, (min-width: 768px) 50vw, 100vw"
-                      />
-                      <div className="absolute top-2.5 left-2.5">
-                        <span className="font-mono text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-[var(--color-pill-bg)] text-[var(--color-pill-text)] shadow-sm">
-                          {item.badge}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Meta Row: Category + Year */}
-                    <div className="flex items-center justify-between text-xs font-mono font-semibold mb-2">
-                      <span className="text-[var(--color-accent)] uppercase tracking-wider">
-                        {item.category}
-                      </span>
-                      <span className="text-[var(--foreground)] opacity-55">
-                        {item.year}
-                      </span>
-                    </div>
-
-                    {/* Title */}
-                    <h4 className="text-xl font-bold tracking-tight text-[var(--foreground)] group-hover:text-[var(--color-accent)] transition-colors leading-snug">
-                      {item.title}
-                    </h4>
-
-                    {/* Description */}
-                    <p className="text-[13px] sm:text-[14px] text-[var(--foreground)] opacity-75 font-medium leading-relaxed mt-2 line-clamp-3">
-                      {item.description}
-                    </p>
-                  </div>
-
-                  <div className="mt-5 pt-4 border-t border-[var(--color-border)]">
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-1.5 mb-4">
-                      {item.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="font-mono text-[10px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[var(--color-surface-muted)] text-[var(--foreground)] opacity-80 border border-[var(--color-border)]"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Action Button */}
-                    {item.slug ? (
-                      <div className="flex items-center gap-2">
-                        <Link
-                          href={href(`/work/${item.slug}`)}
-                          className="flex-1 inline-flex items-center justify-center gap-2 h-10 rounded-full border-2 border-[var(--color-border)] bg-[var(--background)] px-4 text-xs font-bold uppercase tracking-wider text-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-all cursor-pointer"
-                        >
-                          <span>{t.work.caseStudyBtn}</span>
-                          <ArrowUpRight className="w-3.5 h-3.5" />
-                        </Link>
-                        {projectMeta && (
-                          <button
-                            onClick={() => setActiveModalProject(projectMeta)}
-                            className="inline-flex items-center justify-center w-10 h-10 rounded-full border-2 border-[var(--color-border)] bg-[var(--color-surface-muted)] text-[var(--foreground)] hover:bg-[var(--color-pill-bg)] hover:text-[var(--color-pill-text)] transition-all cursor-pointer"
-                            aria-label={`${t.work.preview} ${item.title}`}
-                            title={t.work.previewAria}
-                          >
-                            <Eye className="w-4 h-4" />
-                          </button>
-                        )}
-                      </div>
-                    ) : (
-                      <Link
-                        href={item.externalOrRoute || href("/work")}
-                        className="w-full inline-flex items-center justify-center gap-2 h-10 rounded-full border-2 border-[var(--color-border)] bg-[var(--background)] px-4 text-xs font-bold uppercase tracking-wider text-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-all cursor-pointer"
-                      >
-                        <span>{t.work.explore}</span>
-                        <ArrowUpRight className="w-3.5 h-3.5" />
-                      </Link>
-                    )}
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Quick View Modal */}
+      {/* Quick View Modal */}
       <ProjectQuickViewModal
         project={activeModalProject}
         onClose={() => setActiveModalProject(null)}

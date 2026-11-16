@@ -14,18 +14,18 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
         
         {/* Massive Spencer Gabor CTA */}
-        <div className="mb-14">
+        <div className="mb-12">
           <span className="text-xs font-bold uppercase tracking-widest text-[var(--color-accent)] mb-3 block">
             {t.footer.available}
           </span>
-          <h2 className="[font-family:var(--font-display)] uppercase text-6xl sm:text-8xl lg:text-9xl tracking-tight leading-[0.88] text-[var(--foreground)]">
+          <h2 className="[font-family:var(--font-display)] uppercase text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[0.9] text-[var(--foreground)]">
             Let&apos;s Build
             <br />
             <span className="text-[var(--color-accent)] transition-colors duration-450">
               Something Bold.
             </span>
           </h2>
-          <p className="mt-6 text-[18px] sm:text-[22px] font-medium text-[var(--foreground)] opacity-75 max-w-2xl leading-relaxed">
+          <p className="mt-5 text-[16px] sm:text-[19px] font-medium text-[var(--foreground)] opacity-75 max-w-2xl leading-relaxed">
             {t.footer.pitch}
           </p>
         </div>

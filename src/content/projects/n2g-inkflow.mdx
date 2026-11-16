@@ -1,0 +1,49 @@
+---
+title: "N2G Inkflow"
+description: "Piattaforma gestionale monorepo per studi creativi: gestione clienti, richieste, calendario interattivo con FullCalendar, media vault e RBAC granulare."
+shortDescription: "Gestionale per studi creativi con FullCalendar, AG Grid, archivio media e RBAC granulare."
+role: "Fullstack Engineer & Software Architect"
+company: "Tinta Santa Studio"
+startDate: "2024-06"
+current: true
+stack:
+  - "React 19"
+  - "Vite"
+  - "TypeScript"
+  - "Material UI (MUI)"
+  - "AG Grid Community"
+  - "FullCalendar"
+  - "Node.js 22"
+  - "Express 5"
+  - "MongoDB"
+  - "Docker"
+category: "product"
+featured: true
+order: 3
+metrics:
+  "Gestione Richieste": "100% integrata"
+  "Latenza API": "< 120ms"
+  "Tempo Pianificazione": "-65%"
+  "Sicurezza Auth": "HttpOnly + RBAC"
+images:
+  hero: "/projects/n2g-inkflow/dashboard.png"
+  gallery:
+    - "/projects/n2g-inkflow/dashboard.png"
+    - "/projects/n2g-inkflow/presentazione.png"
+    - "/projects/n2g-inkflow/mobile.png"
+links:
+  live: ""
+  github: ""
+  caseStudy: "/work/n2g-inkflow"
+---
+
+# N2G Inkflow — Studio Management Platform & Media Vault
+
+Piattaforma gestionale avanzata sviluppata per ottimizzare l'intero ciclo operativo degli studi creativi: dalla raccolta delle richieste dei clienti alla pianificazione su calendario interattivo, fino alla custodia sicura di bozze e documenti.
+
+## Architettura e Punti Chiave
+
+- **FullCalendar Engine**: Pianificazione visuale mese/settimana/giorno con vista Appuntamenti, slot a intervalli di 15 minuti, fuso orario Europe/Rome e trasporto orari in UTC.
+- **Rubrica Clienti AG Grid**: Tabella paginata ad alte prestazioni con ricerca server-side e sincronizzazione immediata.
+- **Flusso Richieste Integrato**: Transazione integrata cliente → richiesta → appuntamento, con chiusura automatica dello stato al momento della prenotazione.
+- **Sicurezza & RBAC**: Autenticazione con access token Bearer solo in memoria, refresh cookie HttpOnly e gestione ruoli granulare tra titolari di studio e amministratori di piattaforma.
