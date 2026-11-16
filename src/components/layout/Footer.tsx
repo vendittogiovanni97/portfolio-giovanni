@@ -7,7 +7,9 @@ import { useI18n } from "@/i18n";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 
 export function Footer() {
-  const { href, t } = useI18n();
+  const { href, t, locale } = useI18n();
+  const cvPdf = locale === "en" ? "/documents/CV_Giovanni_Venditto_EN.pdf" : "/documents/CV_Giovanni_Venditto_IT.pdf";
+  const cvDownloadName = locale === "en" ? "CV_Giovanni_Venditto_EN.pdf" : "CV_Giovanni_Venditto_IT.pdf";
 
   return (
     <footer className="relative w-full border-t border-[var(--color-border)] mt-24 bg-[var(--color-surface)] text-[var(--foreground)] transition-colors duration-450">
@@ -52,10 +54,10 @@ export function Footer() {
           </Link>
 
           <a
-            href="/documents/CV_Giovanni_Venditto.pdf"
+            href={cvPdf}
             target="_blank"
             rel="noopener noreferrer"
-            download="CV_Giovanni_Venditto.pdf"
+            download={cvDownloadName}
             className="btn-elastic inline-flex h-13 sm:h-14 items-center justify-center gap-3 rounded-full border-2 border-[var(--color-border)] bg-[var(--background)] px-7 text-[15px] font-bold uppercase tracking-wider text-[var(--foreground)] cursor-pointer"
           >
             <Download className="w-5 h-5 stroke-[2.5]" />

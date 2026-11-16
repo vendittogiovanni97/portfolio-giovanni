@@ -6,7 +6,9 @@ import { config } from "@/lib/config";
 import { Calendar, Download, ArrowRight, ArrowUpRight } from "lucide-react";
 
 export function ContactContent() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
+  const cvPdf = locale === "en" ? "/documents/CV_Giovanni_Venditto_EN.pdf" : "/documents/CV_Giovanni_Venditto_IT.pdf";
+  const cvDownloadName = locale === "en" ? "CV_Giovanni_Venditto_EN.pdf" : "CV_Giovanni_Venditto_IT.pdf";
 
   return (
     <div className="w-full">
@@ -102,8 +104,10 @@ export function ContactContent() {
               {t.contact.downloadCvDesc}
             </p>
             <a
-              href="/documents/CV_Giovanni_Venditto.pdf"
-              download="CV_Giovanni_Venditto.pdf"
+              href={cvPdf}
+              download={cvDownloadName}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-elastic w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border-2 border-[var(--color-border)] bg-[var(--background)] text-[var(--foreground)] font-bold text-xs uppercase tracking-wider hover:bg-[var(--color-pill-bg)] hover:text-[var(--color-pill-text)] transition-colors cursor-pointer"
             >
               <Download className="w-4 h-4" />

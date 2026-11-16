@@ -13,14 +13,17 @@ import { BrandLogo } from "@/components/ui/BrandLogo";
 export function NavBar() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { t, href } = useI18n();
+  const { t, href, locale } = useI18n();
   const homeHref = href("/");
+
+  const cvPdf = locale === "en" ? "/documents/CV_Giovanni_Venditto_EN.pdf" : "/documents/CV_Giovanni_Venditto_IT.pdf";
+  const cvDownloadName = locale === "en" ? "CV_Giovanni_Venditto_EN.pdf" : "CV_Giovanni_Venditto_IT.pdf";
 
   const navLinks = [
     { href: `${homeHref}#work`, label: t.nav.work, targetId: "work" },
     { href: href("/lab"), label: "Lab" },
     { href: href("/writing"), label: t.nav.writing },
-    { href: "/documents/CV_Giovanni_Venditto.pdf", label: "CV", isDownload: true },
+    { href: cvPdf, label: "CV", isDownload: true, downloadName: cvDownloadName },
   ];
 
   const socialLinks = [
@@ -96,7 +99,7 @@ export function NavBar() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    download="CV_Giovanni_Venditto.pdf"
+                    download={link.downloadName || "CV_Giovanni_Venditto.pdf"}
                     className="text-[var(--foreground)] opacity-75 font-bold uppercase tracking-wider text-[11.5px] hover:opacity-100 hover:text-[var(--color-accent)] px-3 py-1.5 rounded-full transition-colors flex items-center gap-1"
                   >
                     <span>{link.label}</span>
@@ -154,16 +157,31 @@ export function NavBar() {
               className="pointer-events-auto md:hidden mt-3 max-w-sm mx-auto rounded-3xl p-5 flex flex-col gap-4 bg-[var(--color-surface)] border-2 border-[var(--color-border)] shadow-2xl text-[var(--foreground)]"
             >
               <div className="flex flex-col gap-2">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-[var(--foreground)] [font-family:var(--font-display)] uppercase text-lg hover:text-[var(--color-accent)] py-2 border-b border-[var(--color-border)] block"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
+                {navLinks.map((link) =>
+                  link.isDownload ? (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      download={link.downloadName || "CV_Giovanni_Venditto.pdf"}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="text-[var(--foreground)] [font-family:var(--font-display)] uppercase text-lg hover:text-[var(--color-accent)] py-2 border-b border-[var(--color-border)] flex items-center justify-between"
+                    >
+                      <span>{link.label}</span>
+                      <Download className="w-4 h-4 opacity-60" />
+                    </a>
+                  ) : (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="text-[var(--foreground)] [font-family:var(--font-display)] uppercase text-lg hover:text-[var(--color-accent)] py-2 border-b border-[var(--color-border)] block"
+                    >
+                      {link.label}
+                    </Link>
+                  )
+                )}
               </div>
 
               <div className="flex items-center justify-between pt-2">
