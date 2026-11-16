@@ -424,9 +424,10 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
             />
           ))}
         </div>
+      </div>
 
-        {/* Spencer Gabor Inspired "More Work" Archive Grid */}
-        <div className="mt-28 sm:mt-36 pt-16 border-t-2 border-[var(--color-border)]">
+      {/* Spencer Gabor Inspired "More Work" Archive Grid */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-28 sm:mt-36 pt-16 border-t-2 border-[var(--color-border)]">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--color-surface-muted)] border border-[var(--color-border)] mb-3">
@@ -542,9 +543,8 @@ export function SelectedWork({ projects }: SelectedWorkProps) {
             })}
           </div>
         </div>
-      </div>
 
-      {/* Quick View Modal */}
+        {/* Quick View Modal */}
       <ProjectQuickViewModal
         project={activeModalProject}
         onClose={() => setActiveModalProject(null)}
