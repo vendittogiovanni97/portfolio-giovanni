@@ -194,77 +194,78 @@ export function Hero() {
       onMouseLeave={handleMouseLeave}
       className="relative w-full min-h-[88vh] sm:min-h-[92vh] flex flex-col justify-between items-center text-center px-4 sm:px-6 pt-20 sm:pt-24 pb-6 sm:pb-8 select-none overflow-hidden"
     >
-      {/* Editorial Spinning Badge (Awwwards Style Available for Work) */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute top-20 right-4 sm:top-24 sm:right-8 lg:right-16 z-20 hidden md:block"
-      >
-        <a
-          href="#contact"
-          data-cursor="pointer"
-          className="group block transition-transform hover:scale-105 active:scale-95 cursor-pointer"
-          title={t.hero.availability}
+      {/* 1. TOP METADATA ROW (Constrained in max-w-7xl with Availability Badge Aligned to Right Grid) */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 relative z-20 flex items-center justify-center min-h-[58px]">
+        {/* Centered Location & 1-Click Email */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col items-center gap-1.5"
         >
-          <SpinningCircularText
-            text="· AVAILABLE FOR WORK · 2026 · FULLSTACK & AI · "
-            duration={16}
-            charSpacing={1.08}
-            fontSize="9px"
-            className="text-[var(--foreground)]"
-          >
-            <div className="w-10 h-10 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] shadow-md flex items-center justify-center group-hover:border-[var(--color-accent)] transition-colors">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
-              </span>
-            </div>
-          </SpinningCircularText>
-        </a>
-      </motion.div>
+          <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-[0.25em] text-[var(--foreground)] opacity-85">
+            {t.hero.location}
+          </span>
+          
+          <div className="flex items-center gap-2">
+            <a
+              href={`mailto:${config.email}`}
+              className="font-mono text-[11px] sm:text-xs font-semibold text-[var(--foreground)] opacity-60 hover:opacity-100 transition-opacity"
+            >
+              {config.email}
+            </a>
 
-      {/* 1. TOP METADATA & 1-CLICK EMAIL (Spencer Gabor Style) */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="flex flex-col items-center gap-1.5 z-10"
-      >
-        <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-[0.25em] text-[var(--foreground)] opacity-85">
-          {t.hero.location}
-        </span>
-        
-        <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={handleCopyEmail}
+              data-cursor="copy"
+              className="btn-elastic inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] text-[10px] font-mono text-[var(--foreground)] opacity-70 hover:opacity-100 cursor-pointer transition-all"
+              title={t.hero.copyEmailAria}
+              aria-label={t.hero.copyEmailAria}
+            >
+              {copied ? (
+                <>
+                  <Check className="w-3 h-3 text-emerald-500" />
+                  <span className="text-emerald-500 font-bold">{t.hero.copiedEmail}</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="w-2.5 h-2.5 opacity-60" />
+                  <span>{t.hero.copyEmail}</span>
+                </>
+              )}
+            </button>
+          </div>
+        </motion.div>
+
+        {/* Right-Aligned Editorial Availability Badge (Aligned to max-w-7xl Right Margin, Matching Navbar Deck) */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="hidden lg:flex absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 items-center"
+        >
           <a
-            href={`mailto:${config.email}`}
-            className="font-mono text-[11px] sm:text-xs font-semibold text-[var(--foreground)] opacity-60 hover:opacity-100 transition-opacity"
+            href="#contact"
+            data-cursor="pointer"
+            className="group block transition-transform hover:scale-105 active:scale-95 cursor-pointer"
+            title={t.hero.availability}
           >
-            {config.email}
+            <SpinningCircularText
+              text="· AVAILABLE FOR WORK · 2026 · FULLSTACK & AI ·"
+              size={96}
+              duration={16}
+            >
+              <div className="w-9 h-9 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] shadow-sm flex items-center justify-center group-hover:border-[var(--color-accent)] transition-colors">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+                </span>
+              </div>
+            </SpinningCircularText>
           </a>
-
-          <button
-            type="button"
-            onClick={handleCopyEmail}
-            data-cursor="copy"
-            className="btn-elastic inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] text-[10px] font-mono text-[var(--foreground)] opacity-70 hover:opacity-100 cursor-pointer transition-all"
-            title={t.hero.copyEmailAria}
-            aria-label={t.hero.copyEmailAria}
-          >
-            {copied ? (
-              <>
-                <Check className="w-3 h-3 text-emerald-500" />
-                <span className="text-emerald-500 font-bold">{t.hero.copiedEmail}</span>
-              </>
-            ) : (
-              <>
-                <Copy className="w-2.5 h-2.5 opacity-60" />
-                <span>{t.hero.copyEmail}</span>
-              </>
-            )}
-          </button>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
 
       {/* 2. MID POSTER CENTERPIECE: Spencer Gabor Sandwich Composition with 3D Tilt & Parallax */}
       <div className="w-full max-w-7xl mx-auto flex flex-col items-center justify-center my-auto py-4 z-10">
